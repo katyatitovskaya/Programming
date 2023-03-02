@@ -31,6 +31,7 @@
             this.TabControl = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.SeasonHandleGroupBox = new System.Windows.Forms.GroupBox();
+            this.SeasonChoiceComboBox = new System.Windows.Forms.ComboBox();
             this.ChooseSeasonLabel = new System.Windows.Forms.Label();
             this.GoButton = new System.Windows.Forms.Button();
             this.WeekdayParsingGroupBox = new System.Windows.Forms.GroupBox();
@@ -44,6 +45,7 @@
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.labelChooseEnum = new System.Windows.Forms.Label();
+            this.ParseLabel = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
@@ -78,6 +80,7 @@
             // 
             this.SeasonHandleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SeasonHandleGroupBox.Controls.Add(this.SeasonChoiceComboBox);
             this.SeasonHandleGroupBox.Controls.Add(this.ChooseSeasonLabel);
             this.SeasonHandleGroupBox.Controls.Add(this.GoButton);
             this.SeasonHandleGroupBox.Location = new System.Drawing.Point(408, 274);
@@ -86,6 +89,15 @@
             this.SeasonHandleGroupBox.TabIndex = 2;
             this.SeasonHandleGroupBox.TabStop = false;
             this.SeasonHandleGroupBox.Text = "Season Handle";
+            // 
+            // SeasonChoiceComboBox
+            // 
+            this.SeasonChoiceComboBox.FormattingEnabled = true;
+            this.SeasonChoiceComboBox.Location = new System.Drawing.Point(6, 61);
+            this.SeasonChoiceComboBox.Name = "SeasonChoiceComboBox";
+            this.SeasonChoiceComboBox.Size = new System.Drawing.Size(216, 28);
+            this.SeasonChoiceComboBox.TabIndex = 3;
+            this.SeasonChoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.SeasonChoiceComboBox_SelectedIndexChanged);
             // 
             // ChooseSeasonLabel
             // 
@@ -108,6 +120,7 @@
             // WeekdayParsingGroupBox
             // 
             this.WeekdayParsingGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.WeekdayParsingGroupBox.Controls.Add(this.ParseLabel);
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseButton);
             this.WeekdayParsingGroupBox.Controls.Add(this.TypeValueLabel);
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseTextBox);
@@ -220,6 +233,14 @@
             this.labelChooseEnum.TabIndex = 0;
             this.labelChooseEnum.Text = "Choose Enumeration:";
             // 
+            // ParseLabel
+            // 
+            this.ParseLabel.AutoSize = true;
+            this.ParseLabel.Location = new System.Drawing.Point(6, 90);
+            this.ParseLabel.Name = "ParseLabel";
+            this.ParseLabel.Size = new System.Drawing.Size(0, 20);
+            this.ParseLabel.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -258,5 +279,7 @@
         private Label TypeValueLabel;
         private TextBox ParseTextBox;
         private Label ChooseSeasonLabel;
+        private ComboBox SeasonChoiceComboBox;
+        private Label ParseLabel;
     }
 }
