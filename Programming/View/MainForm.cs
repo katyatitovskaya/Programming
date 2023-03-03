@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace Programming
 {
     public partial class MainForm : Form
@@ -10,6 +12,7 @@ namespace Programming
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex= 0;
             ValuesListBox.SelectedIndex= 0;
+
             
            var seasonValues = Enum.GetValues(typeof(Seasons));
             foreach (var season in seasonValues)
@@ -58,12 +61,43 @@ namespace Programming
 
         private void SeasonChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
         }
 
         private void GoButton_Click(object sender, EventArgs e)
         {
-
+            if (SeasonChoiceComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите время года");
+                return; 
+            }
+            string ChoosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
+            switch (ChoosenSeason)
+            {
+                case "Winter":
+                    SeasonHandleGroupBox.BackColor = Color.Transparent;
+                    groupBoxEnums.BackColor = Color.Transparent;
+                    WeekdayParsingGroupBox.BackColor = Color.Transparent;
+                    MessageBox.Show("Бррр! Холодно!");
+                    break;
+                case "Spring":
+                    SeasonHandleGroupBox.BackColor = Color.YellowGreen;
+                    groupBoxEnums.BackColor = Color.YellowGreen;
+                    WeekdayParsingGroupBox.BackColor = Color.YellowGreen;
+                    break;
+                case "Summer":
+                    SeasonHandleGroupBox.BackColor = Color.Transparent;
+                    groupBoxEnums.BackColor = Color.Transparent;
+                    WeekdayParsingGroupBox.BackColor = Color.Transparent;
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+                case "Autumn":
+                    SeasonChoiceResultLabel.Text = "";
+                    SeasonHandleGroupBox.BackColor = Color.Orange;
+                    groupBoxEnums.BackColor = Color.Orange;
+                    WeekdayParsingGroupBox.BackColor = Color.Orange;
+                    break;
+                break;
+            }
         }
     }
 }

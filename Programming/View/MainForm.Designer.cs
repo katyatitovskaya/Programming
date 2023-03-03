@@ -31,6 +31,7 @@
             this.TabControl = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.SeasonHandleGroupBox = new System.Windows.Forms.GroupBox();
+            this.SeasonChoiceResultLabel = new System.Windows.Forms.Label();
             this.SeasonChoiceComboBox = new System.Windows.Forms.ComboBox();
             this.ChooseSeasonLabel = new System.Windows.Forms.Label();
             this.GoButton = new System.Windows.Forms.Button();
@@ -80,6 +81,7 @@
             // 
             this.SeasonHandleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SeasonHandleGroupBox.Controls.Add(this.SeasonChoiceResultLabel);
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonChoiceComboBox);
             this.SeasonHandleGroupBox.Controls.Add(this.ChooseSeasonLabel);
             this.SeasonHandleGroupBox.Controls.Add(this.GoButton);
@@ -89,6 +91,14 @@
             this.SeasonHandleGroupBox.TabIndex = 2;
             this.SeasonHandleGroupBox.TabStop = false;
             this.SeasonHandleGroupBox.Text = "Season Handle";
+            // 
+            // SeasonChoiceResultLabel
+            // 
+            this.SeasonChoiceResultLabel.AutoSize = true;
+            this.SeasonChoiceResultLabel.Location = new System.Drawing.Point(6, 92);
+            this.SeasonChoiceResultLabel.Name = "SeasonChoiceResultLabel";
+            this.SeasonChoiceResultLabel.Size = new System.Drawing.Size(0, 20);
+            this.SeasonChoiceResultLabel.TabIndex = 4;
             // 
             // SeasonChoiceComboBox
             // 
@@ -282,5 +292,6 @@
         private Label ChooseSeasonLabel;
         private ComboBox SeasonChoiceComboBox;
         private Label ParseLabel;
+        private Label SeasonChoiceResultLabel;
     }
 }
