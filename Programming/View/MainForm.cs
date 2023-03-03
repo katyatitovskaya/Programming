@@ -37,26 +37,33 @@ namespace Programming
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
+            Weekday ChoosenWeekday;
             if(ParseTextBox.Text == null)
             {
                 return;
             }
             else
             {
-
+                if(Enum.TryParse(ParseTextBox.Text, out ChoosenWeekday))
+                {
+                    int EnteredWeekday = (int)ChoosenWeekday;
+                    ParseLabel.Text = ($"Это день недели ( {ChoosenWeekday} = {EnteredWeekday} )");
+                }
+                else
+                {
+                    ParseLabel.Text = "Нет такого дня недели";
+                }
             }
         }
 
         private void SeasonChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*var seasons = Enum.GetValues(typeof(Seasons));
+           
+        }
 
-            foreach (var season in seasons)
-            {
-                SeasonChoiceComboBox.Items.Add(season);
+        private void GoButton_Click(object sender, EventArgs e)
+        {
 
-            }
-            SeasonChoiceComboBox.Items.Add(seasons);*/
         }
     }
 }

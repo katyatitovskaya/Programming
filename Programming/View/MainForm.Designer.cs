@@ -35,6 +35,7 @@
             this.ChooseSeasonLabel = new System.Windows.Forms.Label();
             this.GoButton = new System.Windows.Forms.Button();
             this.WeekdayParsingGroupBox = new System.Windows.Forms.GroupBox();
+            this.ParseLabel = new System.Windows.Forms.Label();
             this.ParseButton = new System.Windows.Forms.Button();
             this.TypeValueLabel = new System.Windows.Forms.Label();
             this.ParseTextBox = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.labelChooseEnum = new System.Windows.Forms.Label();
-            this.ParseLabel = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
@@ -116,6 +116,7 @@
             this.GoButton.TabIndex = 0;
             this.GoButton.Text = "Go!";
             this.GoButton.UseVisualStyleBackColor = true;
+            this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
             // 
             // WeekdayParsingGroupBox
             // 
@@ -130,6 +131,14 @@
             this.WeekdayParsingGroupBox.TabIndex = 1;
             this.WeekdayParsingGroupBox.TabStop = false;
             this.WeekdayParsingGroupBox.Text = "Weekday Parsing";
+            // 
+            // ParseLabel
+            // 
+            this.ParseLabel.AutoSize = true;
+            this.ParseLabel.Location = new System.Drawing.Point(6, 90);
+            this.ParseLabel.Name = "ParseLabel";
+            this.ParseLabel.Size = new System.Drawing.Size(0, 20);
+            this.ParseLabel.TabIndex = 3;
             // 
             // ParseButton
             // 
@@ -232,14 +241,6 @@
             this.labelChooseEnum.Size = new System.Drawing.Size(149, 20);
             this.labelChooseEnum.TabIndex = 0;
             this.labelChooseEnum.Text = "Choose Enumeration:";
-            // 
-            // ParseLabel
-            // 
-            this.ParseLabel.AutoSize = true;
-            this.ParseLabel.Location = new System.Drawing.Point(6, 90);
-            this.ParseLabel.Name = "ParseLabel";
-            this.ParseLabel.Size = new System.Drawing.Size(0, 20);
-            this.ParseLabel.TabIndex = 3;
             // 
             // MainForm
             // 
