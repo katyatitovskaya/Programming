@@ -50,7 +50,7 @@ namespace Programming
                 if(Enum.TryParse(ParseTextBox.Text, out ChoosenWeekday))
                 {
                     int EnteredWeekday = (int)ChoosenWeekday;
-                    ParseLabel.Text = ($"Это день недели ( {ChoosenWeekday} = {EnteredWeekday} )");
+                    ParseLabel.Text = ($"Это день недели ( {ChoosenWeekday} = {EnteredWeekday+1} )");
                 }
                 else
                 {
