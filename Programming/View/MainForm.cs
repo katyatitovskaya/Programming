@@ -42,22 +42,21 @@ namespace Programming
         {
             var number = (int)(Enum.Parse(Type.GetType(EnumsListBox.Text), ValuesListBox.Text));
             IntValueTextBox.Text = number.ToString();
-            //IntValueTextBox.Text = Convert.ToString(ValuesListBox.SelectedIndex);
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            Weekday ChoosenWeekday;
+            Weekday choosenWeekday;
             if(ParseTextBox.Text == null)
             {
                 return;
             }
             else
             {
-                if(Enum.TryParse(ParseTextBox.Text, out ChoosenWeekday))
+                if(Enum.TryParse(ParseTextBox.Text, out choosenWeekday))
                 {
-                    int EnteredWeekday = (int)ChoosenWeekday;
-                    ParseLabel.Text = ($"Ёто день недели ( {ChoosenWeekday} = {EnteredWeekday+1} )");
+                    int enteredWeekday = (int)choosenWeekday;
+                    ParseLabel.Text = ($"Ёто день недели ( {choosenWeekday} = {enteredWeekday+1} )");
                 }
                 else
                 {
@@ -73,8 +72,8 @@ namespace Programming
                 MessageBox.Show("¬ыберите врем€ года");
                 return; 
             }
-            string ChoosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
-            switch (ChoosenSeason)
+            string choosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
+            switch (choosenSeason)
             {
                 case "Winter":
                     SeasonHandleGroupBox.BackColor = Color.Transparent;
@@ -99,7 +98,6 @@ namespace Programming
                     groupBoxEnums.BackColor = Color.Orange;
                     WeekdayParsingGroupBox.BackColor = Color.Orange;
                     break;
-                break;
             }
         }
     }
