@@ -8,7 +8,12 @@ namespace Programming
         {
             InitializeComponent();
 
-            object[] enums = new object[] { typeof(Seasons), typeof(PhoneMakers), typeof(EducationForm), typeof(Colors), typeof(Genre), typeof(Weekday) };
+            object[] enums = new object[] { typeof(Seasons), 
+                typeof(PhoneMakers),
+                typeof(EducationForm), 
+                typeof(Colors),
+                typeof(Genre), 
+                typeof(Weekday) };
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex= 0;
             ValuesListBox.SelectedIndex= 0;
@@ -35,7 +40,9 @@ namespace Programming
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IntValueTextBox.Text = Convert.ToString(ValuesListBox.SelectedIndex);
+            var number = (int)(Enum.Parse(Type.GetType(EnumsListBox.Text), ValuesListBox.Text));
+            IntValueTextBox.Text = number.ToString();
+            //IntValueTextBox.Text = Convert.ToString(ValuesListBox.SelectedIndex);
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
@@ -57,10 +64,6 @@ namespace Programming
                     ParseLabel.Text = "Нет такого дня недели";
                 }
             }
-        }
-
-        private void SeasonChoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         private void GoButton_Click(object sender, EventArgs e)

@@ -107,7 +107,6 @@
             this.SeasonChoiceComboBox.Name = "SeasonChoiceComboBox";
             this.SeasonChoiceComboBox.Size = new System.Drawing.Size(216, 28);
             this.SeasonChoiceComboBox.TabIndex = 3;
-            this.SeasonChoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.SeasonChoiceComboBox_SelectedIndexChanged);
             // 
             // ChooseSeasonLabel
             // 
