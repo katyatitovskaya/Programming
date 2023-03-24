@@ -47,16 +47,20 @@
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.labelChooseEnum = new System.Windows.Forms.Label();
+            this.ClassesTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
             this.WeekdayParsingGroupBox.SuspendLayout();
             this.groupBoxEnums.SuspendLayout();
+            this.ClassesTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
             // 
             this.TabControl.Controls.Add(this.Enums);
+            this.TabControl.Controls.Add(this.ClassesTabPage);
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
@@ -251,6 +255,27 @@
             this.labelChooseEnum.TabIndex = 0;
             this.labelChooseEnum.Text = "Choose Enumeration:";
             // 
+            // ClassesTabPage
+            // 
+            this.ClassesTabPage.Controls.Add(this.groupBox1);
+            this.ClassesTabPage.Location = new System.Drawing.Point(4, 29);
+            this.ClassesTabPage.Name = "ClassesTabPage";
+            this.ClassesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ClassesTabPage.Size = new System.Drawing.Size(792, 417);
+            this.ClassesTabPage.TabIndex = 1;
+            this.ClassesTabPage.Text = "Classes";
+            this.ClassesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(786, 411);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rectangles";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -267,6 +292,7 @@
             this.WeekdayParsingGroupBox.PerformLayout();
             this.groupBoxEnums.ResumeLayout(false);
             this.groupBoxEnums.PerformLayout();
+            this.ClassesTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -292,5 +318,7 @@
         private ComboBox SeasonChoiceComboBox;
         private Label ParseLabel;
         private Label SeasonChoiceResultLabel;
+        private TabPage ClassesTabPage;
+        private GroupBox groupBox1;
     }
 }
