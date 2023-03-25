@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Time
+    public class Time
     {
         private int _hours;
         private int _minutes;
@@ -17,9 +17,9 @@ namespace Programming.Model
             get { return _hours; }
             set
             {
-                if (value >= 0 && value <= 23)
-                    _hours = value;
-                throw new ArgumentException("Число находится вне диапазона");
+                if (value < 0 && value > 23)
+                    throw new ArgumentException("Число находится вне диапазона");
+                _hours = value;
             }
         }
         public int Minutes
@@ -27,9 +27,9 @@ namespace Programming.Model
             get { return _minutes; }
             set
             {
-                if (value >= 0 && value <= 59)
-                    _minutes = value;
-                throw new ArgumentException("Число находится вне диапазона");
+                if (value < 0 && value > 60)
+                    throw new ArgumentException("Число находится вне диапазона");
+                _minutes = value;
             }
         }
         public int Seconds
@@ -38,8 +38,8 @@ namespace Programming.Model
             set
             {
                 if (value >= 0 && value <= 59)
-                    _seconds = value;
-                throw new ArgumentException("Число находится вне диапазона");
+                    throw new ArgumentException("Число находится вне диапазона");
+                _seconds = value;
             }
         }
         public Time()

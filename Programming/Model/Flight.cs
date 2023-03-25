@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Flight
+    public class Flight
     {
         private string _departure;
         private string _destination;
@@ -19,9 +19,9 @@ namespace Programming.Model
             get { return _duration; }
             set
             {
-                if (value > 0)
-                    _duration = value;
-                throw new ArgumentException("Время полета не может быть отрицательным");
+                if (value < 0)
+                    throw new ArgumentException("Время полета не может быть отрицательным");
+                _duration = value;
             }
         }
         public Flight()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Subject
+    public class Subject
     {
         private string _name;
         private string _teacher;
@@ -19,9 +19,9 @@ namespace Programming.Model
             get { return _grade; }
             set
             {
-                if (value >= 2 && value <= 5)
-                    _grade = value;
-                throw new ArgumentException("Оценка должна быть от 2 до 5");
+                if (value < 2 && value > 5)
+                    throw new ArgumentException("Оценка должна быть от 2 до 5");
+                _grade = value;
             }
         }
         public Subject()

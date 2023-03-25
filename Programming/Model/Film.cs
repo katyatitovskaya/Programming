@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Film
+    public class Film
     {
         private string _name;
         private int _duration;
@@ -30,9 +30,9 @@ namespace Programming.Model
             get { return _year; }
             set
             {
-                if(value >= 1990 && value <= 2023) 
-                    _year = value;
-                throw new ArgumentException("Фильм должен был выйти в период с 1990 по 2023");
+                if(value < 1990 && value > 2023) 
+                   throw new ArgumentException("Фильм должен был выйти в период с 1990 по 2023");
+                _year = value;
             }
         }
         public string Genre { get; set; }
@@ -41,9 +41,9 @@ namespace Programming.Model
             get { return _rating; }
             set
             {
-                if(value >= 0 && value <= 10)
-                    _rating = value;
-                throw new ArgumentException("Число находится вне диапазона рейтинга");
+                if(value < 0 && value > 10)
+                    throw new ArgumentException("Число находится вне диапазона рейтинга");
+                _rating = value;
             }
         }
         public Film()

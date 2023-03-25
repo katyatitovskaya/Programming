@@ -5,6 +5,7 @@ namespace Programming
     public partial class MainForm : Form
     {
        
+
         public MainForm()
         {
             InitializeComponent();
@@ -24,10 +25,6 @@ namespace Programming
             {
                 SeasonChoiceComboBox.Items.Add(season);
             }
-
-            
-            
-
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)

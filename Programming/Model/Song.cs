@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal class Song
+    public class Song
     {
         private string _name;
         private string _singer;
@@ -20,9 +20,9 @@ namespace Programming.Model
             get { return _minutes; }
             set
             {
-                if(value > 0)
-                    _minutes = value;
-                throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                if(value < 0)
+                    throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                _minutes = value;
             }
         }
         public int Seconds
@@ -30,9 +30,9 @@ namespace Programming.Model
             get { return _seconds; }
             set
             {
-                if (value > 0)
-                    _seconds = value;
-                throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                if (value < 0)
+                    throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                _seconds = value;
             }
         }
         public Song()
