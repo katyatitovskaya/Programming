@@ -4,6 +4,7 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+       
         public MainForm()
         {
             InitializeComponent();
@@ -18,12 +19,14 @@ namespace Programming
             EnumsListBox.SelectedIndex= 0;
             ValuesListBox.SelectedIndex= 0;
 
-            
            var seasonValues = Enum.GetValues(typeof(Seasons));
             foreach (var season in seasonValues)
             {
                 SeasonChoiceComboBox.Items.Add(season);
             }
+
+            
+            
 
         }
 

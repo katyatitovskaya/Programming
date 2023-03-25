@@ -33,6 +33,10 @@ namespace Programming.Model
             }
         }
         public string Color { get;  set; }
+
+        public Rectangle()
+        {
+        }
         public Rectangle(double length, double width, string color)
         {
             Length = length;

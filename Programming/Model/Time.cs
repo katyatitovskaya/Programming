@@ -42,6 +42,9 @@ namespace Programming.Model
                 throw new ArgumentException("Число находится вне диапазона");
             }
         }
+        public Time()
+        {
+        }
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

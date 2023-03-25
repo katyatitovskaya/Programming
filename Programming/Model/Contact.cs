@@ -24,6 +24,9 @@ namespace Programming.Model
                 _number = value;
             }
         }
+        public Contact()
+        {
+        }
         public Contact(string firstname, string lastname, int number)
         {
             Firstname = firstname;

@@ -24,5 +24,14 @@ namespace Programming.Model
                 throw new ArgumentException("Время полета не может быть отрицательным");
             }
         }
+        public Flight()
+        {
+        }
+        public Flight(string departure, string destination, int duration)
+        {
+            Departure = departure;
+            Destination = destination;
+            Duration = duration;
+        }
     }
 }

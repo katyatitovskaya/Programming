@@ -14,11 +14,7 @@ namespace Programming.Model
         private string _genre;
         private double _rating;
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
         public int Duration
         {
             get { return _duration; }
@@ -50,7 +46,11 @@ namespace Programming.Model
                 throw new ArgumentException("Число находится вне диапазона рейтинга");
             }
         }
-        public Movie(string name, int duration, int year, string genre, double rating)
+        public Film()
+        {
+        }
+
+        public Film(string name, int duration, int year, string genre, double rating)
         {
             Name = name;
             Duration = duration;
