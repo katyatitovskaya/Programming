@@ -4,7 +4,10 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-       
+        private Model.Rectangle[] _rectangles = new Model.Rectangle[5];
+        private Model.Rectangle _currentRectangle = new Model.Rectangle(); 
+        private Model.Film[] _films = new Model.Film[5];
+        private Model.Film _currentFilm = new Model.Film();
 
         public MainForm()
         {
@@ -24,6 +27,24 @@ namespace Programming
             foreach (var season in seasonValues)
             {
                 SeasonChoiceComboBox.Items.Add(season);
+            }
+            string[] colorsNames = Enum.GetNames(typeof(Colors));
+            string[] filmNames = Enum.GetNames(typeof(FilmNames));
+            string[] filmGenres = Enum.GetNames(typeof(Genre));
+            
+            Random _rand = new Random();
+            for(int i = 0; i<_rectangles.Length; i++)
+            {
+                _rectangles[i] = new Model.Rectangle(Math.Round(_rand.NextDouble()*100, 1), 
+                    Math.Round(_rand.NextDouble() * 100, 1),
+                    colorsNames[_rand.Next(0, colorsNames.Length)]);
+                RectanglesListBox.Items.Add($"Rectangle {i+1}");
+            }
+            for(int i = 0; i<_films.Length; i++)
+            {
+                _films[i] = new Model.Film(filmNames[_rand.Next(0, filmNames.Length)], _rand.Next(300), _rand.Next(1990, 2023),
+                    filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
+                FilmsListBox.Items.Add($"Film {i + 1}");
             }
         }
 
@@ -72,8 +93,8 @@ namespace Programming
                 MessageBox.Show("Выберите время года");
                 return; 
             }
-            string choosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
-            switch (choosenSeason)
+            string chosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
+            switch (chosenSeason)
             {
                 case "Winter":
                     SeasonHandleGroupBox.BackColor = Color.Transparent;
@@ -99,6 +120,169 @@ namespace Programming
                     WeekdayParsingGroupBox.BackColor = Color.Orange;
                     break;
             }
+        }
+
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int value = RectanglesListBox.SelectedIndex;
+            _currentRectangle = _rectangles[value];
+            RectWidthTextBox.Text = _currentRectangle.Width.ToString();
+            RectLengthTextBox.Text = _currentRectangle.Length.ToString();
+            RectColorTextBox.Text = _currentRectangle.Color.ToString();
+            RectLengthTextBox.TextChanged += RectLengthTextBox_TextChanged;
+            RectWidthTextBox.TextChanged += RectWidthTextBox_TextChanged;
+            RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;    
+        }
+
+        private void RectColorTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            _currentRectangle.Color = RectColorTextBox.Text;
+        }
+
+        private void RectLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double newLength = Convert.ToDouble(RectLengthTextBox.Text);
+                _currentRectangle.Length = newLength;
+                RectLengthTextBox.BackColor= Color.White;
+                if (string.IsNullOrEmpty(RectLengthTextBox.Text) || Convert.ToDouble(RectLengthTextBox.Text) <= 0)
+                    throw new Exception();
+            }
+            catch(Exception)
+            {
+                RectLengthTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void RectWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double newWidth = Convert.ToDouble(RectWidthTextBox.Text);
+                _currentRectangle.Width = newWidth;
+                RectWidthTextBox.BackColor = Color.White;
+                if (string.IsNullOrEmpty(RectWidthTextBox.Text) || Convert.ToDouble(RectWidthTextBox.Text) <= 0)
+                    throw new Exception();
+            }
+            catch (Exception)
+            {
+                RectWidthTextBox.BackColor = Color.LightPink;
+            }
+        }
+        private int FindRectangleWithMaxWidth()
+        {
+            double maxWidth = _rectangles[0].Width;
+            int maxWidthIndex = 0;
+
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                if (_rectangles[i].Width > maxWidth)
+                {
+                    maxWidth = _rectangles[i].Width;
+                    maxWidthIndex = i;
+                }
+            }
+            return maxWidthIndex;
+        }
+
+        private void FindMaxWidthButton_Click(object sender, EventArgs e)
+        {
+            RectanglesListBox.SelectedIndex= FindRectangleWithMaxWidth();
+        }
+
+        private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int value = FilmsListBox.SelectedIndex;
+            _currentFilm = _films[value];
+            FilmNameTextBox.Text = _currentFilm.Name;
+            FilmDurationTextBox.Text = _currentFilm.Duration.ToString();
+            FilmYearTextBox.Text = _currentFilm.Year.ToString();
+            FilmGenreTextBox.Text = _currentFilm.Genre;
+            FilmRatingTextBox.Text = _currentFilm.Rating.ToString();
+            FilmNameTextBox.TextChanged += FilmNameTextBox_TextChanged;
+            FilmDurationTextBox.TextChanged += FilmDurationTextBox_TextChanged;
+            FilmYearTextBox.TextChanged += FilmYearTextBox_TextChanged;
+            FilmGenreTextBox.TextChanged += FilmGenreTextBox_TextChanged;
+            FilmRatingTextBox.TextChanged += FilmRatingTextBox_TextChanged;
+        }
+
+        private void FilmRatingTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            try
+            {
+                double newRating = Convert.ToDouble(FilmRatingTextBox.Text);
+                _currentFilm.Rating = newRating;
+                FilmRatingTextBox.BackColor = Color.White;
+                if (string.IsNullOrEmpty(FilmRatingTextBox.Text) || Convert.ToDouble(FilmRatingTextBox.Text) < 0
+                    || Convert.ToDouble(FilmRatingTextBox.Text) > 10)
+                    throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                FilmRatingTextBox.BackColor = Color.LightPink;
+            }
+        }
+        private void FilmGenreTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            _currentFilm.Genre = FilmGenreTextBox.Text;
+        }
+
+        private void FilmNameTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            _currentFilm.Name = FilmNameTextBox.Text;
+        }
+        private void FilmYearTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            try
+            {
+                int newYear = Convert.ToInt32(FilmYearTextBox.Text);
+                _currentFilm.Year = newYear;
+                FilmYearTextBox.BackColor = Color.White;
+                if (string.IsNullOrEmpty(FilmYearTextBox.Text) || Convert.ToInt32(FilmYearTextBox.Text) < 1990 || 
+                    Convert.ToInt32(FilmYearTextBox.Text)>2023)
+                    throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                FilmYearTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void FilmDurationTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            try
+            {
+                int newDuration = Convert.ToInt32(FilmDurationTextBox.Text);
+                _currentFilm.Duration = newDuration;
+                FilmDurationTextBox.BackColor= Color.White;
+                if (string.IsNullOrEmpty(FilmDurationTextBox.Text) || Convert.ToInt32(FilmDurationTextBox.Text) < 0)
+                    throw new Exception();
+            }
+            catch(Exception ex)
+            {
+                FilmDurationTextBox.BackColor = Color.LightPink;
+            }
+        }
+        private int FindFilmWithMaxRating()
+        {
+            double maxRating = _films[0].Rating;
+            int maxRatingIndex = 0;
+
+            for (int i = 0; i < _films.Length; i++)
+            {
+                if (_films[i].Rating>maxRating)
+                {
+                    maxRating = _films[i].Rating;
+                    maxRatingIndex = i;
+                }
+            }
+            return maxRatingIndex;
+        }
+
+        private void FindMaxFilmRatingButton_Click(object sender, EventArgs e)
+        {
+            FilmsListBox.SelectedIndex = FindFilmWithMaxRating();
         }
     }
 }
