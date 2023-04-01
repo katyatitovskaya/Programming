@@ -21,7 +21,7 @@ namespace Programming.View
             typeof(Weekday) };
             
             EnumsListBox.Items.AddRange(enums);
-            
+            EnumsListBox.DisplayMember = nameof(Type.Name);
             EnumsListBox.SelectedIndex = 0;
             ValuesListBox.SelectedIndex = 0;
 
@@ -63,7 +63,7 @@ namespace Programming.View
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var number = (int)(Enum.Parse(Type.GetType(EnumsListBox.Text), ValuesListBox.Text));
+            var number = (int)(Enum.Parse((Type)(EnumsListBox.SelectedItem), ValuesListBox.Text));
             IntValueTextBox.Text = number.ToString();
         }
 

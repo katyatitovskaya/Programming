@@ -8,10 +8,8 @@ namespace Programming.Model
 {
     public class Film
     {
-        private string _name;
         private int _duration;
         private int _year;
-        private string _genre;
         private double _rating;
 
         public string Name { get; set; }

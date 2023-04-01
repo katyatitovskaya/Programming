@@ -8,8 +8,6 @@ namespace Programming.Model
 {
     public class Contact
     {
-        private string _firstname;
-        private string _lastname;
         private int _number;
 
         public string Firstname { get; set; }

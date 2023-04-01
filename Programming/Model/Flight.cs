@@ -8,8 +8,6 @@ namespace Programming.Model
 {
     public class Flight
     {
-        private string _departure;
-        private string _destination;
         private int _duration;
 
         public string Destination { get; set; }

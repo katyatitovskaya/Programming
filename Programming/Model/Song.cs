@@ -8,8 +8,6 @@ namespace Programming.Model
 {
     public class Song
     {
-        private string _name;
-        private string _singer;
         private int _minutes;
         private int _seconds;
 

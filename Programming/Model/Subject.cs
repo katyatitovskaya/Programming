@@ -8,8 +8,6 @@ namespace Programming.Model
 {
     public class Subject
     {
-        private string _name;
-        private string _teacher;
         private int _grade;
 
         public string Name { get; set; }
