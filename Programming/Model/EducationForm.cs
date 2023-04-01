@@ -1,7 +1,7 @@
-﻿public enum EducationForm
-{
-    FullTime,
-    PartTime,
-    Evening,
-    Distance
-}
+﻿    public enum EducationForm
+    {
+        FullTime,
+        PartTime,
+        Evening,
+        Distance
+    }

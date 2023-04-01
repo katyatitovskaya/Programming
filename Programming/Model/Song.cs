@@ -17,7 +17,7 @@ namespace Programming.Model
         public string Singer { get; set; }
         public int Minutes 
         {
-            get { return _minutes; }
+            get => _minutes;
             set
             {
                 if(value < 0)
@@ -27,7 +27,7 @@ namespace Programming.Model
         }
         public int Seconds
         {
-            get { return _seconds; }
+            get => _seconds;
             set
             {
                 if (value < 0)

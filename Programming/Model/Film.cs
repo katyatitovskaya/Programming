@@ -17,20 +17,20 @@ namespace Programming.Model
         public string Name { get; set; }
         public int Duration
         {
-            get { return _duration; }
+            get => _duration;
             set 
             {
-                if (value<0)
+                if (value < 0)
                     throw new ArgumentException("Продолжительность должна быть больше нуля");
                 _duration = value; 
             }
         }
         public int Year
         {
-            get { return _year; }
+            get => _year;
             set
             {
-                if(value < 1990 && value > 2023) 
+                if(value < 1900 || value > 2023) 
                    throw new ArgumentException("Фильм должен был выйти в период с 1990 по 2023");
                 _year = value;
             }
@@ -38,10 +38,10 @@ namespace Programming.Model
         public string Genre { get; set; }
         public double Rating
         {
-            get { return _rating; }
+            get => _rating;
             set
             {
-                if(value < 0 && value > 10)
+                if(value < 0 || value > 10)
                     throw new ArgumentException("Число находится вне диапазона рейтинга");
                 _rating = value;
             }

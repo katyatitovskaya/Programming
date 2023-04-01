@@ -16,7 +16,7 @@ namespace Programming.Model
         public string Lastname { get; set; }
         public int Number
         {
-            get { return _number; }
+            get => _number;
             set
             {
                 if (value < 0)

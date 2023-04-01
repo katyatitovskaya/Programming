@@ -16,7 +16,7 @@ namespace Programming.Model
         public string Departure { get; set; }
         public int Duration 
         { 
-            get { return _duration; }
+            get => _duration;
             set
             {
                 if (value < 0)

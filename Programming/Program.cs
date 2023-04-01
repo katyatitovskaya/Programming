@@ -1,4 +1,4 @@
-namespace Programming
+namespace Programming.View
 {
     internal static class Program
     {

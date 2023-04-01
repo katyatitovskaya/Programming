@@ -1,9 +1,12 @@
-﻿public enum PhoneMakers
+﻿namespace Programming.Model
 {
-    Samsung,
-    Apple,
-    Xiaomi,
-    Nokia,
-    Huawei,
-    Oppo
+    public enum PhoneMakers
+    {
+        Samsung,
+        Apple,
+        Xiaomi,
+        Nokia,
+        Huawei,
+        Oppo
+    }
 }

@@ -1,8 +1,11 @@
-﻿enum FilmNames
+﻿namespace Programming.Model
 {
-    Extracurricular,
-    Tomorrow,
-    Glory,
-    Vinchenzo,
-    ItewonClass
+    enum FilmNames
+    {
+        Extracurricular,
+        Tomorrow,
+        Glory,
+        Vinchenzo,
+        ItewonClass
+    }
 }

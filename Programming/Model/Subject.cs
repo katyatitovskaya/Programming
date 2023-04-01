@@ -19,7 +19,7 @@ namespace Programming.Model
             get { return _grade; }
             set
             {
-                if (value < 2 && value > 5)
+                if (value < 2 || value > 5)
                     throw new ArgumentException("Оценка должна быть от 2 до 5");
                 _grade = value;
             }

@@ -14,7 +14,7 @@ namespace Programming.Model
 
         public double Length
         {
-            get { return _length; }
+            get => _length;
             set 
             {
                 if (value < 0)
@@ -24,7 +24,7 @@ namespace Programming.Model
         }
         public double Width
         {
-            get { return _width; }
+            get => _width;
             set
             {
                 if (value < 0)

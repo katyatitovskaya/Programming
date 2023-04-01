@@ -14,30 +14,30 @@ namespace Programming.Model
 
         public int Hours
         {
-            get { return _hours; }
+            get => _hours;
             set
             {
-                if (value < 0 && value > 23)
+                if (value < 0 || value > 24)
                     throw new ArgumentException("Число находится вне диапазона");
                 _hours = value;
             }
         }
         public int Minutes
         {
-            get { return _minutes; }
+            get => _minutes;
             set
             {
-                if (value < 0 && value > 60)
+                if (value < 0 || value > 60)
                     throw new ArgumentException("Число находится вне диапазона");
                 _minutes = value;
             }
         }
         public int Seconds
         {
-            get { return _seconds; }
+            get => _seconds;
             set
             {
-                if (value >= 0 && value <= 59)
+                if (value >= 0 || value <= 59)
                     throw new ArgumentException("Число находится вне диапазона");
                 _seconds = value;
             }

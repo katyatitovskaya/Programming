@@ -1,29 +1,31 @@
 using System.Windows.Forms;
-
-namespace Programming
+using Programming.Model;
+namespace Programming.View
 {
     public partial class MainForm : Form
     {
         private Model.Rectangle[] _rectangles = new Model.Rectangle[5];
-        private Model.Rectangle _currentRectangle = new Model.Rectangle(); 
-        private Model.Film[] _films = new Model.Film[5];
-        private Model.Film _currentFilm = new Model.Film();
+        private Model.Rectangle _currentRectangle = new Model.Rectangle();
+        private Film[] _films = new Film[5];
+        private Film _currentFilm = new Film();
 
         public MainForm()
         {
             InitializeComponent();
 
-            object[] enums = new object[] { typeof(Seasons), 
-                typeof(PhoneMakers),
-                typeof(EducationForm), 
-                typeof(Colors),
-                typeof(Genre), 
-                typeof(Weekday) };
+            object[] enums = new object[] { typeof(Seasons),
+            typeof(PhoneMakers),
+            typeof(EducationForm),
+            typeof(Colors),
+            typeof(Genre),
+            typeof(Weekday) };
+            
             EnumsListBox.Items.AddRange(enums);
-            EnumsListBox.SelectedIndex= 0;
-            ValuesListBox.SelectedIndex= 0;
+            
+            EnumsListBox.SelectedIndex = 0;
+            ValuesListBox.SelectedIndex = 0;
 
-           var seasonValues = Enum.GetValues(typeof(Seasons));
+            var seasonValues = Enum.GetValues(typeof(Seasons));
             foreach (var season in seasonValues)
             {
                 SeasonChoiceComboBox.Items.Add(season);
@@ -31,18 +33,18 @@ namespace Programming
             string[] colorsNames = Enum.GetNames(typeof(Colors));
             string[] filmNames = Enum.GetNames(typeof(FilmNames));
             string[] filmGenres = Enum.GetNames(typeof(Genre));
-            
+
             Random _rand = new Random();
-            for(int i = 0; i<_rectangles.Length; i++)
+            for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Rectangle(Math.Round(_rand.NextDouble()*100, 1), 
+                _rectangles[i] = new Model.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1),
                     colorsNames[_rand.Next(0, colorsNames.Length)]);
-                RectanglesListBox.Items.Add($"Rectangle {i+1}");
+                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
-            for(int i = 0; i<_films.Length; i++)
+            for (int i = 0; i < _films.Length; i++)
             {
-                _films[i] = new Model.Film(filmNames[_rand.Next(0, filmNames.Length)], _rand.Next(300), _rand.Next(1990, 2023),
+                _films[i] = new Film(filmNames[_rand.Next(0, filmNames.Length)], _rand.Next(300), _rand.Next(1900, 2023),
                     filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
@@ -68,16 +70,16 @@ namespace Programming
         private void ParseButton_Click(object sender, EventArgs e)
         {
             Weekday choosenWeekday;
-            if(ParseTextBox.Text == null)
+            if (ParseTextBox.Text == null)
             {
                 return;
             }
             else
             {
-                if(Enum.TryParse(ParseTextBox.Text, out choosenWeekday))
+                if (Enum.TryParse(ParseTextBox.Text, out choosenWeekday))
                 {
                     int enteredWeekday = (int)choosenWeekday;
-                    ParseLabel.Text = ($"Ёто день недели ( {choosenWeekday} = {enteredWeekday+1} )");
+                    ParseLabel.Text = ($"Ёто день недели ( {choosenWeekday} = {enteredWeekday + 1} )");
                 }
                 else
                 {
@@ -91,7 +93,7 @@ namespace Programming
             if (SeasonChoiceComboBox.SelectedItem == null)
             {
                 MessageBox.Show("¬ыберите врем€ года");
-                return; 
+                return;
             }
             string chosenSeason = SeasonChoiceComboBox.SelectedItem.ToString();
             switch (chosenSeason)
@@ -131,7 +133,7 @@ namespace Programming
             RectColorTextBox.Text = _currentRectangle.Color.ToString();
             RectLengthTextBox.TextChanged += RectLengthTextBox_TextChanged;
             RectWidthTextBox.TextChanged += RectWidthTextBox_TextChanged;
-            RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;    
+            RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;
         }
 
         private void RectColorTextBox_TextChanged(object? sender, EventArgs e)
@@ -145,11 +147,9 @@ namespace Programming
             {
                 double newLength = Convert.ToDouble(RectLengthTextBox.Text);
                 _currentRectangle.Length = newLength;
-                RectLengthTextBox.BackColor= Color.White;
-                if (string.IsNullOrEmpty(RectLengthTextBox.Text) || Convert.ToDouble(RectLengthTextBox.Text) <= 0)
-                    throw new Exception();
+                RectLengthTextBox.BackColor = Color.White;
             }
-            catch(Exception)
+            catch
             {
                 RectLengthTextBox.BackColor = Color.LightPink;
             }
@@ -162,10 +162,8 @@ namespace Programming
                 double newWidth = Convert.ToDouble(RectWidthTextBox.Text);
                 _currentRectangle.Width = newWidth;
                 RectWidthTextBox.BackColor = Color.White;
-                if (string.IsNullOrEmpty(RectWidthTextBox.Text) || Convert.ToDouble(RectWidthTextBox.Text) <= 0)
-                    throw new Exception();
             }
-            catch (Exception)
+            catch
             {
                 RectWidthTextBox.BackColor = Color.LightPink;
             }
@@ -188,7 +186,7 @@ namespace Programming
 
         private void FindMaxWidthButton_Click(object sender, EventArgs e)
         {
-            RectanglesListBox.SelectedIndex= FindRectangleWithMaxWidth();
+            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth();
         }
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,11 +212,8 @@ namespace Programming
                 double newRating = Convert.ToDouble(FilmRatingTextBox.Text);
                 _currentFilm.Rating = newRating;
                 FilmRatingTextBox.BackColor = Color.White;
-                if (string.IsNullOrEmpty(FilmRatingTextBox.Text) || Convert.ToDouble(FilmRatingTextBox.Text) < 0
-                    || Convert.ToDouble(FilmRatingTextBox.Text) > 10)
-                    throw new Exception();
             }
-            catch (Exception ex)
+            catch
             {
                 FilmRatingTextBox.BackColor = Color.LightPink;
             }
@@ -239,11 +234,8 @@ namespace Programming
                 int newYear = Convert.ToInt32(FilmYearTextBox.Text);
                 _currentFilm.Year = newYear;
                 FilmYearTextBox.BackColor = Color.White;
-                if (string.IsNullOrEmpty(FilmYearTextBox.Text) || Convert.ToInt32(FilmYearTextBox.Text) < 1990 || 
-                    Convert.ToInt32(FilmYearTextBox.Text)>2023)
-                    throw new Exception();
             }
-            catch (Exception ex)
+            catch
             {
                 FilmYearTextBox.BackColor = Color.LightPink;
             }
@@ -255,11 +247,9 @@ namespace Programming
             {
                 int newDuration = Convert.ToInt32(FilmDurationTextBox.Text);
                 _currentFilm.Duration = newDuration;
-                FilmDurationTextBox.BackColor= Color.White;
-                if (string.IsNullOrEmpty(FilmDurationTextBox.Text) || Convert.ToInt32(FilmDurationTextBox.Text) < 0)
-                    throw new Exception();
+                FilmDurationTextBox.BackColor = Color.White;
             }
-            catch(Exception ex)
+            catch
             {
                 FilmDurationTextBox.BackColor = Color.LightPink;
             }
@@ -271,7 +261,7 @@ namespace Programming
 
             for (int i = 0; i < _films.Length; i++)
             {
-                if (_films[i].Rating>maxRating)
+                if (_films[i].Rating > maxRating)
                 {
                     maxRating = _films[i].Rating;
                     maxRatingIndex = i;
