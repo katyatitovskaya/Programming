@@ -17,8 +17,7 @@ namespace Programming.Model
             get { return _grade; }
             set
             {
-                if (value < 2 || value > 5)
-                    throw new ArgumentException("Оценка должна быть от 2 до 5");
+                Validator.AssertValueInRange(value, 2, 5);
                 _grade = value;
             }
         }

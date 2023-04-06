@@ -18,8 +18,7 @@ namespace Programming.Model
             get => _duration;
             set 
             {
-                if (value < 0)
-                    throw new ArgumentException("Продолжительность должна быть больше нуля");
+                Validator.AssertOnPositiveValue(value);
                 _duration = value; 
             }
         }
@@ -28,8 +27,7 @@ namespace Programming.Model
             get => _year;
             set
             {
-                if(value < 1900 || value > 2023) 
-                   throw new ArgumentException("Фильм должен был выйти в период с 1990 по 2023");
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year);
                 _year = value;
             }
         }
@@ -39,8 +37,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if(value < 0 || value > 10)
-                    throw new ArgumentException("Число находится вне диапазона рейтинга");
+                Validator.AssertValueInRange(value, 0, 10);
                 _rating = value;
             }
         }

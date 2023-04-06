@@ -17,8 +17,7 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Время полета не может быть отрицательным");
+                Validator.AssertOnPositiveValue(value);
                 _duration = value;
             }
         }

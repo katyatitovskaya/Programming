@@ -12,7 +12,8 @@ namespace Programming.View
         public MainForm()
         {
             InitializeComponent();
-
+            Contact name = new Contact();
+      
             object[] enums = new object[] { typeof(Seasons),
             typeof(PhoneMakers),
             typeof(EducationForm),

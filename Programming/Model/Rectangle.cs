@@ -16,8 +16,7 @@ namespace Programming.Model
             get => _length;
             set 
             {
-                if (value < 0)
-                    throw new ArgumentException("Длина должна быть больше нуля");
+                Validator.AssertOnPositiveValue(value);
                 _length = value;
             }
         }
@@ -26,8 +25,7 @@ namespace Programming.Model
             get => _width;
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Ширина должна быть больше нуля");
+                Validator.AssertOnPositiveValue(value);
                 _width = value;
             }
         }

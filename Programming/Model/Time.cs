@@ -17,8 +17,7 @@ namespace Programming.Model
             get => _hours;
             set
             {
-                if (value < 0 || value > 24)
-                    throw new ArgumentException("Число находится вне диапазона");
+                Validator.AssertValueInRange(value, 0, 24);
                 _hours = value;
             }
         }
@@ -27,8 +26,7 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                if (value < 0 || value > 60)
-                    throw new ArgumentException("Число находится вне диапазона");
+                Validator.AssertValueInRange(value, 0, 60);
                 _minutes = value;
             }
         }
@@ -37,8 +35,7 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                if (value >= 0 || value <= 59)
-                    throw new ArgumentException("Число находится вне диапазона");
+                Validator.AssertValueInRange(value, 0, 60);
                 _seconds = value;
             }
         }

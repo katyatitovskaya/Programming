@@ -18,8 +18,7 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                if(value < 0)
-                    throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                Validator.AssertOnPositiveValue(value);
                 _minutes = value;
             }
         }
@@ -28,8 +27,7 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Продолжительность песни не может быть отрицательной");
+                Validator.AssertOnPositiveValue(value);
                 _seconds = value;
             }
         }
