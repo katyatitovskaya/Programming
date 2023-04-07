@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -36,9 +37,10 @@ namespace Programming.Model
 
         private void AssertStringContainsOnlyLetters(string value)
         {
+            StackTrace stacktrace = new StackTrace();
             if (Regex.IsMatch(value, "^[a-zA-Z]*$")==false)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"value in {stacktrace.GetFrame(1).GetMethod().Name} is suposed to contain only letters");
             }
 
         }

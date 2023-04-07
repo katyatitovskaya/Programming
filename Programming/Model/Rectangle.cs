@@ -30,15 +30,17 @@ namespace Programming.Model
             }
         }
         public string Color { get;  set; }
+        public Point2D Centre { get; set; }
 
         public Rectangle()
         {
         }
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, double x, double y)
         {
             Length = length;
             Width = width;
             Color = color;
+            Centre = new Point2D(x, y);
         }
 
     }

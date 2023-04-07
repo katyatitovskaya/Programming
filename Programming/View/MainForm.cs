@@ -1,5 +1,7 @@
 using System.Windows.Forms;
 using Programming.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace Programming.View
 {
     public partial class MainForm : Form
@@ -9,11 +11,12 @@ namespace Programming.View
         private Film[] _films = new Film[5];
         private Film _currentFilm = new Film();
 
+        
         public MainForm()
         {
+
             InitializeComponent();
-            Contact name = new Contact();
-      
+            
             object[] enums = new object[] { typeof(Seasons),
             typeof(PhoneMakers),
             typeof(EducationForm),
@@ -40,7 +43,8 @@ namespace Programming.View
             {
                 _rectangles[i] = new Model.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1),
-                    colorsNames[_rand.Next(0, colorsNames.Length)]);
+                    colorsNames[_rand.Next(0, colorsNames.Length)], Math.Round(_rand.NextDouble() * 100, 1), 
+                    Math.Round(_rand.NextDouble() * 100, 1));
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             for (int i = 0; i < _films.Length; i++)
@@ -132,6 +136,9 @@ namespace Programming.View
             RectWidthTextBox.Text = _currentRectangle.Width.ToString();
             RectLengthTextBox.Text = _currentRectangle.Length.ToString();
             RectColorTextBox.Text = _currentRectangle.Color.ToString();
+            RectXTextBox.Text = _currentRectangle.Centre.X.ToString();
+            RectYTextBox.Text = _currentRectangle.Centre.Y.ToString();
+            
             RectLengthTextBox.TextChanged += RectLengthTextBox_TextChanged;
             RectWidthTextBox.TextChanged += RectWidthTextBox_TextChanged;
             RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;
@@ -275,5 +282,7 @@ namespace Programming.View
         {
             FilmsListBox.SelectedIndex = FindFilmWithMaxRating();
         }
+        
+        
     }
 }
