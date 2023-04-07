@@ -37,7 +37,7 @@ namespace Programming.Model
                     $"method {stacktrace.GetFrame(1).GetMethod().Name} " +
                     $"is suposed to be between {min} and {max}");
         }
-        public static void AssertValueInRange(double value, int min, int max)
+        public static void AssertValueInRange(double value, double min, double max)
         {
             StackTrace stacktrace = new StackTrace();
             if (value < min || value > max)

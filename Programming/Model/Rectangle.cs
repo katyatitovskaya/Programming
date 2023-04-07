@@ -32,6 +32,10 @@ namespace Programming.Model
         public string Color { get;  set; }
         public Point2D Centre { get; set; }
 
+        public static int AllRectanglesCount { get; set; }
+
+        public int Id { get; }
+
         public Rectangle()
         {
         }
@@ -41,6 +45,8 @@ namespace Programming.Model
             Width = width;
             Color = color;
             Centre = new Point2D(x, y);
+            Id = AllRectanglesCount;
+            AllRectanglesCount++;
         }
 
     }
