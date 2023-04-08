@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Rectangle
     {
@@ -14,9 +14,9 @@ namespace Programming.Model
         public double Length
         {
             get => _length;
-            set 
+            set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Length));
                 _length = value;
             }
         }
@@ -25,11 +25,11 @@ namespace Programming.Model
             get => _width;
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Length));
                 _width = value;
             }
         }
-        public string Color { get;  set; }
+        public string Color { get; set; }
         public Point2D Centre { get; set; }
 
         public static int AllRectanglesCount { get; set; }

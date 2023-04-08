@@ -1,24 +1,25 @@
 using System.Windows.Forms;
-using Programming.Model;
+using Programming.Model.Classes;
+using Programming.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming.View
 {
     public partial class MainForm : Form
     {
-        private Model.Rectangle[] _rectangles = new Model.Rectangle[5];
-        private Model.Rectangle _currentRectangle = new Model.Rectangle();
+        private Model.Classes.Rectangle[] _rectangles = new Model.Classes.Rectangle[5];
+        private Model.Classes.Rectangle _currentRectangle = new Model.Classes.Rectangle();
         private Film[] _films = new Film[5];
         private Film _currentFilm = new Film();
 
         
-        public MainForm()
+        public MainForm() 
         {
 
             InitializeComponent();
             
             object[] enums = new object[] { typeof(Seasons),
-            typeof(PhoneMakers),
+            typeof(PhoneMakers), 
             typeof(EducationForm),
             typeof(Colors),
             typeof(Genre),
@@ -41,7 +42,7 @@ namespace Programming.View
             Random _rand = new Random();
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
+                _rectangles[i] = new Model.Classes.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1),
                     colorsNames[_rand.Next(0, colorsNames.Length)], Math.Round(_rand.NextDouble() * 100, 1), 
                     Math.Round(_rand.NextDouble() * 100, 1));
@@ -257,7 +258,7 @@ namespace Programming.View
                 _currentFilm.Duration = newDuration;
                 FilmDurationTextBox.BackColor = Color.White;
             }
-            catch
+            catch (ArgumentException ex)
             {
                 FilmDurationTextBox.BackColor = Color.LightPink;
             }
@@ -282,7 +283,5 @@ namespace Programming.View
         {
             FilmsListBox.SelectedIndex = FindFilmWithMaxRating();
         }
-        
-        
     }
 }

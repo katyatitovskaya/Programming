@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Model\Colors.cs">
+    <Compile Update="Model\Enums\Colors.cs">
       <CustomToolNamespace></CustomToolNamespace>
     </Compile>
   </ItemGroup>

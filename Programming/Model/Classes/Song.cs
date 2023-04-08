@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Song
     {
@@ -13,12 +13,12 @@ namespace Programming.Model
 
         public string Name { get; set; }
         public string Singer { get; set; }
-        public int Minutes 
+        public int Minutes
         {
             get => _minutes;
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Minutes));
                 _minutes = value;
             }
         }
@@ -27,7 +27,7 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Seconds));
                 _seconds = value;
             }
         }

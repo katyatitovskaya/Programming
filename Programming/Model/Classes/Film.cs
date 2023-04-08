@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Film
     {
@@ -16,10 +16,10 @@ namespace Programming.Model
         public int Duration
         {
             get => _duration;
-            set 
+            set
             {
-                Validator.AssertOnPositiveValue(value);
-                _duration = value; 
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
+                _duration = value;
             }
         }
         public int Year
@@ -27,7 +27,7 @@ namespace Programming.Model
             get => _year;
             set
             {
-                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year);
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, nameof(Year));
                 _year = value;
             }
         }
@@ -37,7 +37,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                Validator.AssertValueInRange(value, 0, 10);
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
                 _rating = value;
             }
         }

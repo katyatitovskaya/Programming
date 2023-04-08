@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Ring
     {
@@ -17,7 +17,7 @@ namespace Programming.Model
             get => _innerradius;
             private set
             {
-                Validator.AssertValueInRange(value, 0, OuterRadius);
+                Validator.AssertValueInRange(value, 0, OuterRadius, nameof(InnerRadius));
                 _innerradius = value;
             }
         }
@@ -26,13 +26,13 @@ namespace Programming.Model
             get => _outerradius;
             private set
             {
-                Validator.AssertValueInRange(value, InnerRadius, double.MaxValue);
+                Validator.AssertValueInRange(value, InnerRadius, double.MaxValue, nameof(OuterRadius));
                 _outerradius = value;
             }
         }
         private static double Area(Ring ring)
         {
-            double area = 3.14*(Math.Pow(ring.OuterRadius, 2))-3.14*(Math.Pow(ring.InnerRadius, 2));
+            double area = Math.PI * Math.Pow(ring.OuterRadius, 2) - Math.PI * Math.Pow(ring.InnerRadius, 2);
             return area;
         }
         public static int AllRingsCount { get; set; }

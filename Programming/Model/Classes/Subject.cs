@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Subject
     {
@@ -17,7 +17,7 @@ namespace Programming.Model
             get { return _grade; }
             set
             {
-                Validator.AssertValueInRange(value, 2, 5);
+                Validator.AssertValueInRange(value, 2, 5, nameof(Grade));
                 _grade = value;
             }
         }

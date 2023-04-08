@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Time
     {
@@ -17,7 +17,7 @@ namespace Programming.Model
             get => _hours;
             set
             {
-                Validator.AssertValueInRange(value, 0, 24);
+                Validator.AssertValueInRange(value, 0, 24, nameof(Hours));
                 _hours = value;
             }
         }
@@ -26,7 +26,7 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                Validator.AssertValueInRange(value, 0, 60);
+                Validator.AssertValueInRange(value, 0, 60, nameof(Minutes));
                 _minutes = value;
             }
         }
@@ -35,7 +35,7 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                Validator.AssertValueInRange(value, 0, 60);
+                Validator.AssertValueInRange(value, 0, 60, nameof(Seconds));
                 _seconds = value;
             }
         }

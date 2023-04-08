@@ -6,11 +6,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Class
 {
     public class Contact
     {
-        private string _username;
         private string _firstname;
         private string _lastname;
 
@@ -19,7 +18,7 @@ namespace Programming.Model
             get => _firstname;
             set
             {
-                AssertStringContainsOnlyLetters(value);
+                AssertStringContainsOnlyLetters(value, nameof(Firstname));
                 _firstname = value;
             }
         }
@@ -28,19 +27,20 @@ namespace Programming.Model
             get => _lastname;
             set
             {
-                AssertStringContainsOnlyLetters(value);
+                AssertStringContainsOnlyLetters(value, nameof(Lastname));
                 _lastname = value;
             }
         }
-        
+
         public string Username { get; set; }
 
-        private void AssertStringContainsOnlyLetters(string value)
+        private void AssertStringContainsOnlyLetters(string value, string name)
         {
             StackTrace stacktrace = new StackTrace();
-            if (Regex.IsMatch(value, "^[a-zA-Z]*$")==false)
+            if (Regex.IsMatch(value, "^[a-zA-Z]*$") == false)
             {
-                throw new ArgumentException($"value in {stacktrace.GetFrame(1).GetMethod().Name} is suposed to contain only letters");
+                throw new ArgumentException($"value in {name} " +
+                    $"is suposed to contain only letters");
             }
 
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Flight
     {
@@ -12,12 +12,12 @@ namespace Programming.Model
 
         public string Destination { get; set; }
         public string Departure { get; set; }
-        public int Duration 
-        { 
+        public int Duration
+        {
             get => _duration;
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }

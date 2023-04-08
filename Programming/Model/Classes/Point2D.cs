@@ -5,19 +5,19 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Classes
 {
     public class Point2D
     {
-        public double _x;
-        public double _y;
+        private double _x;
+        private double _y;
 
         public double X
         {
             get => _x;
             private set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(X));
                 _x = value;
             }
         }
@@ -26,7 +26,7 @@ namespace Programming.Model
             get => _y;
             private set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Y));
                 _y = value;
             }
         }
