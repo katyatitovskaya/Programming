@@ -1,3 +1,4 @@
+using System.DirectoryServices;
 using System.Windows.Forms;
 using Programming.Model.Classes;
 using Programming.Model.Enums;
@@ -56,14 +57,13 @@ namespace Programming.View
                     filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
-
+            /*
             for(int i = 0; i<_rectangels.Count; i++)
             {
-                /*RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
+                RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
                     $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
-            */
-                RectInfoListBox.Items.Add(_rectangels[i]);
-            }
+            
+            }*/
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,11 +296,45 @@ namespace Programming.View
 
         private void AddRectButton_Click(object sender, EventArgs e)
         {
+            int i = _rectangels.Count;
             Random _rand = new Random();
             _rectangels.Add(new Model.Classes.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
             Math.Round(_rand.NextDouble() * 100, 1),
             "Green", Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1)));
+
+            RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
+                    $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
+        }
+
+        private void RectInfoListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            HeightTextBox.Clear();
+            WidthTextBox.Clear();
+            IdTextBox.Clear();
+            XTextBox.Clear();
+            YTextBox.Clear();
+            int number = RectInfoListBox.SelectedIndex;
+            _currentRectangle = _rectangels[number];
+            XTextBox.Text = _currentRectangle.Centre.X.ToString();
+            YTextBox.Text = _currentRectangle.Centre.Y.ToString();    
+            IdTextBox.Text = _currentRectangle.Id.ToString();
+            WidthTextBox.Text = _currentRectangle.Length.ToString();
+            HeightTextBox.Text = _currentRectangle.Width.ToString();
+        }
+
+        private void DeleteRectButton_Click(object sender, EventArgs e)
+        {
+            if(RectInfoListBox.SelectedItems.Count==1)
+            {
+                _rectangels.RemoveAt(RectInfoListBox.SelectedIndex);
+                RectInfoListBox.Items.RemoveAt(RectInfoListBox.SelectedIndex);
+            }
+            return;
+            
+            
+            
         }
     }
 }
