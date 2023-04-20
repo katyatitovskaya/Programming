@@ -2,6 +2,7 @@ using System.Windows.Forms;
 using Programming.Model.Classes;
 using Programming.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Programming.View
 {
@@ -11,8 +12,9 @@ namespace Programming.View
         private Model.Classes.Rectangle _currentRectangle = new Model.Classes.Rectangle();
         private Film[] _films = new Film[5];
         private Film _currentFilm = new Film();
+        private List<Model.Classes.Rectangle> _rectangels = new List<Model.Classes.Rectangle>();
 
-        
+
         public MainForm() 
         {
 
@@ -53,6 +55,14 @@ namespace Programming.View
                 _films[i] = new Film(filmNames[_rand.Next(0, filmNames.Length)], _rand.Next(300), _rand.Next(1900, 2023),
                     filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
+            }
+
+            for(int i = 0; i<_rectangels.Count; i++)
+            {
+                /*RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
+                    $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
+            */
+                RectInfoListBox.Items.Add(_rectangels[i]);
             }
         }
 
@@ -282,6 +292,15 @@ namespace Programming.View
         private void FindMaxFilmRatingButton_Click(object sender, EventArgs e)
         {
             FilmsListBox.SelectedIndex = FindFilmWithMaxRating();
+        }
+
+        private void AddRectButton_Click(object sender, EventArgs e)
+        {
+            Random _rand = new Random();
+            _rectangels.Add(new Model.Classes.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
+            Math.Round(_rand.NextDouble() * 100, 1),
+            "Green", Math.Round(_rand.NextDouble() * 100, 1),
+                    Math.Round(_rand.NextDouble() * 100, 1)));
         }
     }
 }
