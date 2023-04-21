@@ -1,6 +1,9 @@
 using System.DirectoryServices;
+using System.Drawing.Text;
 using System.Windows.Forms;
+using Programming.Model.Class;
 using Programming.Model.Classes;
+using Programming.Model.Classes.Geometry;
 using Programming.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
@@ -9,11 +12,12 @@ namespace Programming.View
 {
     public partial class MainForm : Form
     {
-        private Model.Classes.Rectangle[] _rectangles = new Model.Classes.Rectangle[5];
-        private Model.Classes.Rectangle _currentRectangle = new Model.Classes.Rectangle();
+        private Model.Classes.Geometry.Rectangle[] _rectangles = new Model.Classes.Geometry.Rectangle[5];
+        private Model.Classes.Geometry.Rectangle _currentRectangle = new Model.Classes.Geometry.Rectangle();
         private Film[] _films = new Film[5];
         private Film _currentFilm = new Film();
-        private List<Model.Classes.Rectangle> _rectangels = new List<Model.Classes.Rectangle>();
+        private List<Model.Classes.Geometry.Rectangle> _rectangels = new List<Model.Classes.Geometry.Rectangle>();
+        private List<Panel> _rectanglePanels = new List<Panel>();
 
 
         public MainForm() 
@@ -32,6 +36,7 @@ namespace Programming.View
             EnumsListBox.DisplayMember = nameof(Type.Name);
             EnumsListBox.SelectedIndex = 0;
             ValuesListBox.SelectedIndex = 0;
+           
 
             var seasonValues = Enum.GetValues(typeof(Seasons));
             foreach (var season in seasonValues)
@@ -45,10 +50,10 @@ namespace Programming.View
             Random _rand = new Random();
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Classes.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
+                _rectangles[i] = new Model.Classes.Geometry.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1),
-                    colorsNames[_rand.Next(0, colorsNames.Length)], Math.Round(_rand.NextDouble() * 100, 1), 
-                    Math.Round(_rand.NextDouble() * 100, 1));
+                    colorsNames[_rand.Next(0, colorsNames.Length)], _rand.Next(0, 100),
+                    _rand.Next(0, 100));
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             for (int i = 0; i < _films.Length; i++)
@@ -57,13 +62,7 @@ namespace Programming.View
                     filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
-            /*
-            for(int i = 0; i<_rectangels.Count; i++)
-            {
-                RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
-                    $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
             
-            }*/
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -298,43 +297,225 @@ namespace Programming.View
         {
             int i = _rectangels.Count;
             Random _rand = new Random();
-            _rectangels.Add(new Model.Classes.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
-            Math.Round(_rand.NextDouble() * 100, 1),
-            "Green", Math.Round(_rand.NextDouble() * 100, 1),
-                    Math.Round(_rand.NextDouble() * 100, 1)));
+            _rectangels.Add(new Model.Classes.Geometry.Rectangle((int)Math.Round(_rand.NextDouble() * 100, 1),
+            (int)Math.Round(_rand.NextDouble() * 100, 1),
+            "Green", _rand.Next(0,RectPanel.Size.Width-5),
+                    _rand.Next(0, RectPanel.Size.Height-5)));
 
-            RectInfoListBox.Items.Add($"{i}: (X={_rectangels[i].Centre.X} " +
+            RectInfoListBox.Items.Add($"{_rectangels[i].Id}: (X={_rectangels[i].Centre.X} " +
                     $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
+ 
+            
+            Panel panel = new Panel();
+            int x = (int)(_rectangels[i].Centre.X - _rectangels[i].Length / 2);
+            int y = (int)(_rectangels[i].Centre.Y - _rectangels[i].Width / 2);
+            panel.Location = new Point(x,y);
+            panel.Width = (int)_rectangels[i].Length;
+            panel.Height = (int)_rectangels[i].Width;
+            var panelsColor = Color.FromArgb(127, 127, 255, 127);
+            panel.BackColor = panelsColor;
+            _rectanglePanels.Add(panel);
+            RectPanel.Controls.Add(panel);
+            FindCollisions(_rectangels);
+
+        }
+        
+        private void FindCollisions(List<Model.Classes.Geometry.Rectangle> _rectangels)
+        {
+            var colidingPanelsColor = Color.FromArgb(127, 255, 127, 127);
+            var niceColor = Color.FromArgb(127, 127, 255, 127);
+
+            for (int i = 0; i < _rectangels.Count; i++)
+            {
+                _rectanglePanels[i].BackColor = niceColor;
+            }
+            for (int i = 0; i < _rectangels.Count; i++)
+            {
+                for(int j = 0; j < _rectangels.Count; j++) 
+                {
+                    if (i != j)
+                    {
+                        if (CollisionManager.IsCollision(_rectangels[i], _rectangels[j]))
+                        {
+                            _rectanglePanels[i].BackColor = colidingPanelsColor;
+                            _rectanglePanels[j].BackColor = colidingPanelsColor;
+                        }
+                    }
+                }
+                
+            }
         }
 
         private void RectInfoListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int number = RectInfoListBox.SelectedIndex;
+            if (number != -1)
+            {
+                _currentRectangle = _rectangels[number];
+                UpdateRectangleInfo(_currentRectangle);
+                WidthTextBox.TextChanged += WidthTextBox_TextChanged;
+                HeightTextBox.TextChanged += HeightTextBox_TextChanged;
+                XTextBox.TextChanged += XTextBox_TextChanged;
+                YTextBox.TextChanged += YTextBox_TextChanged;
+            }
+            else
+            {
+                ClearRectangleInfo();
+            }
+        }
 
+        private void YTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            int value = RectInfoListBox.SelectedIndex;
+            if (value == -1)
+            {
+                YTextBox.BackColor = Color.White;
+                return;
+            }
+            try
+            {
+                int newY = Convert.ToInt32(YTextBox.Text);
+                if(newY != _currentRectangle.Centre.Y)
+                {
+                    _currentRectangle.Centre.Y = newY;
+                    YTextBox.BackColor = Color.White;
+                    int currentSelection = YTextBox.SelectionStart;
+                    RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
+                        $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
+                    YTextBox.Focus();
+                    YTextBox.SelectionStart = currentSelection;
+                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Width / 2);
+                    int y = (int)(_currentRectangle.Centre.Y-_currentRectangle.Length/2);
+                    _rectanglePanels[value].Location = new Point(x, y);
+                    FindCollisions(_rectangels);
+                }
+                
+            }
+            catch
+            {
+                YTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void XTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            int value = RectInfoListBox.SelectedIndex;
+            if (value == -1)
+            {
+                XTextBox.BackColor = Color.White;
+                return;
+            }
+            try
+            {
+                int newX = Convert.ToInt32(XTextBox.Text);
+                if (newX != _currentRectangle.Centre.X)
+                {
+                    _currentRectangle.Centre.X = newX;
+                    XTextBox.BackColor = Color.White;
+                    int currentSelection = XTextBox.SelectionStart;
+                    RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
+                        $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
+                    XTextBox.Focus();
+                    XTextBox.SelectionStart = currentSelection;
+                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Width / 2);
+                    int y = (int)(_currentRectangle.Centre.Y - _currentRectangle.Length / 2);
+                    _rectanglePanels[value].Location = new Point(x, y);
+                    FindCollisions(_rectangels);
+                }
+            }
+            catch
+            {
+                XTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void HeightTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            int value = RectInfoListBox.SelectedIndex;
+            if (value == -1)
+            {
+                HeightTextBox.BackColor = Color.White;
+                return;
+            }
+            try
+            {
+                double newWidth = Convert.ToDouble(HeightTextBox.Text);
+                if(newWidth != _currentRectangle.Width)
+                {
+                    _currentRectangle.Width = newWidth;
+                    HeightTextBox.BackColor = Color.White;
+                    int currentSelection = HeightTextBox.SelectionStart;
+                    RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
+                        $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
+                    HeightTextBox.Focus();
+                    HeightTextBox.SelectionStart = currentSelection;
+                    _rectanglePanels[value].Height = (int)newWidth;
+                    FindCollisions(_rectangels);
+                }
+            }
+            catch
+            {
+                HeightTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void WidthTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            int value = RectInfoListBox.SelectedIndex;
+            if (value == -1)
+            {
+                WidthTextBox.BackColor = Color.White;
+                return;
+            }
+            try
+             {
+                 double newLength = Convert.ToDouble(WidthTextBox.Text);
+                if(newLength != _currentRectangle.Length) 
+                {
+                    _currentRectangle.Length = newLength;
+                    WidthTextBox.BackColor = Color.White;
+                    int currentSelection = WidthTextBox.SelectionStart;
+                    RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
+                        $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
+                    WidthTextBox.Focus();
+                    WidthTextBox.SelectionStart = currentSelection;
+                    _rectanglePanels[value].Width = (int)newLength;
+                    FindCollisions(_rectangels);
+                }
+             }
+             catch
+             {
+                 WidthTextBox.BackColor = Color.LightPink;
+             }
+        }
+        private void DeleteRectButton_Click(object sender, EventArgs e)
+        {
+            int value = RectInfoListBox.SelectedIndex;
+            if(value != -1)
+            {
+                _rectangels.RemoveAt(value);
+                RectInfoListBox.Items.RemoveAt(value);
+                _rectanglePanels.RemoveAt(value);
+                RectPanel.Controls.RemoveAt(value);
+
+                FindCollisions(_rectangels);
+            }
+        }
+        private void UpdateRectangleInfo(Model.Classes.Geometry.Rectangle rectangle)
+        {
+            XTextBox.Text = rectangle.Centre.X.ToString();
+            YTextBox.Text = rectangle.Centre.Y.ToString();
+            IdTextBox.Text = rectangle.Id.ToString();
+            WidthTextBox.Text = rectangle.Length.ToString();
+            HeightTextBox.Text = rectangle.Width.ToString();
+        }
+        private void ClearRectangleInfo()
+        {
             HeightTextBox.Clear();
             WidthTextBox.Clear();
             IdTextBox.Clear();
             XTextBox.Clear();
             YTextBox.Clear();
-            int number = RectInfoListBox.SelectedIndex;
-            _currentRectangle = _rectangels[number];
-            XTextBox.Text = _currentRectangle.Centre.X.ToString();
-            YTextBox.Text = _currentRectangle.Centre.Y.ToString();    
-            IdTextBox.Text = _currentRectangle.Id.ToString();
-            WidthTextBox.Text = _currentRectangle.Length.ToString();
-            HeightTextBox.Text = _currentRectangle.Width.ToString();
-        }
-
-        private void DeleteRectButton_Click(object sender, EventArgs e)
-        {
-            if(RectInfoListBox.SelectedItems.Count==1)
-            {
-                _rectangels.RemoveAt(RectInfoListBox.SelectedIndex);
-                RectInfoListBox.Items.RemoveAt(RectInfoListBox.SelectedIndex);
-            }
-            return;
-            
-            
-            
         }
     }
 }

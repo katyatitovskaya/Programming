@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Classes
+namespace Programming.Model.Classes.Geometry
 {
     public class Rectangle
     {
@@ -39,7 +39,7 @@ namespace Programming.Model.Classes
         public Rectangle()
         {
         }
-        public Rectangle(double length, double width, string color, double x, double y)
+        public Rectangle(double length, double width, string color, int x, int y)
         {
             Length = length;
             Width = width;

@@ -637,6 +637,7 @@
             // 
             // SelectedRectangleLabel
             // 
+            this.SelectedRectangleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SelectedRectangleLabel.AutoSize = true;
             this.SelectedRectangleLabel.Location = new System.Drawing.Point(10, 215);
             this.SelectedRectangleLabel.Name = "SelectedRectangleLabel";
@@ -646,6 +647,7 @@
             // 
             // RectanglesHeightLabel
             // 
+            this.RectanglesHeightLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RectanglesHeightLabel.AutoSize = true;
             this.RectanglesHeightLabel.Location = new System.Drawing.Point(10, 381);
             this.RectanglesHeightLabel.Name = "RectanglesHeightLabel";
@@ -655,6 +657,7 @@
             // 
             // RectanglesWidthLabel
             // 
+            this.RectanglesWidthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RectanglesWidthLabel.AutoSize = true;
             this.RectanglesWidthLabel.Location = new System.Drawing.Point(8, 345);
             this.RectanglesWidthLabel.Name = "RectanglesWidthLabel";
@@ -664,6 +667,7 @@
             // 
             // RectanglesYLabel
             // 
+            this.RectanglesYLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RectanglesYLabel.AutoSize = true;
             this.RectanglesYLabel.Location = new System.Drawing.Point(8, 315);
             this.RectanglesYLabel.Name = "RectanglesYLabel";
@@ -673,6 +677,7 @@
             // 
             // RectanglesXLabel
             // 
+            this.RectanglesXLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RectanglesXLabel.AutoSize = true;
             this.RectanglesXLabel.Location = new System.Drawing.Point(8, 282);
             this.RectanglesXLabel.Name = "RectanglesXLabel";
@@ -682,6 +687,7 @@
             // 
             // RectanglesIdLabel
             // 
+            this.RectanglesIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RectanglesIdLabel.AutoSize = true;
             this.RectanglesIdLabel.Location = new System.Drawing.Point(8, 249);
             this.RectanglesIdLabel.Name = "RectanglesIdLabel";
@@ -691,6 +697,7 @@
             // 
             // HeightTextBox
             // 
+            this.HeightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.HeightTextBox.Location = new System.Drawing.Point(70, 378);
             this.HeightTextBox.Name = "HeightTextBox";
             this.HeightTextBox.Size = new System.Drawing.Size(125, 27);
@@ -698,6 +705,7 @@
             // 
             // WidthTextBox
             // 
+            this.WidthTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.WidthTextBox.Location = new System.Drawing.Point(70, 345);
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(125, 27);
@@ -705,6 +713,7 @@
             // 
             // YTextBox
             // 
+            this.YTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.YTextBox.Location = new System.Drawing.Point(70, 312);
             this.YTextBox.Name = "YTextBox";
             this.YTextBox.Size = new System.Drawing.Size(125, 27);
@@ -712,6 +721,7 @@
             // 
             // XTextBox
             // 
+            this.XTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.XTextBox.Location = new System.Drawing.Point(70, 279);
             this.XTextBox.Name = "XTextBox";
             this.XTextBox.Size = new System.Drawing.Size(125, 27);
@@ -719,8 +729,10 @@
             // 
             // IdTextBox
             // 
+            this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.IdTextBox.Location = new System.Drawing.Point(70, 246);
             this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(125, 27);
             this.IdTextBox.TabIndex = 0;
             // 
