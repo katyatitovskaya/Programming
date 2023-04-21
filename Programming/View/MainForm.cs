@@ -384,8 +384,8 @@ namespace Programming.View
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
                     YTextBox.Focus();
                     YTextBox.SelectionStart = currentSelection;
-                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Width / 2);
-                    int y = (int)(_currentRectangle.Centre.Y-_currentRectangle.Length/2);
+                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Length / 2);
+                    int y = (int)(_currentRectangle.Centre.Y-_currentRectangle.Width/2);
                     _rectanglePanels[value].Location = new Point(x, y);
                     FindCollisions(_rectangels);
                 }
@@ -417,8 +417,8 @@ namespace Programming.View
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
                     XTextBox.Focus();
                     XTextBox.SelectionStart = currentSelection;
-                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Width / 2);
-                    int y = (int)(_currentRectangle.Centre.Y - _currentRectangle.Length / 2);
+                    int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Length / 2);
+                    int y = (int)(_currentRectangle.Centre.Y - _currentRectangle.Width / 2);
                     _rectanglePanels[value].Location = new Point(x, y);
                     FindCollisions(_rectangels);
                 }
