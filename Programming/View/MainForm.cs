@@ -52,14 +52,14 @@ namespace Programming.View
             {
                 _rectangles[i] = new Model.Classes.Geometry.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
                     Math.Round(_rand.NextDouble() * 100, 1),
-                    colorsNames[_rand.Next(0, colorsNames.Length)], _rand.Next(0, 100),
-                    _rand.Next(0, 100));
+                    colorsNames[_rand.Next(0, colorsNames.Length)], _rand.Next(1, 100),
+                    _rand.Next(1, 100));
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             for (int i = 0; i < _films.Length; i++)
             {
-                _films[i] = new Film(filmNames[_rand.Next(0, filmNames.Length)], _rand.Next(300), _rand.Next(1900, 2023),
-                    filmGenres[_rand.Next(0, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
+                _films[i] = new Film(filmNames[_rand.Next(1, filmNames.Length)], _rand.Next(300), _rand.Next(1900, 2023),
+                    filmGenres[_rand.Next(1, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
             
@@ -267,7 +267,7 @@ namespace Programming.View
                 _currentFilm.Duration = newDuration;
                 FilmDurationTextBox.BackColor = Color.White;
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 FilmDurationTextBox.BackColor = Color.LightPink;
             }
@@ -296,11 +296,11 @@ namespace Programming.View
         private void AddRectButton_Click(object sender, EventArgs e)
         {
             int i = _rectangels.Count;
-            Random _rand = new Random();
-            _rectangels.Add(new Model.Classes.Geometry.Rectangle((int)Math.Round(_rand.NextDouble() * 100, 1),
-            (int)Math.Round(_rand.NextDouble() * 100, 1),
-            "Green", _rand.Next(0,RectPanel.Size.Width-5),
-                    _rand.Next(0, RectPanel.Size.Height-5)));
+            Random rand = new Random();
+            _rectangels.Add(new Model.Classes.Geometry.Rectangle(rand.Next(10, 200),
+            rand.Next(10, 200),
+            "Green", rand.Next(1,RectPanel.Size.Width-5),
+                    rand.Next(1, RectPanel.Size.Height-5)));
 
             RectInfoListBox.Items.Add($"{_rectangels[i].Id}: (X={_rectangels[i].Centre.X} " +
                     $"Y={_rectangels[i].Centre.Y} W={_rectangels[i].Length} H={_rectangels[i].Width})");
@@ -341,8 +341,7 @@ namespace Programming.View
                             _rectanglePanels[j].BackColor = colidingPanelsColor;
                         }
                     }
-                }
-                
+                } 
             }
         }
 
@@ -353,10 +352,6 @@ namespace Programming.View
             {
                 _currentRectangle = _rectangels[number];
                 UpdateRectangleInfo(_currentRectangle);
-                WidthTextBox.TextChanged += WidthTextBox_TextChanged;
-                HeightTextBox.TextChanged += HeightTextBox_TextChanged;
-                XTextBox.TextChanged += XTextBox_TextChanged;
-                YTextBox.TextChanged += YTextBox_TextChanged;
             }
             else
             {
@@ -366,127 +361,129 @@ namespace Programming.View
 
         private void YTextBox_TextChanged(object? sender, EventArgs e)
         {
+            YTextBox.BackColor = Color.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
-                YTextBox.BackColor = Color.White;
                 return;
             }
-            try
+            if (YTextBox.Focused)
             {
-                int newY = Convert.ToInt32(YTextBox.Text);
-                if(newY != _currentRectangle.Centre.Y)
+                try
                 {
+                    int newY = Convert.ToInt32(YTextBox.Text);
                     _currentRectangle.Centre.Y = newY;
                     YTextBox.BackColor = Color.White;
                     int currentSelection = YTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
-                    YTextBox.Focus();
                     YTextBox.SelectionStart = currentSelection;
                     int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Length / 2);
-                    int y = (int)(_currentRectangle.Centre.Y-_currentRectangle.Width/2);
+                    int y = (int)(_currentRectangle.Centre.Y - _currentRectangle.Width / 2);
                     _rectanglePanels[value].Location = new Point(x, y);
                     FindCollisions(_rectangels);
                 }
-                
+                catch
+                {
+                    YTextBox.BackColor = Color.LightPink;
+                }
             }
-            catch
-            {
-                YTextBox.BackColor = Color.LightPink;
-            }
+            
         }
 
         private void XTextBox_TextChanged(object? sender, EventArgs e)
         {
+            XTextBox.BackColor = Color.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
-            {
-                XTextBox.BackColor = Color.White;
+            { 
                 return;
             }
-            try
+            if (XTextBox.Focused)
             {
-                int newX = Convert.ToInt32(XTextBox.Text);
-                if (newX != _currentRectangle.Centre.X)
+                try
                 {
+                    int newX = Convert.ToInt32(XTextBox.Text);
                     _currentRectangle.Centre.X = newX;
                     XTextBox.BackColor = Color.White;
                     int currentSelection = XTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
-                    XTextBox.Focus();
                     XTextBox.SelectionStart = currentSelection;
                     int x = (int)(_currentRectangle.Centre.X - _currentRectangle.Length / 2);
                     int y = (int)(_currentRectangle.Centre.Y - _currentRectangle.Width / 2);
                     _rectanglePanels[value].Location = new Point(x, y);
                     FindCollisions(_rectangels);
                 }
+                catch
+                {
+                    XTextBox.BackColor = Color.LightPink;
+                }
             }
-            catch
-            {
-                XTextBox.BackColor = Color.LightPink;
-            }
+            
         }
 
         private void HeightTextBox_TextChanged(object? sender, EventArgs e)
         {
+            HeightTextBox.BackColor = Color.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
-                HeightTextBox.BackColor = Color.White;
                 return;
             }
-            try
+            if (HeightTextBox.Focused)
             {
-                double newWidth = Convert.ToDouble(HeightTextBox.Text);
-                if(newWidth != _currentRectangle.Width)
+                try
                 {
+                    double newWidth = Convert.ToDouble(HeightTextBox.Text);
                     _currentRectangle.Width = newWidth;
                     HeightTextBox.BackColor = Color.White;
                     int currentSelection = HeightTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
-                    HeightTextBox.Focus();
+                    
                     HeightTextBox.SelectionStart = currentSelection;
                     _rectanglePanels[value].Height = (int)newWidth;
                     FindCollisions(_rectangels);
+
+                }
+                catch
+                {
+                    HeightTextBox.BackColor = Color.LightPink;
                 }
             }
-            catch
-            {
-                HeightTextBox.BackColor = Color.LightPink;
-            }
+            
         }
 
         private void WidthTextBox_TextChanged(object? sender, EventArgs e)
         {
+            WidthTextBox.BackColor = Color.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
-                WidthTextBox.BackColor = Color.White;
                 return;
             }
-            try
-             {
-                 double newLength = Convert.ToDouble(WidthTextBox.Text);
-                if(newLength != _currentRectangle.Length) 
+            if (WidthTextBox.Focused)
+            {
+                try
                 {
+                    double newLength = Convert.ToDouble(WidthTextBox.Text);
                     _currentRectangle.Length = newLength;
                     WidthTextBox.BackColor = Color.White;
                     int currentSelection = WidthTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
-                    WidthTextBox.Focus();
+
                     WidthTextBox.SelectionStart = currentSelection;
                     _rectanglePanels[value].Width = (int)newLength;
                     FindCollisions(_rectangels);
                 }
-             }
-             catch
-             {
-                 WidthTextBox.BackColor = Color.LightPink;
-             }
+                catch
+                {
+                    WidthTextBox.BackColor = Color.LightPink;
+                }
+            }
+            
         }
         private void DeleteRectButton_Click(object sender, EventArgs e)
         {

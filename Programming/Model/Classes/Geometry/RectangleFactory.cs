@@ -14,8 +14,8 @@ namespace Programming.Model.Classes.Geometry
             Random _rand = new Random();
             return new Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
             Math.Round(_rand.NextDouble() * 100, 1),
-            "Green", _rand.Next(0, RectPanel.Size.Width),
-                    _rand.Next(0, RectPanel.Size.Height));
+            "Green", _rand.Next(1, RectPanel.Size.Width),
+                    _rand.Next(1, RectPanel.Size.Height));
         }
     }
 }

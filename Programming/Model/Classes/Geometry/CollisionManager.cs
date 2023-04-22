@@ -10,8 +10,8 @@ namespace Programming.Model.Classes.Geometry
     {
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
-            return Math.Abs(rectangle1.Centre.X - rectangle2.Centre.X) < rectangle1.Width / 2 + rectangle2.Width / 2
-                && Math.Abs(rectangle1.Centre.Y - rectangle2.Centre.Y) < rectangle1.Length / 2 + rectangle2.Length / 2;
+            return Math.Abs(rectangle1.Centre.X - rectangle2.Centre.X) < rectangle1.Length / 2 + rectangle2.Length / 2
+                && Math.Abs(rectangle1.Centre.Y - rectangle2.Centre.Y) < rectangle1.Width / 2 + rectangle2.Width / 2;
         }
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
