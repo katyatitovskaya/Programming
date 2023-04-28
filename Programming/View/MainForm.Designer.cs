@@ -36,6 +36,7 @@
             this.ChooseSeasonLabel = new System.Windows.Forms.Label();
             this.GoButton = new System.Windows.Forms.Button();
             this.WeekdayParsingGroupBox = new System.Windows.Forms.GroupBox();
+            this.weekadayParsingControl1 = new Programming.View.Panels.WeekadayParsingControl();
             this.groupBoxEnums = new System.Windows.Forms.GroupBox();
             this.IntValueTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,24 +59,9 @@
             this.FilmDurationTextBox = new System.Windows.Forms.TextBox();
             this.FilmNameTextBox = new System.Windows.Forms.TextBox();
             this.FilmsListBox = new System.Windows.Forms.ListBox();
-            this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
-            this.IDlabel = new System.Windows.Forms.Label();
-            this.Ylabel = new System.Windows.Forms.Label();
-            this.Xlabel = new System.Windows.Forms.Label();
-            this.RectYTextBox = new System.Windows.Forms.TextBox();
-            this.RectXTextBox = new System.Windows.Forms.TextBox();
-            this.RectIDTextBox = new System.Windows.Forms.TextBox();
-            this.FindMaxWidthButton = new System.Windows.Forms.Button();
-            this.ColorLabel = new System.Windows.Forms.Label();
-            this.LengthLabel = new System.Windows.Forms.Label();
-            this.RectWidthLabel = new System.Windows.Forms.Label();
-            this.RectColorTextBox = new System.Windows.Forms.TextBox();
-            this.RectLengthTextBox = new System.Windows.Forms.TextBox();
-            this.RectWidthTextBox = new System.Windows.Forms.TextBox();
-            this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
             this.rectanglesCollisionControl1 = new Programming.View.Panels.RectanglesCollisionControl();
-            this.weekadayParsingControl1 = new Programming.View.Panels.WeekadayParsingControl();
+            this.classesRectanglesControl1 = new Programming.View.Panels.ClassesRectanglesControl();
             this.RectanglesTabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
@@ -84,7 +70,6 @@
             this.ClassesTabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.FilmsGroupBox.SuspendLayout();
-            this.RectanglesGroupBox.SuspendLayout();
             this.RectanglesTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +158,14 @@
             this.WeekdayParsingGroupBox.TabIndex = 1;
             this.WeekdayParsingGroupBox.TabStop = false;
             this.WeekdayParsingGroupBox.Text = "Weekday Parsing";
+            // 
+            // weekadayParsingControl1
+            // 
+            this.weekadayParsingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.weekadayParsingControl1.Location = new System.Drawing.Point(3, 23);
+            this.weekadayParsingControl1.Name = "weekadayParsingControl1";
+            this.weekadayParsingControl1.Size = new System.Drawing.Size(390, 109);
+            this.weekadayParsingControl1.TabIndex = 0;
             // 
             // groupBoxEnums
             // 
@@ -267,7 +260,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.FilmsGroupBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RectanglesGroupBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.classesRectanglesControl1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -400,151 +393,6 @@
             this.FilmsListBox.TabIndex = 0;
             this.FilmsListBox.SelectedIndexChanged += new System.EventHandler(this.FilmsListBox_SelectedIndexChanged);
             // 
-            // RectanglesGroupBox
-            // 
-            this.RectanglesGroupBox.Controls.Add(this.IDlabel);
-            this.RectanglesGroupBox.Controls.Add(this.Ylabel);
-            this.RectanglesGroupBox.Controls.Add(this.Xlabel);
-            this.RectanglesGroupBox.Controls.Add(this.RectYTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.RectXTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.RectIDTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.FindMaxWidthButton);
-            this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
-            this.RectanglesGroupBox.Controls.Add(this.LengthLabel);
-            this.RectanglesGroupBox.Controls.Add(this.RectWidthLabel);
-            this.RectanglesGroupBox.Controls.Add(this.RectColorTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.RectLengthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.RectWidthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
-            this.RectanglesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RectanglesGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.RectanglesGroupBox.Name = "RectanglesGroupBox";
-            this.RectanglesGroupBox.Size = new System.Drawing.Size(387, 405);
-            this.RectanglesGroupBox.TabIndex = 1;
-            this.RectanglesGroupBox.TabStop = false;
-            this.RectanglesGroupBox.Text = "Rectangles";
-            // 
-            // IDlabel
-            // 
-            this.IDlabel.AutoSize = true;
-            this.IDlabel.Location = new System.Drawing.Point(158, 207);
-            this.IDlabel.Name = "IDlabel";
-            this.IDlabel.Size = new System.Drawing.Size(24, 20);
-            this.IDlabel.TabIndex = 13;
-            this.IDlabel.Text = "ID";
-            // 
-            // Ylabel
-            // 
-            this.Ylabel.AutoSize = true;
-            this.Ylabel.Location = new System.Drawing.Point(238, 268);
-            this.Ylabel.Name = "Ylabel";
-            this.Ylabel.Size = new System.Drawing.Size(17, 20);
-            this.Ylabel.TabIndex = 12;
-            this.Ylabel.Text = "Y";
-            // 
-            // Xlabel
-            // 
-            this.Xlabel.AutoSize = true;
-            this.Xlabel.Location = new System.Drawing.Point(156, 268);
-            this.Xlabel.Name = "Xlabel";
-            this.Xlabel.Size = new System.Drawing.Size(18, 20);
-            this.Xlabel.TabIndex = 11;
-            this.Xlabel.Text = "X";
-            // 
-            // RectYTextBox
-            // 
-            this.RectYTextBox.Location = new System.Drawing.Point(238, 291);
-            this.RectYTextBox.Name = "RectYTextBox";
-            this.RectYTextBox.ReadOnly = true;
-            this.RectYTextBox.Size = new System.Drawing.Size(70, 27);
-            this.RectYTextBox.TabIndex = 10;
-            // 
-            // RectXTextBox
-            // 
-            this.RectXTextBox.Location = new System.Drawing.Point(157, 291);
-            this.RectXTextBox.Name = "RectXTextBox";
-            this.RectXTextBox.ReadOnly = true;
-            this.RectXTextBox.Size = new System.Drawing.Size(70, 27);
-            this.RectXTextBox.TabIndex = 9;
-            // 
-            // RectIDTextBox
-            // 
-            this.RectIDTextBox.Location = new System.Drawing.Point(157, 230);
-            this.RectIDTextBox.Name = "RectIDTextBox";
-            this.RectIDTextBox.ReadOnly = true;
-            this.RectIDTextBox.Size = new System.Drawing.Size(150, 27);
-            this.RectIDTextBox.TabIndex = 8;
-            // 
-            // FindMaxWidthButton
-            // 
-            this.FindMaxWidthButton.Location = new System.Drawing.Point(161, 345);
-            this.FindMaxWidthButton.Name = "FindMaxWidthButton";
-            this.FindMaxWidthButton.Size = new System.Drawing.Size(94, 29);
-            this.FindMaxWidthButton.TabIndex = 7;
-            this.FindMaxWidthButton.Text = "Find";
-            this.FindMaxWidthButton.UseVisualStyleBackColor = true;
-            this.FindMaxWidthButton.Click += new System.EventHandler(this.FindMaxWidthButton_Click);
-            // 
-            // ColorLabel
-            // 
-            this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(161, 147);
-            this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(45, 20);
-            this.ColorLabel.TabIndex = 6;
-            this.ColorLabel.Text = "Color";
-            // 
-            // LengthLabel
-            // 
-            this.LengthLabel.AutoSize = true;
-            this.LengthLabel.Location = new System.Drawing.Point(157, 85);
-            this.LengthLabel.Name = "LengthLabel";
-            this.LengthLabel.Size = new System.Drawing.Size(54, 20);
-            this.LengthLabel.TabIndex = 5;
-            this.LengthLabel.Text = "Length";
-            // 
-            // RectWidthLabel
-            // 
-            this.RectWidthLabel.AutoSize = true;
-            this.RectWidthLabel.Location = new System.Drawing.Point(158, 26);
-            this.RectWidthLabel.Name = "RectWidthLabel";
-            this.RectWidthLabel.Size = new System.Drawing.Size(49, 20);
-            this.RectWidthLabel.TabIndex = 4;
-            this.RectWidthLabel.Text = "Width";
-            // 
-            // RectColorTextBox
-            // 
-            this.RectColorTextBox.Location = new System.Drawing.Point(158, 170);
-            this.RectColorTextBox.Name = "RectColorTextBox";
-            this.RectColorTextBox.Size = new System.Drawing.Size(150, 27);
-            this.RectColorTextBox.TabIndex = 3;
-            // 
-            // RectLengthTextBox
-            // 
-            this.RectLengthTextBox.Location = new System.Drawing.Point(158, 108);
-            this.RectLengthTextBox.Name = "RectLengthTextBox";
-            this.RectLengthTextBox.Size = new System.Drawing.Size(150, 27);
-            this.RectLengthTextBox.TabIndex = 2;
-            // 
-            // RectWidthTextBox
-            // 
-            this.RectWidthTextBox.Location = new System.Drawing.Point(158, 48);
-            this.RectWidthTextBox.Name = "RectWidthTextBox";
-            this.RectWidthTextBox.Size = new System.Drawing.Size(150, 27);
-            this.RectWidthTextBox.TabIndex = 1;
-            // 
-            // RectanglesListBox
-            // 
-            this.RectanglesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.RectanglesListBox.FormattingEnabled = true;
-            this.RectanglesListBox.ItemHeight = 20;
-            this.RectanglesListBox.Location = new System.Drawing.Point(2, 26);
-            this.RectanglesListBox.Name = "RectanglesListBox";
-            this.RectanglesListBox.Size = new System.Drawing.Size(150, 164);
-            this.RectanglesListBox.TabIndex = 0;
-            this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
-            // 
             // RectanglesTabPage
             // 
             this.RectanglesTabPage.Controls.Add(this.rectanglesCollisionControl1);
@@ -564,13 +412,13 @@
             this.rectanglesCollisionControl1.Size = new System.Drawing.Size(786, 411);
             this.rectanglesCollisionControl1.TabIndex = 0;
             // 
-            // weekadayParsingControl1
+            // classesRectanglesControl1
             // 
-            this.weekadayParsingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weekadayParsingControl1.Location = new System.Drawing.Point(3, 23);
-            this.weekadayParsingControl1.Name = "weekadayParsingControl1";
-            this.weekadayParsingControl1.Size = new System.Drawing.Size(390, 109);
-            this.weekadayParsingControl1.TabIndex = 0;
+            this.classesRectanglesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.classesRectanglesControl1.Location = new System.Drawing.Point(3, 3);
+            this.classesRectanglesControl1.Name = "classesRectanglesControl1";
+            this.classesRectanglesControl1.Size = new System.Drawing.Size(387, 405);
+            this.classesRectanglesControl1.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -591,8 +439,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.FilmsGroupBox.ResumeLayout(false);
             this.FilmsGroupBox.PerformLayout();
-            this.RectanglesGroupBox.ResumeLayout(false);
-            this.RectanglesGroupBox.PerformLayout();
             this.RectanglesTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -618,19 +464,10 @@
         private TabPage ClassesTabPage;
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox FilmsGroupBox;
-        private GroupBox RectanglesGroupBox;
         private TextBox FilmYearTextBox;
         private TextBox FilmDurationTextBox;
         private TextBox FilmNameTextBox;
         private ListBox FilmsListBox;
-        private TextBox RectColorTextBox;
-        private TextBox RectLengthTextBox;
-        private TextBox RectWidthTextBox;
-        private ListBox RectanglesListBox;
-        private Label ColorLabel;
-        private Label LengthLabel;
-        private Label RectWidthLabel;
-        private Button FindMaxWidthButton;
         private Label filmNameLabel;
         private Button FindMaxFilmRatingButton;
         private TextBox FilmRatingTextBox;
@@ -639,14 +476,9 @@
         private Label YearLabel;
         private Label GenreLabel;
         private Label RatingLabel;
-        private TextBox RectYTextBox;
-        private TextBox RectXTextBox;
-        private TextBox RectIDTextBox;
-        private Label IDlabel;
-        private Label Ylabel;
-        private Label Xlabel;
         private TabPage RectanglesTabPage;
         private Panels.RectanglesCollisionControl rectanglesCollisionControl1;
         private Panels.WeekadayParsingControl weekadayParsingControl1;
+        private Panels.ClassesRectanglesControl classesRectanglesControl1;
     }
 }

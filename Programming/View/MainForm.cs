@@ -40,19 +40,12 @@ namespace Programming.View
             {
                 SeasonChoiceComboBox.Items.Add(season);
             }
-            string[] colorsNames = Enum.GetNames(typeof(Colors));
+            
             string[] filmNames = Enum.GetNames(typeof(FilmNames));
             string[] filmGenres = Enum.GetNames(typeof(Genre));
 
             Random rand = new Random();
-            for (int i = 0; i < _rectangles.Length; i++)
-            {
-                _rectangles[i] = new Model.Classes.Geometry.Rectangle(rand.Next(1, 200),
-                    rand.Next(1, 200),
-                    colorsNames[rand.Next(0, colorsNames.Length)], rand.Next(1, 100),
-                    rand.Next(1, 100));
-                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
-            }
+            
             for (int i = 0; i < _films.Length; i++)
             {
                 _films[i] = new Film(filmNames[rand.Next(1, filmNames.Length)], rand.Next(300), rand.Next(1900, 2023),
@@ -117,73 +110,10 @@ namespace Programming.View
             }
         }
 
-        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int value = RectanglesListBox.SelectedIndex;
-            _currentRectangle = _rectangles[value];
-            RectWidthTextBox.Text = _currentRectangle.Width.ToString();
-            RectLengthTextBox.Text = _currentRectangle.Length.ToString();
-            RectColorTextBox.Text = _currentRectangle.Color.ToString();
-            RectXTextBox.Text = _currentRectangle.Centre.X.ToString();
-            RectYTextBox.Text = _currentRectangle.Centre.Y.ToString();
-            RectIDTextBox.Text = _currentRectangle.Id.ToString();
-            RectLengthTextBox.TextChanged += RectLengthTextBox_TextChanged;
-            RectWidthTextBox.TextChanged += RectWidthTextBox_TextChanged;
-            RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;
-        }
+       
+        
 
-        private void RectColorTextBox_TextChanged(object? sender, EventArgs e)
-        {
-            _currentRectangle.Color = RectColorTextBox.Text;
-        }
-
-        private void RectLengthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                double newLength = Convert.ToDouble(RectLengthTextBox.Text);
-                _currentRectangle.Length = newLength;
-                RectLengthTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                RectLengthTextBox.BackColor = Color.LightPink;
-            }
-        }
-
-        private void RectWidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                double newWidth = Convert.ToDouble(RectWidthTextBox.Text);
-                _currentRectangle.Width = newWidth;
-                RectWidthTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                RectWidthTextBox.BackColor = Color.LightPink;
-            }
-        }
-        private int FindRectangleWithMaxWidth()
-        {
-            double maxWidth = _rectangles[0].Width;
-            int maxWidthIndex = 0;
-
-            for (int i = 0; i < _rectangles.Length; i++)
-            {
-                if (_rectangles[i].Width > maxWidth)
-                {
-                    maxWidth = _rectangles[i].Width;
-                    maxWidthIndex = i;
-                }
-            }
-            return maxWidthIndex;
-        }
-
-        private void FindMaxWidthButton_Click(object sender, EventArgs e)
-        {
-            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth();
-        }
+       
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
