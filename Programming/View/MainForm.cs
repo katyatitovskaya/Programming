@@ -47,19 +47,19 @@ namespace Programming.View
             string[] filmNames = Enum.GetNames(typeof(FilmNames));
             string[] filmGenres = Enum.GetNames(typeof(Genre));
 
-            Random _rand = new Random();
+            Random rand = new Random();
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = new Model.Classes.Geometry.Rectangle(Math.Round(_rand.NextDouble() * 100, 1),
-                    Math.Round(_rand.NextDouble() * 100, 1),
-                    colorsNames[_rand.Next(0, colorsNames.Length)], _rand.Next(1, 100),
-                    _rand.Next(1, 100));
+                _rectangles[i] = new Model.Classes.Geometry.Rectangle(rand.Next(1, 200),
+                    rand.Next(1, 200),
+                    colorsNames[rand.Next(0, colorsNames.Length)], rand.Next(1, 100),
+                    rand.Next(1, 100));
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             for (int i = 0; i < _films.Length; i++)
             {
-                _films[i] = new Film(filmNames[_rand.Next(1, filmNames.Length)], _rand.Next(300), _rand.Next(1900, 2023),
-                    filmGenres[_rand.Next(1, filmGenres.Length)], Math.Round(_rand.NextDouble() * 10, 1));
+                _films[i] = new Film(filmNames[rand.Next(1, filmNames.Length)], rand.Next(300), rand.Next(1900, 2023),
+                    filmGenres[rand.Next(1, filmGenres.Length)], Math.Round(rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
             
