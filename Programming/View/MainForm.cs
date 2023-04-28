@@ -79,26 +79,7 @@ namespace Programming.View
             IntValueTextBox.Text = number.ToString();
         }
 
-        private void ParseButton_Click(object sender, EventArgs e)
-        {
-            Weekday choosenWeekday;
-            if (ParseTextBox.Text == null)
-            {
-                return;
-            }
-            else
-            {
-                if (Enum.TryParse(ParseTextBox.Text, out choosenWeekday))
-                {
-                    int enteredWeekday = (int)choosenWeekday;
-                    ParseLabel.Text = ($"Это день недели ( {choosenWeekday} = {enteredWeekday + 1} )");
-                }
-                else
-                {
-                    ParseLabel.Text = "Нет такого дня недели";
-                }
-            }
-        }
+       
 
         private void GoButton_Click(object sender, EventArgs e)
         {
