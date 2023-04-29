@@ -169,7 +169,7 @@
             this.FilmsListBox.ItemHeight = 20;
             this.FilmsListBox.Location = new System.Drawing.Point(6, 26);
             this.FilmsListBox.Name = "FilmsListBox";
-            this.FilmsListBox.Size = new System.Drawing.Size(150, 264);
+            this.FilmsListBox.Size = new System.Drawing.Size(150, 324);
             this.FilmsListBox.TabIndex = 0;
             this.FilmsListBox.SelectedIndexChanged += new System.EventHandler(this.FilmsListBox_SelectedIndexChanged);
             // 

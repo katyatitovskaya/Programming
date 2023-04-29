@@ -190,7 +190,7 @@
             this.RectanglesListBox.ItemHeight = 20;
             this.RectanglesListBox.Location = new System.Drawing.Point(2, 26);
             this.RectanglesListBox.Name = "RectanglesListBox";
-            this.RectanglesListBox.Size = new System.Drawing.Size(150, 304);
+            this.RectanglesListBox.Size = new System.Drawing.Size(150, 344);
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
