@@ -1,6 +1,6 @@
 ﻿namespace Programming.View.Panels
 {
-    partial class ChangeSeasonControl
+    partial class SeasonsHandleControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

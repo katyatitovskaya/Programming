@@ -1,4 +1,5 @@
-﻿using Programming.Model.Classes.Geometry;
+﻿using Programming.Model.Classes;
+using Programming.Model.Classes.Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,8 +50,8 @@ namespace Programming.View.Panels
 
         private void FindCollisions(List<Model.Classes.Geometry.Rectangle> _rectangels)
         {
-            var colidingPanelsColor = Color.FromArgb(127, 255, 127, 127);
-            var niceColor = Color.FromArgb(127, 127, 255, 127);
+            var colidingPanelsColor = AppColors.Red;
+            var niceColor = AppColors.Green;
 
             for (int i = 0; i < _rectangels.Count; i++)
             {
@@ -88,7 +89,7 @@ namespace Programming.View.Panels
 
         private void YTextBox_TextChanged(object? sender, EventArgs e)
         {
-            YTextBox.BackColor = Color.White;
+            YTextBox.BackColor = AppColors.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
@@ -100,7 +101,7 @@ namespace Programming.View.Panels
                 {
                     int newY = Convert.ToInt32(YTextBox.Text);
                     _currentRectangle.Centre.Y = newY;
-                    YTextBox.BackColor = Color.White;
+                    YTextBox.BackColor = AppColors.White;
                     int currentSelection = YTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
@@ -112,7 +113,7 @@ namespace Programming.View.Panels
                 }
                 catch
                 {
-                    YTextBox.BackColor = Color.LightPink;
+                    YTextBox.BackColor = AppColors.LightPink;
                 }
             }
 
@@ -120,7 +121,7 @@ namespace Programming.View.Panels
 
         private void XTextBox_TextChanged(object? sender, EventArgs e)
         {
-            XTextBox.BackColor = Color.White;
+            XTextBox.BackColor = AppColors.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
@@ -132,7 +133,7 @@ namespace Programming.View.Panels
                 {
                     int newX = Convert.ToInt32(XTextBox.Text);
                     _currentRectangle.Centre.X = newX;
-                    XTextBox.BackColor = Color.White;
+                    XTextBox.BackColor = AppColors.White;
                     int currentSelection = XTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
@@ -144,7 +145,7 @@ namespace Programming.View.Panels
                 }
                 catch
                 {
-                    XTextBox.BackColor = Color.LightPink;
+                    XTextBox.BackColor = AppColors.LightPink;
                 }
             }
 
@@ -152,7 +153,7 @@ namespace Programming.View.Panels
 
         private void HeightTextBox_TextChanged(object? sender, EventArgs e)
         {
-            HeightTextBox.BackColor = Color.White;
+            HeightTextBox.BackColor = AppColors.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
@@ -164,7 +165,7 @@ namespace Programming.View.Panels
                 {
                     double newWidth = Convert.ToDouble(HeightTextBox.Text);
                     _currentRectangle.Width = newWidth;
-                    HeightTextBox.BackColor = Color.White;
+                    HeightTextBox.BackColor = AppColors.White;
                     int currentSelection = HeightTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
@@ -176,7 +177,7 @@ namespace Programming.View.Panels
                 }
                 catch
                 {
-                    HeightTextBox.BackColor = Color.LightPink;
+                    HeightTextBox.BackColor = AppColors.LightPink;
                 }
             }
 
@@ -184,7 +185,7 @@ namespace Programming.View.Panels
 
         private void WidthTextBox_TextChanged(object? sender, EventArgs e)
         {
-            WidthTextBox.BackColor = Color.White;
+            WidthTextBox.BackColor = AppColors.White;
             int value = RectInfoListBox.SelectedIndex;
             if (value == -1)
             {
@@ -196,7 +197,7 @@ namespace Programming.View.Panels
                 {
                     double newLength = Convert.ToDouble(WidthTextBox.Text);
                     _currentRectangle.Length = newLength;
-                    WidthTextBox.BackColor = Color.White;
+                    WidthTextBox.BackColor = AppColors.White;
                     int currentSelection = WidthTextBox.SelectionStart;
                     RectInfoListBox.Items[value] = $"{_currentRectangle.Id}: (X={_currentRectangle.Centre.X} " +
                         $"Y={_currentRectangle.Centre.Y} W={_currentRectangle.Length} H={_currentRectangle.Width})";
@@ -207,7 +208,7 @@ namespace Programming.View.Panels
                 }
                 catch
                 {
-                    WidthTextBox.BackColor = Color.LightPink;
+                    WidthTextBox.BackColor = AppColors.LightPink;
                 }
             }
 

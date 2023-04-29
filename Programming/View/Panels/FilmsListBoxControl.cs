@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
-    public partial class ClassesFilmsControl : UserControl
+    public partial class FilmsListBoxControl : UserControl
     {
         private Film[] _films = new Film[5];
         private Film _currentFilm = new Film();
-        public ClassesFilmsControl()
+        public FilmsListBoxControl()
         {
             InitializeComponent();
 
@@ -39,11 +39,7 @@ namespace Programming.View.Panels
             FilmYearTextBox.Text = _currentFilm.Year.ToString();
             FilmGenreTextBox.Text = _currentFilm.Genre;
             FilmRatingTextBox.Text = _currentFilm.Rating.ToString();
-            FilmNameTextBox.TextChanged += FilmNameTextBox_TextChanged;
-            FilmDurationTextBox.TextChanged += FilmDurationTextBox_TextChanged;
-            FilmYearTextBox.TextChanged += FilmYearTextBox_TextChanged;
-            FilmGenreTextBox.TextChanged += FilmGenreTextBox_TextChanged;
-            FilmRatingTextBox.TextChanged += FilmRatingTextBox_TextChanged;
+            
         }
 
         private void FilmRatingTextBox_TextChanged(object? sender, EventArgs e)
@@ -52,11 +48,11 @@ namespace Programming.View.Panels
             {
                 double newRating = Convert.ToDouble(FilmRatingTextBox.Text);
                 _currentFilm.Rating = newRating;
-                FilmRatingTextBox.BackColor = Color.White;
+                FilmRatingTextBox.BackColor = AppColors.White;
             }
             catch
             {
-                FilmRatingTextBox.BackColor = Color.LightPink;
+                FilmRatingTextBox.BackColor = AppColors.LightPink;
             }
         }
         private void FilmGenreTextBox_TextChanged(object? sender, EventArgs e)
@@ -74,11 +70,11 @@ namespace Programming.View.Panels
             {
                 int newYear = Convert.ToInt32(FilmYearTextBox.Text);
                 _currentFilm.Year = newYear;
-                FilmYearTextBox.BackColor = Color.White;
+                FilmYearTextBox.BackColor = AppColors.White;
             }
             catch
             {
-                FilmYearTextBox.BackColor = Color.LightPink;
+                FilmYearTextBox.BackColor = AppColors.LightPink;
             }
         }
 
@@ -88,11 +84,11 @@ namespace Programming.View.Panels
             {
                 int newDuration = Convert.ToInt32(FilmDurationTextBox.Text);
                 _currentFilm.Duration = newDuration;
-                FilmDurationTextBox.BackColor = Color.White;
+                FilmDurationTextBox.BackColor = AppColors.White;
             }
             catch (ArgumentException)
             {
-                FilmDurationTextBox.BackColor = Color.LightPink;
+                FilmDurationTextBox.BackColor = AppColors.LightPink;
             }
         }
         private int FindFilmWithMaxRating()

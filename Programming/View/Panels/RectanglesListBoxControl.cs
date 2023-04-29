@@ -1,4 +1,5 @@
-﻿using Programming.Model.Enums;
+﻿using Programming.Model.Classes;
+using Programming.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
-    public partial class ClassesRectanglesControl : UserControl
+    public partial class RectanglesListBoxControl : UserControl
     {
         private Model.Classes.Geometry.Rectangle[] _rectangles = new Model.Classes.Geometry.Rectangle[5];
         private Model.Classes.Geometry.Rectangle _currentRectangle = new Model.Classes.Geometry.Rectangle();
-        public ClassesRectanglesControl()
+        public RectanglesListBoxControl()
         {
             InitializeComponent();
             string[] colorsNames = Enum.GetNames(typeof(Colors));
@@ -39,9 +40,7 @@ namespace Programming.View.Panels
             RectXTextBox.Text = _currentRectangle.Centre.X.ToString();
             RectYTextBox.Text = _currentRectangle.Centre.Y.ToString();
             RectIDTextBox.Text = _currentRectangle.Id.ToString();
-            RectLengthTextBox.TextChanged += RectLengthTextBox_TextChanged;
-            RectWidthTextBox.TextChanged += RectWidthTextBox_TextChanged;
-            RectColorTextBox.TextChanged += RectColorTextBox_TextChanged;
+            
         }
 
         private void RectColorTextBox_TextChanged(object? sender, EventArgs e)
@@ -55,11 +54,11 @@ namespace Programming.View.Panels
             {
                 double newLength = Convert.ToDouble(RectLengthTextBox.Text);
                 _currentRectangle.Length = newLength;
-                RectLengthTextBox.BackColor = Color.White;
+                RectLengthTextBox.BackColor = AppColors.White;
             }
             catch
             {
-                RectLengthTextBox.BackColor = Color.LightPink;
+                RectLengthTextBox.BackColor = AppColors.LightPink;
             }
         }
 
@@ -69,11 +68,11 @@ namespace Programming.View.Panels
             {
                 double newWidth = Convert.ToDouble(RectWidthTextBox.Text);
                 _currentRectangle.Width = newWidth;
-                RectWidthTextBox.BackColor = Color.White;
+                RectWidthTextBox.BackColor = AppColors.White;
             }
             catch
             {
-                RectWidthTextBox.BackColor = Color.LightPink;
+                RectWidthTextBox.BackColor = AppColors.LightPink;
             }
         }
         private int FindRectangleWithMaxWidth()

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
-    public partial class ChangeSeasonControl : UserControl
+    public partial class SeasonsHandleControl : UserControl
     {
-        public ChangeSeasonControl()
+        public SeasonsHandleControl()
         {
             InitializeComponent();
 

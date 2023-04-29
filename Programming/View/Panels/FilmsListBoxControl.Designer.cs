@@ -1,6 +1,6 @@
 ﻿namespace Programming.View.Panels
 {
-    partial class ClassesFilmsControl
+    partial class FilmsListBoxControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -127,7 +127,7 @@
             this.FilmRatingTextBox.Name = "FilmRatingTextBox";
             this.FilmRatingTextBox.Size = new System.Drawing.Size(150, 27);
             this.FilmRatingTextBox.TabIndex = 8;
-            this.FilmRatingTextBox.TextChanged += new System.EventHandler(this.FilmDurationTextBox_TextChanged);
+            this.FilmRatingTextBox.TextChanged += new System.EventHandler(this.FilmRatingTextBox_TextChanged);
             // 
             // FilmGenreTextBox
             // 
@@ -173,12 +173,12 @@
             this.FilmsListBox.TabIndex = 0;
             this.FilmsListBox.SelectedIndexChanged += new System.EventHandler(this.FilmsListBox_SelectedIndexChanged);
             // 
-            // ClassesFilmsControl
+            // FilmsListBoxControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.FilmsGroupBox);
-            this.Name = "ClassesFilmsControl";
+            this.Name = "FilmsListBoxControl";
             this.Size = new System.Drawing.Size(403, 421);
             this.FilmsGroupBox.ResumeLayout(false);
             this.FilmsGroupBox.PerformLayout();

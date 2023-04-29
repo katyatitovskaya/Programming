@@ -37,11 +37,11 @@
             this.enumsControl1 = new Programming.View.Panels.EnumsControl();
             this.ClassesTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.classesRectanglesControl1 = new Programming.View.Panels.ClassesRectanglesControl();
-            this.classesFilmsControl1 = new Programming.View.Panels.ClassesFilmsControl();
+            this.classesRectanglesControl1 = new Programming.View.Panels.RectanglesListBoxControl();
+            this.classesFilmsControl1 = new Programming.View.Panels.FilmsListBoxControl();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
             this.rectanglesCollisionControl1 = new Programming.View.Panels.RectanglesCollisionControl();
-            this.changeSeasonControl1 = new Programming.View.Panels.ChangeSeasonControl();
+            this.changeSeasonControl1 = new Programming.View.Panels.SeasonsHandleControl();
             this.RectanglesTabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
@@ -229,10 +229,10 @@
         private TabPage RectanglesTabPage;
         private Panels.RectanglesCollisionControl rectanglesCollisionControl1;
         private Panels.WeekadayParsingControl weekadayParsingControl1;
-        private Panels.ClassesRectanglesControl classesRectanglesControl1;
-        private Panels.ClassesFilmsControl classesFilmsControl1;
+        private Panels.RectanglesListBoxControl classesRectanglesControl1;
+        private Panels.FilmsListBoxControl classesFilmsControl1;
         private GroupBox groupBoxEnums;
         private Panels.EnumsControl enumsControl1;
-        private Panels.ChangeSeasonControl changeSeasonControl1;
+        private Panels.SeasonsHandleControl changeSeasonControl1;
     }
 }
