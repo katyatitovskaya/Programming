@@ -28,6 +28,9 @@ namespace Programming.View.Panels
             EnumsListBox.SelectedIndex = 0;
             ValuesListBox.SelectedIndex = 0;
         }
+        /// <summary>
+        /// Заполняет один листбокс в зависимости от выбранного значения в другом.
+        /// </summary>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedEnum = (Type)EnumsListBox.SelectedItem;
@@ -38,7 +41,9 @@ namespace Programming.View.Panels
                 ValuesListBox.Items.Add(enumValue);
             }
         }
-
+        /// <summary>
+        /// Выводит индекс выбранного элемента перечисления в текстовое поле. 
+        /// </summary>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var number = (int)(Enum.Parse((Type)(EnumsListBox.SelectedItem), ValuesListBox.Text));

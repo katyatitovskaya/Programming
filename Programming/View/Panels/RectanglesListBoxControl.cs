@@ -30,6 +30,9 @@ namespace Programming.View.Panels
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
         }
+        /// <summary>
+        /// Обновляет текстовые поля при выборе прямоугольника
+        /// </summary>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int value = RectanglesListBox.SelectedIndex;
@@ -42,12 +45,16 @@ namespace Programming.View.Panels
             RectIDTextBox.Text = _currentRectangle.Id.ToString();
             
         }
-
+        /// <summary>
+        /// Сохраняет значение из текстового поля при его изменении.
+        /// </summary>
         private void RectColorTextBox_TextChanged(object? sender, EventArgs e)
         {
             _currentRectangle.Color = RectColorTextBox.Text;
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение из текстового поля при его изменении.
+        /// </summary>
         private void RectLengthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -61,7 +68,9 @@ namespace Programming.View.Panels
                 RectLengthTextBox.BackColor = AppColors.LightPink;
             }
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение из текстового поля при его изменении.
+        /// </summary>
         private void RectWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -75,6 +84,10 @@ namespace Programming.View.Panels
                 RectWidthTextBox.BackColor = AppColors.LightPink;
             }
         }
+        /// <summary>
+        /// Ищет прямоугольник с максимальной шириной. 
+        /// </summary>
+        /// <returns>Возвращает индекс прямоугольника с максимальной шириной. </returns>
         private int FindRectangleWithMaxWidth()
         {
             double maxWidth = _rectangles[0].Width;
@@ -90,7 +103,9 @@ namespace Programming.View.Panels
             }
             return maxWidthIndex;
         }
-
+        /// <summary>
+        /// Выбирает прямоугольник с максимальной шириной при нажатии на кнопку. 
+        /// </summary>
         private void FindMaxWidthButton_Click(object sender, EventArgs e)
         {
             RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth();

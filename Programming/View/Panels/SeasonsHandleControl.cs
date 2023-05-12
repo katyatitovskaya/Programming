@@ -23,6 +23,9 @@ namespace Programming.View.Panels
                 SeasonChoiceComboBox.Items.Add(season);
             }
         }
+        /// <summary>
+        /// Выводит сообщение в соответствии с выбранным временем года при нажатии на кнопку. 
+        /// </summary>
         private void GoButton_Click(object sender, EventArgs e)
         {
             if (SeasonChoiceComboBox.SelectedItem == null)

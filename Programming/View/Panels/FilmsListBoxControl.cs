@@ -30,6 +30,9 @@ namespace Programming.View.Panels
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
         }
+        /// <summary>
+        /// Обновляет значения в текстовых полях при изменении выбранного объекта из списка. 
+        /// </summary>
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int value = FilmsListBox.SelectedIndex;
@@ -41,7 +44,9 @@ namespace Programming.View.Panels
             FilmRatingTextBox.Text = _currentFilm.Rating.ToString();
             
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение в текстовом поле при изменении.
+        /// </summary>
         private void FilmRatingTextBox_TextChanged(object? sender, EventArgs e)
         {
             try
@@ -55,15 +60,23 @@ namespace Programming.View.Panels
                 FilmRatingTextBox.BackColor = AppColors.LightPink;
             }
         }
+        /// <summary>
+        /// Сохраняет значение в текстовом поле при изменении.
+        /// </summary>
         private void FilmGenreTextBox_TextChanged(object? sender, EventArgs e)
         {
             _currentFilm.Genre = FilmGenreTextBox.Text;
         }
-
+        /// <summary>
+        /// Сохраняет значение в текстовом поле при изменении.
+        /// </summary>
         private void FilmNameTextBox_TextChanged(object? sender, EventArgs e)
         {
             _currentFilm.Name = FilmNameTextBox.Text;
         }
+        /// <summary>
+        /// Проверяет и сохраняет значение в текстовом поле при изменении.
+        /// </summary>
         private void FilmYearTextBox_TextChanged(object? sender, EventArgs e)
         {
             try
@@ -77,7 +90,9 @@ namespace Programming.View.Panels
                 FilmYearTextBox.BackColor = AppColors.LightPink;
             }
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение в текстовом поле при изменении.
+        /// </summary>
         private void FilmDurationTextBox_TextChanged(object? sender, EventArgs e)
         {
             try
@@ -91,6 +106,10 @@ namespace Programming.View.Panels
                 FilmDurationTextBox.BackColor = AppColors.LightPink;
             }
         }
+        /// <summary>
+        /// Ищет фильм с наивысшим рейтингом. 
+        /// </summary>
+        /// <returns>Возвращает индекс фильма с наивысшим рейтингом. </returns>
         private int FindFilmWithMaxRating()
         {
             double maxRating = _films[0].Rating;
@@ -106,7 +125,9 @@ namespace Programming.View.Panels
             }
             return maxRatingIndex;
         }
-
+        /// <summary>
+        /// Выбирает фильм из списка с макстмальным рейтингом при нажатии на кнопку. 
+        /// </summary>
         private void FindMaxFilmRatingButton_Click(object sender, EventArgs e)
         {
             FilmsListBox.SelectedIndex = FindFilmWithMaxRating();

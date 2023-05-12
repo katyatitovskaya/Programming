@@ -21,6 +21,9 @@ namespace Programming.View.Panels
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Добавляет оюъект класса <see cref="Model.Classes.Geometry.Rectangle"/> в список и на канву при нажатии на кнопку. 
+        /// </summary>
         private void AddRectButton_Click(object sender, EventArgs e)
         {
             int i = _rectangels.Count;
@@ -47,7 +50,10 @@ namespace Programming.View.Panels
             FindCollisions(_rectangels);
 
         }
-
+        /// <summary>
+        /// Ищет столкновения/пересечения прямоугольников. 
+        /// </summary>
+        /// <param name="_rectangels">Список прямоугольников. </param>
         private void FindCollisions(List<Model.Classes.Geometry.Rectangle> _rectangels)
         {
             var colidingPanelsColor = AppColors.Red;
@@ -72,7 +78,9 @@ namespace Programming.View.Panels
                 }
             }
         }
-
+        /// <summary>
+        /// Обновляет данные в текстовых полях при смене выбранного элемента.
+        /// </summary>
         private void RectInfoListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int number = RectInfoListBox.SelectedIndex;
@@ -86,7 +94,9 @@ namespace Programming.View.Panels
                 ClearRectangleInfo();
             }
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void YTextBox_TextChanged(object? sender, EventArgs e)
         {
             YTextBox.BackColor = AppColors.White;
@@ -118,7 +128,9 @@ namespace Programming.View.Panels
             }
 
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void XTextBox_TextChanged(object? sender, EventArgs e)
         {
             XTextBox.BackColor = AppColors.White;
@@ -150,7 +162,9 @@ namespace Programming.View.Panels
             }
 
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void HeightTextBox_TextChanged(object? sender, EventArgs e)
         {
             HeightTextBox.BackColor = AppColors.White;
@@ -180,9 +194,10 @@ namespace Programming.View.Panels
                     HeightTextBox.BackColor = AppColors.LightPink;
                 }
             }
-
         }
-
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void WidthTextBox_TextChanged(object? sender, EventArgs e)
         {
             WidthTextBox.BackColor = AppColors.White;
@@ -211,8 +226,10 @@ namespace Programming.View.Panels
                     WidthTextBox.BackColor = AppColors.LightPink;
                 }
             }
-
         }
+        /// <summary>
+        /// Удаляет прямоугольник из списка и с канвы при нажатии на кнопку. 
+        /// </summary>
         private void DeleteRectButton_Click(object sender, EventArgs e)
         {
             int value = RectInfoListBox.SelectedIndex;
@@ -226,6 +243,10 @@ namespace Programming.View.Panels
                 FindCollisions(_rectangels);
             }
         }
+        /// <summary>
+        /// Вставляет данные в текстовые поля. 
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник, данные которого будут вставляться в текстовые поля. </param>
         private void UpdateRectangleInfo(Model.Classes.Geometry.Rectangle rectangle)
         {
             XTextBox.Text = rectangle.Centre.X.ToString();
@@ -234,6 +255,9 @@ namespace Programming.View.Panels
             WidthTextBox.Text = rectangle.Length.ToString();
             HeightTextBox.Text = rectangle.Width.ToString();
         }
+        /// <summary>
+        /// Очищает текстовые поля.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             HeightTextBox.Clear();

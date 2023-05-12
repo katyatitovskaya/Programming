@@ -17,6 +17,9 @@ namespace Programming.View.Panels
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Проверяет вводимое значение на его наличие среди перечисления дней недели
+        /// </summary>
         private void ParseButton_Click(object sender, EventArgs e)
         {
             Weekday choosenWeekday;
