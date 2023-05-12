@@ -6,40 +6,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит информацию о песнях. 
+    /// </summary>
     public class Song
     {
-        private int _minutes;
-        private int _seconds;
-
+        /// <summary>
+        /// Продолжительность песни. 
+        /// </summary>
+        private int _duration;
+        /// <summary>
+        /// Возвращает и задает название песни.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Возвращает и задает имя исполнителя. 
+        /// </summary>
         public string Singer { get; set; }
-        public int Minutes
+        /// <summary>
+        /// Возвращает и задает продолжительность песни. Должна быть положительной. 
+        /// </summary>
+        public int Duration
         {
-            get => _minutes;
+            get => _duration;
             set
             {
-                Validator.AssertOnPositiveValue(value, nameof(Minutes));
-                _minutes = value;
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
+                _duration = value;
             }
         }
-        public int Seconds
-        {
-            get => _seconds;
-            set
-            {
-                Validator.AssertOnPositiveValue(value, nameof(Seconds));
-                _seconds = value;
-            }
-        }
+        /// <summary>
+        /// Создает объект класса <see cref="Song"/>.
+        /// </summary>
         public Song()
         {
         }
-        public Song(string name, string singer, int minutes, int seconds)
+        /// <summary>
+        /// Создает объект класса <see cref="Song"/>.
+        /// </summary>
+        /// <param name="name">Название песни. </param>
+        /// <param name="singer">Имя исполнителя. </param>
+        /// <param name="duration">Продолжительность песни. Должна быть положительной. </param>
+        public Song(string name, string singer, int duration)
         {
             Name = name;
             Singer = singer;
-            Minutes = minutes;
-            Seconds = seconds;
+            Duration= duration;
         }
     }
 }

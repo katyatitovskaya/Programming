@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит используемые цвета. 
+    /// </summary>
     public class AppColors
     {
         public static Color White = Color.White;
