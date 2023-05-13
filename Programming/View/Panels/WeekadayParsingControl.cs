@@ -10,13 +10,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Programming.View.Panels
-{
+{       
+    /// <summary>
+    /// Предоставляет методы для проверки наличия в перечислении 
+    /// с днями недели вводимой строки в текстовом поле. 
+    /// </summary>
     public partial class WeekadayParsingControl : UserControl
     {
         public WeekadayParsingControl()
         {
             InitializeComponent();
         }
+
         /// <summary>
         /// Проверяет вводимое значение на его наличие среди перечисления дней недели
         /// </summary>

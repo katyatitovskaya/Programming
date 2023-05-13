@@ -20,10 +20,12 @@ namespace Programming.Model.Classes
         /// Возвращает и задает точку отправления. 
         /// </summary>
         public string Destination { get; set; }
+        
         /// <summary>
         /// Возвращает и задает пункт назначения. 
         /// </summary>
         public string Departure { get; set; }
+        
         /// <summary>
         /// Возвращает и задает продолжительность полета. Должна быть положительной. 
         /// </summary>
@@ -36,12 +38,14 @@ namespace Programming.Model.Classes
                 _duration = value;
             }
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Flight"/>.
         /// </summary>
         public Flight()
         {
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Flight"/>. 
         /// </summary>

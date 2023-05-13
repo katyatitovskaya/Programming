@@ -15,6 +15,7 @@ namespace Programming.Model.Classes.Geometry
         /// Внутренний радиус. 
         /// </summary>
         private double _innerradius;
+        
         /// <summary>
         /// Внешний радиус. 
         /// </summary>
@@ -24,6 +25,7 @@ namespace Programming.Model.Classes.Geometry
         /// Возвращает и задает центр кольца. 
         /// </summary>
         public Point2D Centre { get; set; }
+        
         /// <summary>
         /// Возвращает и задает внутренний радиус. Должен входить в диапазон от 0 до значения внешнего радиуса. 
         /// </summary>
@@ -36,6 +38,7 @@ namespace Programming.Model.Classes.Geometry
                 _innerradius = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает внешний радиус. Должен быть больше внутреннего радиуса. 
         /// </summary>
@@ -48,6 +51,7 @@ namespace Programming.Model.Classes.Geometry
                 _outerradius = value;
             }
         }
+        
         /// <summary>
         /// Считает площадь кольца. 
         /// </summary>
@@ -58,8 +62,16 @@ namespace Programming.Model.Classes.Geometry
             double area = Math.PI * Math.Pow(ring.OuterRadius, 2) - Math.PI * Math.Pow(ring.InnerRadius, 2);
             return area;
         }
+        /// <summary>
+        /// Возвращает и задает индивидуальный идентификатор. 
+        /// </summary>
         public static int AllRingsCount { get; set; }
+
+        /// <summary>
+        /// Возвращает индивидуальный идентификатор. 
+        /// </summary>
         public int Id { get; }
+        
         /// <summary>
         /// Создает объект класса <see cref="Ring="/>.
         /// </summary>
@@ -75,6 +87,7 @@ namespace Programming.Model.Classes.Geometry
             Id = AllRingsCount;
             AllRingsCount++;
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Ring"/>. 
         /// </summary>

@@ -22,6 +22,7 @@ namespace Programming.Model.Classes.Geometry
             return Math.Abs(rectangle1.Centre.X - rectangle2.Centre.X) < rectangle1.Length / 2 + rectangle2.Length / 2
                 && Math.Abs(rectangle1.Centre.Y - rectangle2.Centre.Y) < rectangle1.Width / 2 + rectangle2.Width / 2;
         }
+
         /// <summary>
         /// Проверяет, сталкиваются/пересекаются ли кольца. 
         /// </summary>

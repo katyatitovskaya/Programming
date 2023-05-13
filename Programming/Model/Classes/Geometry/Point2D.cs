@@ -16,6 +16,7 @@ namespace Programming.Model.Classes.Geometry
         /// Координата Х. 
         /// </summary>
         private int _x;
+
         /// <summary>
         /// Координата Y.
         /// </summary>
@@ -33,6 +34,7 @@ namespace Programming.Model.Classes.Geometry
                 _x = value;
             }
         }
+
         /// <summary>
         /// Возвращает и задает координату Y центра фигуры. Должна быть положительной. 
         /// </summary>
@@ -45,12 +47,14 @@ namespace Programming.Model.Classes.Geometry
                 _y = value;
             }
         }
+
         /// <summary>
         ///Создает объект класса <see cref="Point2D"/>.
         /// </summary>
         public Point2D()
         {
         }
+
         /// <summary>
         /// Создает объект класса <see cref="Point2D"/>.
         /// </summary>
