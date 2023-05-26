@@ -15,14 +15,17 @@ namespace Programming.Model.Classes
         /// Продолжительность песни. 
         /// </summary>
         private int _duration;
+
         /// <summary>
         /// Возвращает и задает название песни.
         /// </summary>
         public string Name { get; set; }
+        
         /// <summary>
         /// Возвращает и задает имя исполнителя. 
         /// </summary>
         public string Singer { get; set; }
+        
         /// <summary>
         /// Возвращает и задает продолжительность песни. Должна быть положительной. 
         /// </summary>
@@ -35,12 +38,14 @@ namespace Programming.Model.Classes
                 _duration = value;
             }
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Song"/>.
         /// </summary>
         public Song()
         {
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Song"/>.
         /// </summary>

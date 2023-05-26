@@ -12,9 +12,20 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет методы для получения информации о прямоугольниках 
+    /// и поиска прямоугольника с наибольшей шириной. 
+    /// </summary>
     public partial class RectanglesListBoxControl : UserControl
     {
+        /// <summary>
+        /// Массив объектов типа <see cref="Model.Classes.Geometry.Rectangle"/>. 
+        /// </summary>
         private Model.Classes.Geometry.Rectangle[] _rectangles = new Model.Classes.Geometry.Rectangle[5];
+
+        /// <summary>
+        /// Объект типа <see cref="Model.Classes.Geometry.Rectangle"/>. 
+        /// </summary>
         private Model.Classes.Geometry.Rectangle _currentRectangle = new Model.Classes.Geometry.Rectangle();
         public RectanglesListBoxControl()
         {
@@ -30,6 +41,7 @@ namespace Programming.View.Panels
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
         }
+
         /// <summary>
         /// Обновляет текстовые поля при выборе прямоугольника
         /// </summary>
@@ -45,6 +57,7 @@ namespace Programming.View.Panels
             RectIDTextBox.Text = _currentRectangle.Id.ToString();
             
         }
+
         /// <summary>
         /// Сохраняет значение из текстового поля при его изменении.
         /// </summary>
@@ -52,6 +65,7 @@ namespace Programming.View.Panels
         {
             _currentRectangle.Color = RectColorTextBox.Text;
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение из текстового поля при его изменении.
         /// </summary>
@@ -68,6 +82,7 @@ namespace Programming.View.Panels
                 RectLengthTextBox.BackColor = AppColors.LightPink;
             }
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение из текстового поля при его изменении.
         /// </summary>
@@ -84,6 +99,7 @@ namespace Programming.View.Panels
                 RectWidthTextBox.BackColor = AppColors.LightPink;
             }
         }
+
         /// <summary>
         /// Ищет прямоугольник с максимальной шириной. 
         /// </summary>
@@ -103,6 +119,7 @@ namespace Programming.View.Panels
             }
             return maxWidthIndex;
         }
+
         /// <summary>
         /// Выбирает прямоугольник с максимальной шириной при нажатии на кнопку. 
         /// </summary>

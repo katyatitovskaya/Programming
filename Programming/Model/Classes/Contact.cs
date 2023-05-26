@@ -17,10 +17,12 @@ namespace Programming.Model.Class
         /// Имя.
         /// </summary>
         private string _firstname;
+
         /// <summary>
         /// Фамилия. 
         /// </summary>
         private string _lastname;
+        
         /// <summary>
         /// Возвращает и задает имя человека. Должно состоять только из букв.
         /// </summary>
@@ -33,6 +35,7 @@ namespace Programming.Model.Class
                 _firstname = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает фамилию человека. Должна состоять только из букв.
         /// </summary>
@@ -45,10 +48,12 @@ namespace Programming.Model.Class
                 _lastname = value;
             }
         }
+        
         /// <summary>
         /// Возвразает и задает юзерныейм. 
         /// </summary>
         public string Username { get; set; }
+        
         /// <summary>
         /// Проверяет, все ли символы в строке являются буквами англ алфавита. 
         /// </summary>
@@ -65,12 +70,14 @@ namespace Programming.Model.Class
             }
 
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Contact"/>.
         /// </summary>
         public Contact()
         {
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Contact"/>. 
         /// </summary>

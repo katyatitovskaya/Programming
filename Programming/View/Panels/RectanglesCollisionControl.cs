@@ -12,17 +12,32 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет методы для создания, удаления прямоугольников и их проверку на столкновения. 
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Classes.Geometry.Rectangle"/>. 
+        /// </summary>
         private List<Model.Classes.Geometry.Rectangle> _rectangels = new List<Model.Classes.Geometry.Rectangle>();
+        
+        /// <summary>
+        /// Список рисуемых прямоугольников.
+        /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
+
+        /// <summary>
+        /// Объект типа <see cref="Model.Classes.Geometry.Rectangle"/>. 
+        /// </summary>
         private Model.Classes.Geometry.Rectangle _currentRectangle = new Model.Classes.Geometry.Rectangle();
         public RectanglesCollisionControl()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Добавляет оюъект класса <see cref="Model.Classes.Geometry.Rectangle"/> в список и на канву при нажатии на кнопку. 
+        /// Добавляет прямоугольник в список и на канву при нажатии на кнопку. 
         /// </summary>
         private void AddRectButton_Click(object sender, EventArgs e)
         {
@@ -50,6 +65,7 @@ namespace Programming.View.Panels
             FindCollisions(_rectangels);
 
         }
+
         /// <summary>
         /// Ищет столкновения/пересечения прямоугольников. 
         /// </summary>
@@ -78,6 +94,7 @@ namespace Programming.View.Panels
                 }
             }
         }
+
         /// <summary>
         /// Обновляет данные в текстовых полях при смене выбранного элемента.
         /// </summary>
@@ -94,6 +111,7 @@ namespace Programming.View.Panels
                 ClearRectangleInfo();
             }
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение текстового поля при его изменении. 
         /// </summary>
@@ -128,6 +146,7 @@ namespace Programming.View.Panels
             }
 
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение текстового поля при его изменении. 
         /// </summary>
@@ -162,6 +181,7 @@ namespace Programming.View.Panels
             }
 
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение текстового поля при его изменении. 
         /// </summary>
@@ -195,6 +215,7 @@ namespace Programming.View.Panels
                 }
             }
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение текстового поля при его изменении. 
         /// </summary>
@@ -227,6 +248,7 @@ namespace Programming.View.Panels
                 }
             }
         }
+
         /// <summary>
         /// Удаляет прямоугольник из списка и с канвы при нажатии на кнопку. 
         /// </summary>
@@ -243,6 +265,7 @@ namespace Programming.View.Panels
                 FindCollisions(_rectangels);
             }
         }
+
         /// <summary>
         /// Вставляет данные в текстовые поля. 
         /// </summary>
@@ -255,6 +278,7 @@ namespace Programming.View.Panels
             WidthTextBox.Text = rectangle.Length.ToString();
             HeightTextBox.Text = rectangle.Width.ToString();
         }
+
         /// <summary>
         /// Очищает текстовые поля.
         /// </summary>

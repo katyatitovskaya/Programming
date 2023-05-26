@@ -22,8 +22,10 @@ namespace Programming.Model.Classes
         {
             
             if (value <= 0)
-                throw new ArgumentException($"Exception is thrown:{name} value is not supposed to be negative");
+                throw new ArgumentException(
+                    $"Exception is thrown:{name} value is not supposed to be negative");
         }
+        
         /// <summary>
         /// Проверяет, является ли значение положительным 
         /// </summary>
@@ -33,8 +35,10 @@ namespace Programming.Model.Classes
         public static void AssertOnPositiveValue(double value, string name = "")
         {
             if (value <= 0)
-                throw new ArgumentException($"Exception is thrown:{name} value is not supposed to be negative");
+                throw new ArgumentException(
+                    $"Exception is thrown:{name} value is not supposed to be negative");
         }
+        
         /// <summary>
         /// Проверяет, входит ли значение в указанный диапазон. 
         /// </summary>
@@ -49,6 +53,7 @@ namespace Programming.Model.Classes
                 throw new ArgumentException($"Exception is thrown:{name} value " +
                     $"is suposed to be between {min} and {max}");
         }
+        
         /// <summary>
         /// Проверяет, входит ли значение в указанный диапазон. 
         /// </summary>
@@ -57,7 +62,8 @@ namespace Programming.Model.Classes
         /// <param name="max">Верхняя граница диапазона. </param>
         /// <param name="name">Имя свойства, в котором присваивается значение.</param>
         /// <exception cref="ArgumentException"></exception>
-        public static void AssertValueInRange(double value, double min, double max, string name = "")
+        public static void AssertValueInRange(
+            double value, double min, double max, string name = "")
         {
             if (value < min || value > max)
                 throw new ArgumentException($"Exception is thrown:{name} value " +

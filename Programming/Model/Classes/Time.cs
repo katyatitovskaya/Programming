@@ -15,10 +15,12 @@ namespace Programming.Model.Classes
         /// Часы.
         /// </summary>
         private int _hours;
+        
         /// <summary>
         /// Минуты. 
         /// </summary>
         private int _minutes;
+        
         /// <summary>
         /// Секунды.
         /// </summary>
@@ -36,6 +38,7 @@ namespace Programming.Model.Classes
                 _hours = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает минуты. Значение должно входить в диапазон от 0 до 60. 
         /// </summary>
@@ -48,6 +51,7 @@ namespace Programming.Model.Classes
                 _minutes = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает секунды. Значение должно входить в диапазон от 0 до 60. 
         /// </summary>
@@ -60,12 +64,14 @@ namespace Programming.Model.Classes
                 _seconds = value;
             }
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Time"/>. 
         /// </summary>
         public Time()
         {
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Time"/>.
         /// </summary>

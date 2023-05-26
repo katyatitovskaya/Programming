@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет методы для вывода сообщений в соответсвии с выбранным временем года. 
+    /// </summary>
     public partial class SeasonsHandleControl : UserControl
     {
         public SeasonsHandleControl()
@@ -23,6 +26,7 @@ namespace Programming.View.Panels
                 SeasonChoiceComboBox.Items.Add(season);
             }
         }
+
         /// <summary>
         /// Выводит сообщение в соответствии с выбранным временем года при нажатии на кнопку. 
         /// </summary>

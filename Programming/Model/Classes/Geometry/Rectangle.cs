@@ -15,6 +15,7 @@ namespace Programming.Model.Classes.Geometry
         /// Длина прямоугольника.
         /// </summary>
         private double _length;
+        
         /// <summary>
         /// Ширина прямоугольника. 
         /// </summary>
@@ -32,6 +33,7 @@ namespace Programming.Model.Classes.Geometry
                 _length = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает ширину прямоугольника. Должна быть положительной. 
         /// </summary>
@@ -44,20 +46,24 @@ namespace Programming.Model.Classes.Geometry
                 _width = value;
             }
         }
+        
         /// <summary>
         /// Возвращает и задает цвет прямоугольника. 
         /// </summary>
         public string Color { get; set; }
+        
         /// <summary>
         /// Возвращает и задает центр прямоугольника. 
         /// </summary>
         public Point2D Centre { get; set; }
+        
         /// <summary>
-        /// Возвращает и задает индивидуальный идентивикатор. 
+        /// Возвращает и задает индивидуальный идентификатор. 
         /// </summary>
         public static int AllRectanglesCount { get; set; }
+        
         /// <summary>
-        /// Вохвращает индивидуальный идентивикатор. 
+        /// Вохвращает индивидуальный идентификатор. 
         /// </summary>
         public int Id { get; }
 
@@ -67,6 +73,7 @@ namespace Programming.Model.Classes.Geometry
         public Rectangle()
         {
         }
+        
         /// <summary>
         /// Создает объект класса <see cref="Rectangle"/>.
         /// </summary>

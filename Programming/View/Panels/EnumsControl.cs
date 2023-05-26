@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    ///  Предоставляет методы для вывода данных в листбоксы и текстбокс. 
+    /// </summary>
     public partial class EnumsControl : UserControl
     {
         public EnumsControl()

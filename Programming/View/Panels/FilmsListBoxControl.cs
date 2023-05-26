@@ -12,9 +12,20 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Предоставляет методы для получения информации о фильмах и 
+    /// поиска фильма с наибольшим рейтингом.
+    /// </summary>
     public partial class FilmsListBoxControl : UserControl
     {
+        /// <summary>
+        /// Массив объектов типа <see cref="Film"/>. 
+        /// </summary>
         private Film[] _films = new Film[5];
+
+        /// <summary>
+        /// Объект типа <see cref="Film"/>.
+        /// </summary>
         private Film _currentFilm = new Film();
         public FilmsListBoxControl()
         {
@@ -25,11 +36,14 @@ namespace Programming.View.Panels
             Random rand = new Random();
             for (int i = 0; i < _films.Length; i++)
             {
-                _films[i] = new Film(filmNames[rand.Next(1, filmNames.Length)], rand.Next(300), rand.Next(1900, 2023),
-                    filmGenres[rand.Next(1, filmGenres.Length)], Math.Round(rand.NextDouble() * 10, 1));
+                _films[i] = new Film(filmNames[rand.Next(1, filmNames.Length)], 
+                    rand.Next(300), rand.Next(1900, 2023),
+                    filmGenres[rand.Next(1, filmGenres.Length)], 
+                    Math.Round(rand.NextDouble() * 10, 1));
                 FilmsListBox.Items.Add($"Film {i + 1}");
             }
         }
+
         /// <summary>
         /// Обновляет значения в текстовых полях при изменении выбранного объекта из списка. 
         /// </summary>
@@ -42,8 +56,8 @@ namespace Programming.View.Panels
             FilmYearTextBox.Text = _currentFilm.Year.ToString();
             FilmGenreTextBox.Text = _currentFilm.Genre;
             FilmRatingTextBox.Text = _currentFilm.Rating.ToString();
-            
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение в текстовом поле при изменении.
         /// </summary>
@@ -60,6 +74,7 @@ namespace Programming.View.Panels
                 FilmRatingTextBox.BackColor = AppColors.LightPink;
             }
         }
+
         /// <summary>
         /// Сохраняет значение в текстовом поле при изменении.
         /// </summary>
@@ -67,6 +82,7 @@ namespace Programming.View.Panels
         {
             _currentFilm.Genre = FilmGenreTextBox.Text;
         }
+
         /// <summary>
         /// Сохраняет значение в текстовом поле при изменении.
         /// </summary>
@@ -74,6 +90,7 @@ namespace Programming.View.Panels
         {
             _currentFilm.Name = FilmNameTextBox.Text;
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение в текстовом поле при изменении.
         /// </summary>
@@ -90,6 +107,7 @@ namespace Programming.View.Panels
                 FilmYearTextBox.BackColor = AppColors.LightPink;
             }
         }
+
         /// <summary>
         /// Проверяет и сохраняет значение в текстовом поле при изменении.
         /// </summary>
@@ -106,6 +124,7 @@ namespace Programming.View.Panels
                 FilmDurationTextBox.BackColor = AppColors.LightPink;
             }
         }
+
         /// <summary>
         /// Ищет фильм с наивысшим рейтингом. 
         /// </summary>
@@ -125,6 +144,7 @@ namespace Programming.View.Panels
             }
             return maxRatingIndex;
         }
+
         /// <summary>
         /// Выбирает фильм из списка с макстмальным рейтингом при нажатии на кнопку. 
         /// </summary>
