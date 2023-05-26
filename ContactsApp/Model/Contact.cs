@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp.Model
 {
-    public class Contacts
+    public class Contact
     {
         private string _fullName;
         private string _phoneNumber;
@@ -21,6 +21,7 @@ namespace ContactsApp.Model
             set
             {
                 AssertStringContainsOnlyLetters(value, nameof(FullName));
+                _fullName = value;
             }
         }
         public string PhoneNumber { get; set; }
@@ -42,11 +43,12 @@ namespace ContactsApp.Model
             }
 
         }
-        public Contacts(string fullName, string phoneNumber, DateTime birthday, string vkcom)
+        public Contact(string fullName, string phoneNumber, DateTime birthday, string vkcom)
         {
             FullName = fullName;
             PhoneNumber = phoneNumber;
-
+            Birthday = birthday;
+            Vkcom = vkcom;
         }
     }
 }

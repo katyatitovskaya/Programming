@@ -55,6 +55,7 @@
             this.ContactsListBox.Name = "ContactsListBox";
             this.ContactsListBox.Size = new System.Drawing.Size(332, 424);
             this.ContactsListBox.TabIndex = 0;
+            this.ContactsListBox.SelectedIndexChanged += new System.EventHandler(this.ContactsListBox_SelectedIndexChanged);
             // 
             // SelectedContactGroupBox
             // 
@@ -151,6 +152,7 @@
             this.AddContactButton.Size = new System.Drawing.Size(40, 40);
             this.AddContactButton.TabIndex = 2;
             this.AddContactButton.UseVisualStyleBackColor = true;
+            this.AddContactButton.Click += new System.EventHandler(this.AddContactButton_Click);
             // 
             // CreateContactButton
             // 
