@@ -20,28 +20,45 @@ namespace ContactsApp.Model
             get { return _fullName; }
             set
             {
-                AssertStringContainsOnlyLetters(value, nameof(FullName));
+                Validator.AssertStringContainsOnlyLetters(value, nameof(FullName));
+                Validator.AssertStingLengthIsInRange(value, 150, nameof(FullName));
                 _fullName = value;
             }
         }
-        public string PhoneNumber { get; set; }
-        public DateTime Birthday { get; set; }
-        public string Vkcom { get; set; }
-        /// <summary>
-        /// Проверяет, все ли символы в строке являются буквами англ алфавита. 
-        /// </summary>
-        /// <param name="value">Проверяемая строка. </param>
-        /// <param name="name">Имя свойства, в котором присваивается значение. </param>
-        /// <exception cref="ArgumentException"></exception>
-        private void AssertStringContainsOnlyLetters(string value, string name)
+        public string PhoneNumber
         {
-            StackTrace stacktrace = new StackTrace();
-            if (Regex.IsMatch(value, "^[a-zA-Z]*$") == false)
+            get => _phoneNumber;
+            set
             {
-                throw new ArgumentException($"value in {name} " +
-                    $"is suposed to contain only letters");
+                Validator.AssertStringIsAPhoneNumber(value, nameof(PhoneNumber));
+                _phoneNumber = value;
             }
-
+        }
+        public DateTime Birthday
+        {
+            get => _birthday;
+            set
+            {
+                Validator.AssertDateIsInRange(value, nameof(Birthday));
+                _birthday = value;
+            }
+        }
+        public string Vkcom
+        {
+            get => _vkcom;
+            set
+            {
+                Validator.AssertStringIsURL(value, nameof(Vkcom));
+                _vkcom = value;
+            }
+        }
+        public static Contact CloneContact(Contact contact)
+        {
+            return new Contact(contact.FullName, contact.PhoneNumber, contact.Birthday, contact.Vkcom);
+        }
+        
+        public Contact()
+        {
         }
         public Contact(string fullName, string phoneNumber, DateTime birthday, string vkcom)
         {

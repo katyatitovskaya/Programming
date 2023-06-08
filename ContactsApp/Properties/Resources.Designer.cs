@@ -83,9 +83,29 @@ namespace ContactsApp.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NoIcon {
+            get {
+                object obj = ResourceManager.GetObject("NoIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RemoveUserIcon {
             get {
                 object obj = ResourceManager.GetObject("RemoveUserIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YesIcon {
+            get {
+                object obj = ResourceManager.GetObject("YesIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ContactsListBox = new System.Windows.Forms.ListBox();
             this.SelectedContactGroupBox = new System.Windows.Forms.GroupBox();
+            this.WrongBirthdayLabel = new System.Windows.Forms.Label();
             this.BirthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.VKcomTextBox = new System.Windows.Forms.TextBox();
             this.PhoneNumberTextBox = new System.Windows.Forms.TextBox();
@@ -42,6 +43,8 @@
             this.AddContactButton = new System.Windows.Forms.Button();
             this.CreateContactButton = new System.Windows.Forms.Button();
             this.DeleteContactButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SelectedContactGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +64,7 @@
             // 
             this.SelectedContactGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedContactGroupBox.Controls.Add(this.WrongBirthdayLabel);
             this.SelectedContactGroupBox.Controls.Add(this.BirthdayDateTimePicker);
             this.SelectedContactGroupBox.Controls.Add(this.VKcomTextBox);
             this.SelectedContactGroupBox.Controls.Add(this.PhoneNumberTextBox);
@@ -76,35 +80,55 @@
             this.SelectedContactGroupBox.TabStop = false;
             this.SelectedContactGroupBox.Text = "Selected Contact";
             // 
+            // WrongBirthdayLabel
+            // 
+            this.WrongBirthdayLabel.AutoSize = true;
+            this.WrongBirthdayLabel.Location = new System.Drawing.Point(383, 67);
+            this.WrongBirthdayLabel.Name = "WrongBirthdayLabel";
+            this.WrongBirthdayLabel.Size = new System.Drawing.Size(175, 20);
+            this.WrongBirthdayLabel.TabIndex = 8;
+            this.WrongBirthdayLabel.Text = "Do you live in the future?";
+            this.WrongBirthdayLabel.Visible = false;
+            // 
             // BirthdayDateTimePicker
             // 
+            this.BirthdayDateTimePicker.Enabled = false;
             this.BirthdayDateTimePicker.Location = new System.Drawing.Point(127, 62);
             this.BirthdayDateTimePicker.Name = "BirthdayDateTimePicker";
             this.BirthdayDateTimePicker.Size = new System.Drawing.Size(250, 27);
             this.BirthdayDateTimePicker.TabIndex = 7;
+            this.BirthdayDateTimePicker.ValueChanged += new System.EventHandler(this.BirthdayDateTimePicker_SelectedDatesChanged);
             // 
             // VKcomTextBox
             // 
+            this.VKcomTextBox.Enabled = false;
             this.VKcomTextBox.Location = new System.Drawing.Point(127, 128);
             this.VKcomTextBox.Name = "VKcomTextBox";
             this.VKcomTextBox.Size = new System.Drawing.Size(250, 27);
             this.VKcomTextBox.TabIndex = 6;
+            this.VKcomTextBox.Text = "https://vk.com/";
+            this.VKcomTextBox.TextChanged += new System.EventHandler(this.VKcomTextBox_TextChanged);
             // 
             // PhoneNumberTextBox
             // 
+            this.PhoneNumberTextBox.Enabled = false;
             this.PhoneNumberTextBox.Location = new System.Drawing.Point(127, 95);
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(250, 27);
             this.PhoneNumberTextBox.TabIndex = 5;
+            this.PhoneNumberTextBox.Text = "+";
+            this.PhoneNumberTextBox.TextChanged += new System.EventHandler(this.PhoneNumberTextBox_TextChanged);
             // 
             // FullNameTextBox
             // 
             this.FullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.FullNameTextBox.Enabled = false;
             this.FullNameTextBox.Location = new System.Drawing.Point(127, 26);
             this.FullNameTextBox.Name = "FullNameTextBox";
             this.FullNameTextBox.Size = new System.Drawing.Size(440, 27);
             this.FullNameTextBox.TabIndex = 4;
+            this.FullNameTextBox.TextChanged += new System.EventHandler(this.FullNameTextBox_TextChanged);
             // 
             // VKcomLabel
             // 
@@ -164,6 +188,7 @@
             this.CreateContactButton.Size = new System.Drawing.Size(40, 40);
             this.CreateContactButton.TabIndex = 3;
             this.CreateContactButton.UseVisualStyleBackColor = true;
+            this.CreateContactButton.Click += new System.EventHandler(this.CreateContactButton_Click);
             // 
             // DeleteContactButton
             // 
@@ -177,11 +202,37 @@
             this.DeleteContactButton.UseVisualStyleBackColor = true;
             this.DeleteContactButton.Click += new System.EventHandler(this.DeleteContactButton_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.BackgroundImage = global::ContactsApp.Properties.Resources.YesIcon;
+            this.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SaveButton.Location = new System.Drawing.Point(350, 211);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(40, 40);
+            this.SaveButton.TabIndex = 5;
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Visible = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.BackgroundImage = global::ContactsApp.Properties.Resources.NoIcon;
+            this.CancelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton.Location = new System.Drawing.Point(396, 211);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(40, 40);
+            this.CancelButton.TabIndex = 6;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Visible = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 506);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.DeleteContactButton);
             this.Controls.Add(this.CreateContactButton);
             this.Controls.Add(this.AddContactButton);
@@ -194,6 +245,7 @@
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 
@@ -210,5 +262,8 @@
         private Button AddContactButton;
         private Button CreateContactButton;
         private Button DeleteContactButton;
+        private Button SaveButton;
+        private Button CancelButton;
+        private Label WrongBirthdayLabel;
     }
 }
