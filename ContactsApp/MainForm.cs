@@ -4,18 +4,30 @@ namespace ContactsApp
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Contact"/>.  
+        /// </summary>
         private List<Model.Contact> _contacts = new List<Model.Contact>();
-        private Model.Contact _currentContact;
-        private Model.Contact _copiedContact;
-        private int _isEditButtonPressed = 0;
-        //private bool _isCreateButtonPressed = false;
 
+        /// <summary>
+        /// Объект типа <see cref="Contact"/>. 
+        /// </summary>
+        private Model.Contact _currentContact;
+
+        /// <summary>
+        /// Объект типа <see cref="Contact"/> 
+        /// для копирования в него данных другого объекта во время его изменений.
+        /// </summary>
+        private Model.Contact _copiedContact;
 
         public MainForm()
         {
             InitializeComponent();
         }
         
+        /// <summary>
+        /// Удаляет выбранный контакт из списка и листбокса.
+        /// </summary>
         private void DeleteContactButton_Click(object sender, EventArgs e)
         {
             int value = ContactsListBox.SelectedIndex;
@@ -24,9 +36,13 @@ namespace ContactsApp
                 _contacts.RemoveAt(value);
                 ContactsListBox.Items.RemoveAt(value);
                 ClearInfo();
+                ContactsListBox.SelectedIndex = value - 1;                
             }
         }
 
+        /// <summary>
+        /// Обновляет данные в текстовых полях при смене выбранного элемента. 
+        /// </summary>
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ContactsListBox.SelectedIndex!= -1)
@@ -41,6 +57,9 @@ namespace ContactsApp
             }
         }
         
+        /// <summary>
+        /// Проверяет выбранную дату и сохраняет ее в копию выбранного контакта. 
+        /// </summary>
         private void BirthdayDateTimePicker_SelectedDatesChanged(object? sender, EventArgs e)
         {
             WrongBirthdayLabel.Visible = false;
@@ -59,6 +78,9 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного контакта. 
+        /// </summary>
         private void PhoneNumberTextBox_TextChanged(object? sender, EventArgs e)
         {
             PhoneNumberTextBox.BackColor = Color.White;
@@ -76,6 +98,10 @@ namespace ContactsApp
                 }
             }
         }
+
+        /// <summary>
+        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного контакта. 
+        /// </summary>
         private void VKcomTextBox_TextChanged(Object? sender, EventArgs e)
         {
             VKcomTextBox.BackColor = Color.White;
@@ -93,6 +119,10 @@ namespace ContactsApp
                 }
             }
         }
+
+        /// <summary>
+        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного элемента. 
+        /// </summary>
         private void FullNameTextBox_TextChanged(object? sender, EventArgs e)
         {
             FullNameTextBox.BackColor = Color.White;
@@ -101,7 +131,6 @@ namespace ContactsApp
             {
                 try
                 {
-                    
                     string newName = FullNameTextBox.Text;
                     _copiedContact.FullName = newName;
                 }
@@ -110,9 +139,11 @@ namespace ContactsApp
                     FullNameTextBox.BackColor = Color.LightPink;
                 }
             }
-            
         }
         
+        /// <summary>
+        /// Создает и добавляет контакт с базовыми данными в список и листбокс. 
+        /// </summary>
         private void AddContactButton_Click(object sender, EventArgs e)
         {
             _currentContact = new Model.Contact("Full Name", "+", DateTime.Now, "https://vk.com/");
@@ -120,6 +151,11 @@ namespace ContactsApp
             ContactsListBox.Items.Add(_currentContact.FullName);
 
         }
+
+        /// <summary>
+        /// Сортирует контакты по алфавиту по их фио. 
+        /// </summary>
+        /// <param name="contacts">Сортируемый список</param>
         private void SortAlphabetically(List<Model.Contact> contacts)
         {
             contacts.Sort((left, right) => left.FullName.CompareTo(right.FullName));
@@ -130,12 +166,14 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Кнопка редактирования контакта. 
+        /// </summary>
         private void CreateContactButton_Click(object sender, EventArgs e)
         {
             if(ContactsListBox.SelectedIndex != -1)
             {
                 _copiedContact = Model.Contact.CloneContact(_contacts[ContactsListBox.SelectedIndex]);
-                _isEditButtonPressed = 1;
                 ContactsListBox.Enabled= false;
                 FullNameTextBox.Enabled = true;
                 PhoneNumberTextBox.Enabled = true;
@@ -146,13 +184,22 @@ namespace ContactsApp
             }
             
         }
+
+        /// <summary>
+        /// Очищает текстовые поля и выбирает сегодняшнюю дату в качестве дня рождения
+        /// </summary>
         private void ClearInfo()
         {
             FullNameTextBox.Clear();
             BirthdayDateTimePicker.Value = DateTime.Now;
-            PhoneNumberTextBox.Text = "+";
-            VKcomTextBox.Text = "https://vk.com/";
+            PhoneNumberTextBox.Clear();
+            VKcomTextBox.Clear();
         }
+
+        /// <summary>
+        /// Обновляет текстовые поля и дату при изменении выбранного контакта. 
+        /// </summary>
+        /// <param name="contact">Выбранный контакт. </param>
         private void UpdateInfo(Model.Contact contact)
         {
             FullNameTextBox.Text = contact.FullName;
@@ -161,9 +208,12 @@ namespace ContactsApp
             VKcomTextBox.Text = contact.Vkcom;
         }
 
+
+        /// <summary>
+        /// Сохраняет изменения в контакте. 
+        /// </summary>
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            _isEditButtonPressed = 0;
             FullNameTextBox.Enabled = false;
             PhoneNumberTextBox.Enabled = false;
             BirthdayDateTimePicker.Enabled = false;
@@ -180,14 +230,24 @@ namespace ContactsApp
             {
                 ContactsListBox.Items.Add(_contacts[i].FullName);
             }
-
+            for(int i = 0; i < _contacts.Count; i++)
+            {
+                if(_copiedContact == _contacts[i])
+                {
+                    ContactsListBox.SelectedIndex = i;
+                }
+            }
         }
 
+        /// <summary>
+        /// Отменяет изменения в контакте. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             ClearInfo();
             UpdateInfo(_contacts[ContactsListBox.SelectedIndex]);
-            _isEditButtonPressed = 0;
             FullNameTextBox.Enabled = false;
             PhoneNumberTextBox.Enabled = false;
             BirthdayDateTimePicker.Enabled = false;
