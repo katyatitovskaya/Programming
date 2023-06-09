@@ -22,8 +22,15 @@ namespace ContactsApp
         /// </summary>
         private Model.Contact _copiedContact;
 
+        /// <summary>
+        /// Путь к файлу <see cref="_fileName"/>. 
+        /// </summary>
         private string _directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.
             ApplicationData) + "\\ContactsApp";
+
+        /// <summary>
+        /// Файл, хранящий объекты класса <see cref="Contact"/> 
+        /// </summary>
         private string _fileName = "Contacts.json";
         public MainForm()
         {
