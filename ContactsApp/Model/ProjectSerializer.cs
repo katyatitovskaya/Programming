@@ -17,7 +17,7 @@ namespace ContactsApp.Model
                 Directory.CreateDirectory(directoryPath);
             }
             string contactsString = JsonSerializer.Serialize(contacts);
-            File.WriteAllText($"directoryPath/{fileName}", contactsString);
+            File.WriteAllText($"{directoryPath}/{fileName}", contactsString);
         }
         
         public static List<Contact> LoadFromFile(string directoryPath,string fileName)

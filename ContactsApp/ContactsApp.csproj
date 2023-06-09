@@ -27,4 +27,8 @@
     <Folder Include="View\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
+  </ItemGroup>
+
 </Project>

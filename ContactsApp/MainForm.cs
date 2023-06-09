@@ -47,7 +47,8 @@ namespace ContactsApp
                 _contacts.RemoveAt(value);
                 ContactsListBox.Items.RemoveAt(value);
                 ClearInfo();
-                ContactsListBox.SelectedIndex = value - 1;                
+                ContactsListBox.SelectedIndex = value - 1;
+                ProjectSerializer.SaveToFile(_contacts, _directoryPath, _fileName);
             }
         }
 
