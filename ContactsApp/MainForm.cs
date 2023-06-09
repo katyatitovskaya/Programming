@@ -1,4 +1,6 @@
+using ContactsApp.Model;
 using System;
+using System.Text.Json;
 
 namespace ContactsApp
 {
@@ -20,9 +22,18 @@ namespace ContactsApp
         /// </summary>
         private Model.Contact _copiedContact;
 
+        private string _directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.
+            ApplicationData) + "\\ContactsApp";
+        private string _fileName = "Contacts.json";
         public MainForm()
         {
             InitializeComponent();
+
+            _contacts = Model.ProjectSerializer.LoadFromFile(_directoryPath, _fileName);
+            for(int i = 0; i< _contacts.Count; i++)
+            {
+                ContactsListBox.Items.Add(_contacts[i].FullName);
+            }
         }
         
         /// <summary>
@@ -149,6 +160,7 @@ namespace ContactsApp
             _currentContact = new Model.Contact("Full Name", "+", DateTime.Now, "https://vk.com/");
             _contacts.Add(_currentContact);
             ContactsListBox.Items.Add(_currentContact.FullName);
+            ProjectSerializer.SaveToFile(_contacts, _directoryPath, _fileName);
 
         }
 
@@ -237,6 +249,7 @@ namespace ContactsApp
                     ContactsListBox.SelectedIndex = i;
                 }
             }
+            ProjectSerializer.SaveToFile(_contacts, _directoryPath, _fileName);
         }
 
         /// <summary>
