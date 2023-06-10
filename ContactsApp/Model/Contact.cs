@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace ContactsApp.Model
         /// <summary>
         /// Ссылка на страничку в Вконтакте.
         /// </summary>
-        private string _vkcom;
+        private string _socialMediaLink;
 
         /// <summary>
         /// Возвращает и задает полное имя контакта. 
@@ -82,13 +82,13 @@ namespace ContactsApp.Model
         /// <summary>
         /// Возвращает и задает ссылку на вк. Должно содержать https://vk.com/.
         /// </summary>
-        public string Vkcom
+        public string SocialMeadiaLink
         {
-            get => _vkcom;
+            get => _socialMediaLink;
             set
             {
-                Validator.AssertStringIsURL(value, nameof(Vkcom));
-                _vkcom = value;
+                Validator.AssertStringIsURL(value, nameof(SocialMeadiaLink));
+                _socialMediaLink = value;
             }
         }
 
@@ -99,7 +99,7 @@ namespace ContactsApp.Model
         /// <returns>Возвращает копию объекта класса <see cref="Contact"/>.</returns>
         public static Contact CloneContact(Contact contact)
         {
-            return new Contact(contact.FullName, contact.PhoneNumber, contact.Birthday, contact.Vkcom);
+            return new Contact(contact.FullName, contact.PhoneNumber, contact.Birthday, contact.SocialMeadiaLink);
         }
         
         /// <summary>
@@ -115,13 +115,13 @@ namespace ContactsApp.Model
         /// <param name="fullName">Полное имя. </param>
         /// <param name="phoneNumber">Номер телефона. </param>
         /// <param name="birthday">День рождения. </param>
-        /// <param name="vkcom">Ссылка на вк. </param>
-        public Contact(string fullName, string phoneNumber, DateTime birthday, string vkcom)
+        /// <param name="SocialMeadiaLink">Ссылка на вк. </param>
+        public Contact(string fullName, string phoneNumber, DateTime birthday, string socialMeadiaLink)
         {
             FullName = fullName;
             PhoneNumber = phoneNumber;
             Birthday = birthday;
-            Vkcom = vkcom;
+            SocialMeadiaLink = socialMeadiaLink;
         }
     }
 }

@@ -7,29 +7,29 @@ namespace ContactsApp
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Список объектов типа <see cref="Contact"/>.  
+        /// РЎРїРёСЃРѕРє РѕР±СЉРµРєС‚РѕРІ С‚РёРїР° <see cref="Contact"/>.  
         /// </summary>
         private List<Model.Contact> _contacts = new List<Model.Contact>();
 
         /// <summary>
-        /// Объект типа <see cref="Contact"/>. 
+        /// РћР±СЉРµРєС‚ С‚РёРїР° <see cref="Contact"/>. 
         /// </summary>
         private Model.Contact _currentContact;
 
         /// <summary>
-        /// Объект типа <see cref="Contact"/> 
-        /// для копирования в него данных другого объекта во время его изменений.
+        /// РћР±СЉРµРєС‚ С‚РёРїР° <see cref="Contact"/> 
+        /// РґР»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РІ РЅРµРіРѕ РґР°РЅРЅС‹С… РґСЂСѓРіРѕРіРѕ РѕР±СЉРµРєС‚Р° РІРѕ РІСЂРµРјСЏ РµРіРѕ РёР·РјРµРЅРµРЅРёР№.
         /// </summary>
         private Model.Contact _copiedContact;
 
         /// <summary>
-        /// Путь к файлу <see cref="_fileName"/>. 
+        /// РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ <see cref="_fileName"/>. 
         /// </summary>
         private string _directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.
             ApplicationData) + "\\ContactsApp";
 
         /// <summary>
-        /// Файл, хранящий объекты класса <see cref="Contact"/> 
+        /// Р¤Р°Р№Р», С…СЂР°РЅСЏС‰РёР№ РѕР±СЉРµРєС‚С‹ РєР»Р°СЃСЃР° <see cref="Contact"/> 
         /// </summary>
         private string _fileName = "Contacts.json";
         public MainForm()
@@ -44,7 +44,7 @@ namespace ContactsApp
         }
         
         /// <summary>
-        /// Удаляет выбранный контакт из списка и листбокса.
+        /// РЈРґР°Р»СЏРµС‚ РІС‹Р±СЂР°РЅРЅС‹Р№ РєРѕРЅС‚Р°РєС‚ РёР· СЃРїРёСЃРєР° Рё Р»РёСЃС‚Р±РѕРєСЃР°.
         /// </summary>
         private void DeleteContactButton_Click(object sender, EventArgs e)
         {
@@ -60,7 +60,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Обновляет данные в текстовых полях при смене выбранного элемента. 
+        /// РћР±РЅРѕРІР»СЏРµС‚ РґР°РЅРЅС‹Рµ РІ С‚РµРєСЃС‚РѕРІС‹С… РїРѕР»СЏС… РїСЂРё СЃРјРµРЅРµ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°. 
         /// </summary>
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,7 +77,7 @@ namespace ContactsApp
         }
         
         /// <summary>
-        /// Проверяет выбранную дату и сохраняет ее в копию выбранного контакта. 
+        /// РџСЂРѕРІРµСЂСЏРµС‚ РІС‹Р±СЂР°РЅРЅСѓСЋ РґР°С‚Сѓ Рё СЃРѕС…СЂР°РЅСЏРµС‚ РµРµ РІ РєРѕРїРёСЋ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєРѕРЅС‚Р°РєС‚Р°. 
         /// </summary>
         private void BirthdayDateTimePicker_SelectedDatesChanged(object? sender, EventArgs e)
         {
@@ -87,18 +87,20 @@ namespace ContactsApp
             {
                 try
                 {
+                    SaveButton.Enabled = true;
                     DateTime newBirthday = BirthdayDateTimePicker.Value;
                     _copiedContact.Birthday = newBirthday;
                 }
                 catch
                 {
+                    SaveButton.Enabled = false;
                     WrongBirthdayLabel.Visible = true;
                 }
             }
         }
 
         /// <summary>
-        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного контакта. 
+        /// РџСЂРѕРІРµСЂСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ С‚РµРєСЃС‚РѕРІРѕРј РїРѕР»Рµ Рё СЃРѕС…СЂР°РЅСЏРµС‚ РµРіРѕ РІ РєРѕРїРёСЋ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєРѕРЅС‚Р°РєС‚Р°. 
         /// </summary>
         private void PhoneNumberTextBox_TextChanged(object? sender, EventArgs e)
         {
@@ -108,18 +110,20 @@ namespace ContactsApp
             {
                 try
                 {
+                    SaveButton.Enabled = true;
                     string newNumber = PhoneNumberTextBox.Text;
                     _copiedContact.PhoneNumber = newNumber;
                 }
                 catch
                 {
+                    SaveButton.Enabled = false;
                     PhoneNumberTextBox.BackColor = Color.LightPink;
                 }
             }
         }
 
         /// <summary>
-        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного контакта. 
+        /// РџСЂРѕРІРµСЂСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ С‚РµРєСЃС‚РѕРІРѕРј РїРѕР»Рµ Рё СЃРѕС…СЂР°РЅСЏРµС‚ РµРіРѕ РІ РєРѕРїРёСЋ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєРѕРЅС‚Р°РєС‚Р°. 
         /// </summary>
         private void VKcomTextBox_TextChanged(Object? sender, EventArgs e)
         {
@@ -129,18 +133,20 @@ namespace ContactsApp
             {
                 try
                 {
+                    SaveButton.Enabled = true;
                     string newVKcom = VKcomTextBox.Text;
-                    _copiedContact.Vkcom = newVKcom;
+                    _copiedContact.SocialMeadiaLink = newVKcom;
                 }
                 catch
                 {
+                    SaveButton.Enabled = false;
                     VKcomTextBox.BackColor = Color.LightPink;
                 }
             }
         }
 
         /// <summary>
-        /// Проверяет значение в текстовом поле и сохраняет его в копию выбранного элемента. 
+        /// РџСЂРѕРІРµСЂСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ С‚РµРєСЃС‚РѕРІРѕРј РїРѕР»Рµ Рё СЃРѕС…СЂР°РЅСЏРµС‚ РµРіРѕ РІ РєРѕРїРёСЋ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°. 
         /// </summary>
         private void FullNameTextBox_TextChanged(object? sender, EventArgs e)
         {
@@ -150,18 +156,20 @@ namespace ContactsApp
             {
                 try
                 {
+                    SaveButton.Enabled = true;
                     string newName = FullNameTextBox.Text;
                     _copiedContact.FullName = newName;
                 }
                 catch
                 {
+                    SaveButton.Enabled= false;
                     FullNameTextBox.BackColor = Color.LightPink;
                 }
             }
         }
         
         /// <summary>
-        /// Создает и добавляет контакт с базовыми данными в список и листбокс. 
+        /// РЎРѕР·РґР°РµС‚ Рё РґРѕР±Р°РІР»СЏРµС‚ РєРѕРЅС‚Р°РєС‚ СЃ Р±Р°Р·РѕРІС‹РјРё РґР°РЅРЅС‹РјРё РІ СЃРїРёСЃРѕРє Рё Р»РёСЃС‚Р±РѕРєСЃ. 
         /// </summary>
         private void AddContactButton_Click(object sender, EventArgs e)
         {
@@ -173,9 +181,9 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Сортирует контакты по алфавиту по их фио. 
+        /// РЎРѕСЂС‚РёСЂСѓРµС‚ РєРѕРЅС‚Р°РєС‚С‹ РїРѕ Р°Р»С„Р°РІРёС‚Сѓ РїРѕ РёС… С„РёРѕ. 
         /// </summary>
-        /// <param name="contacts">Сортируемый список</param>
+        /// <param name="contacts">РЎРѕСЂС‚РёСЂСѓРµРјС‹Р№ СЃРїРёСЃРѕРє</param>
         private void SortAlphabetically(List<Model.Contact> contacts)
         {
             contacts.Sort((left, right) => left.FullName.CompareTo(right.FullName));
@@ -187,7 +195,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Кнопка редактирования контакта. 
+        /// РљРЅРѕРїРєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РєРѕРЅС‚Р°РєС‚Р°. 
         /// </summary>
         private void CreateContactButton_Click(object sender, EventArgs e)
         {
@@ -206,7 +214,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Очищает текстовые поля и выбирает сегодняшнюю дату в качестве дня рождения
+        /// РћС‡РёС‰Р°РµС‚ С‚РµРєСЃС‚РѕРІС‹Рµ РїРѕР»СЏ Рё РІС‹Р±РёСЂР°РµС‚ СЃРµРіРѕРґРЅСЏС€РЅСЋСЋ РґР°С‚Сѓ РІ РєР°С‡РµСЃС‚РІРµ РґРЅСЏ СЂРѕР¶РґРµРЅРёСЏ
         /// </summary>
         private void ClearInfo()
         {
@@ -217,20 +225,20 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Обновляет текстовые поля и дату при изменении выбранного контакта. 
+        /// РћР±РЅРѕРІР»СЏРµС‚ С‚РµРєСЃС‚РѕРІС‹Рµ РїРѕР»СЏ Рё РґР°С‚Сѓ РїСЂРё РёР·РјРµРЅРµРЅРёРё РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєРѕРЅС‚Р°РєС‚Р°. 
         /// </summary>
-        /// <param name="contact">Выбранный контакт. </param>
+        /// <param name="contact">Р’С‹Р±СЂР°РЅРЅС‹Р№ РєРѕРЅС‚Р°РєС‚. </param>
         private void UpdateInfo(Model.Contact contact)
         {
             FullNameTextBox.Text = contact.FullName;
             BirthdayDateTimePicker.Value = contact.Birthday;
             PhoneNumberTextBox.Text = contact.PhoneNumber;
-            VKcomTextBox.Text = contact.Vkcom;
+            VKcomTextBox.Text = contact.SocialMeadiaLink;
         }
 
 
         /// <summary>
-        /// Сохраняет изменения в контакте. 
+        /// РЎРѕС…СЂР°РЅСЏРµС‚ РёР·РјРµРЅРµРЅРёСЏ РІ РєРѕРЅС‚Р°РєС‚Рµ. 
         /// </summary>
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -261,7 +269,7 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Отменяет изменения в контакте. 
+        /// РћС‚РјРµРЅСЏРµС‚ РёР·РјРµРЅРµРЅРёСЏ РІ РєРѕРЅС‚Р°РєС‚Рµ. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
