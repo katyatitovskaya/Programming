@@ -209,6 +209,9 @@ namespace ContactsApp
                 BirthdayDateTimePicker.Enabled = true;
                 CancelButton.Visible = true;
                 SaveButton.Visible = true;
+                AddContactButton.Visible = false;
+                DeleteContactButton.Visible = false;
+                CreateContactButton.Visible = false;
             }
             
         }
@@ -249,6 +252,9 @@ namespace ContactsApp
             CancelButton.Visible = false;
             SaveButton.Visible = false;
             ContactsListBox.Enabled= true;
+            AddContactButton.Visible = true;
+            DeleteContactButton.Visible = true;
+            CreateContactButton.Visible = true;
             int value = ContactsListBox.SelectedIndex;
             _contacts[value] = _copiedContact;
             SortAlphabetically(_contacts);
@@ -284,6 +290,9 @@ namespace ContactsApp
             CancelButton.Visible = false;
             SaveButton.Visible = false;
             ContactsListBox.Enabled = true;
+            AddContactButton.Visible = true;
+            DeleteContactButton.Visible = true;
+            CreateContactButton.Visible = true;
         }
     }
 }
