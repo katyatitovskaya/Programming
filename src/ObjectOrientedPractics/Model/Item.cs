@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Item
+    public class Item
     {
+        private readonly int _id;
+        private string _name;
+        private string _info; 
+        private double _price;
     }
 }
