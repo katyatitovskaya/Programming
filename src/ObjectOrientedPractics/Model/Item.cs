@@ -6,46 +6,91 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит информацию о товаре. 
+    /// </summary>
     public class Item
     {
+        /// <summary>
+        /// Название товара. 
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Описание товара. 
+        /// </summary>
         private string _info; 
+
+        /// <summary>
+        /// Цена товара. 
+        /// </summary>
         private double _price;
 
-
+        /// <summary>
+        /// Возвращает индивидуальный идентификатор товара. 
+        /// </summary>
         public int Id { get; }
 
+        /// <summary>
+        /// Возвращает и задает индивидуальный идентификатор товара. 
+        /// </summary>
         public static int NewId { get; set; }   
+
+        /// <summary>
+        /// Возвращает и задает название товара. 
+        /// Должно быть не длиннее 200 символов. 
+        /// </summary>
         public string Name
         {
             get => _name;
             set
             {
-                Services.Validator.CheckStringLength(value, 200, nameof(Name));
+                Services.ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает описание товара. 
+        /// Должно быть не длиннее 1000 символов.  
+        /// </summary>
         public string Info
         {
             get => _info;
             set
             {
-                Services.Validator.CheckStringLength(value, 1000, nameof(Info));
+                Services.ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает цену товара. 
+        /// Не должна превышать 100 000. 
+        /// </summary>
         public double Price
         {
             get => _price;
             set
             {
-                Services.Validator.CheckPriceInRange(value, 100000, nameof(Price));
+                Services.ValueValidator.CheckPriceInRange(value, 100000, nameof(Price));
                 _price = value;
             }
         }
+
+        /// <summary>
+        /// Создает объект класса <see cref="Item"/>. 
+        /// </summary>
         public Item()
         {
         }
+
+        /// <summary>
+        /// Создает объект класса <see cref="Item"/>. 
+        /// </summary>
+        /// <param name="name">Название. Должно быть короче 200 символов. </param>
+        /// <param name="info">Описание. Должно быть короче 1000 символов. </param>
+        /// <param name="price">Цена. Должна быть меньше 100 000.</param>
         public Item(string name, string info, double price)
         {
             Name = name;
