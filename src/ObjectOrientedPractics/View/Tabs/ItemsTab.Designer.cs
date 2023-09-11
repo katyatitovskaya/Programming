@@ -123,6 +123,7 @@
             this.AddButton.TabIndex = 8;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // ItemsListBox
             // 
@@ -135,6 +136,7 @@
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(294, 324);
             this.ItemsListBox.TabIndex = 0;
+            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // SelectedItemGroupBox
             // 
@@ -228,6 +230,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IDTextBox.Location = new System.Drawing.Point(67, 26);
             this.IDTextBox.Name = "IDTextBox";
+            this.IDTextBox.ReadOnly = true;
             this.IDTextBox.Size = new System.Drawing.Size(125, 27);
             this.IDTextBox.TabIndex = 0;
             // 
