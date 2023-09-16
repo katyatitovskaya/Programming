@@ -78,6 +78,11 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public static Item CloneItem(Item item)
+        {
+            return new Item(item.Name, item.Info, item.Price);
+        }
+
         /// <summary>
         /// Создает объект класса <see cref="Item"/>. 
         /// </summary>

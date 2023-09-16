@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsTab));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -36,6 +37,8 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.ConfirmButton = new System.Windows.Forms.Button();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.CostLabel = new System.Windows.Forms.Label();
@@ -97,29 +100,32 @@
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveButton.Location = new System.Drawing.Point(203, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(201, 3);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(94, 58);
+            this.RemoveButton.Size = new System.Drawing.Size(96, 58);
             this.RemoveButton.TabIndex = 8;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // EditButton
             // 
             this.EditButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditButton.Location = new System.Drawing.Point(103, 3);
+            this.EditButton.Enabled = false;
+            this.EditButton.Location = new System.Drawing.Point(102, 3);
             this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(94, 58);
+            this.EditButton.Size = new System.Drawing.Size(93, 58);
             this.EditButton.TabIndex = 8;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // AddButton
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddButton.Location = new System.Drawing.Point(3, 3);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(94, 58);
+            this.AddButton.Size = new System.Drawing.Size(93, 58);
             this.AddButton.TabIndex = 8;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -140,6 +146,8 @@
             // 
             // SelectedItemGroupBox
             // 
+            this.SelectedItemGroupBox.Controls.Add(this.CancelButton);
+            this.SelectedItemGroupBox.Controls.Add(this.ConfirmButton);
             this.SelectedItemGroupBox.Controls.Add(this.DescriptionLabel);
             this.SelectedItemGroupBox.Controls.Add(this.NameLabel);
             this.SelectedItemGroupBox.Controls.Add(this.CostLabel);
@@ -156,10 +164,34 @@
             this.SelectedItemGroupBox.TabStop = false;
             this.SelectedItemGroupBox.Text = "Selected Item";
             // 
+            // CancelButton
+            // 
+            this.CancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CancelButton.BackgroundImage")));
+            this.CancelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton.Location = new System.Drawing.Point(54, 360);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(40, 40);
+            this.CancelButton.TabIndex = 9;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Visible = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // ConfirmButton
+            // 
+            this.ConfirmButton.BackgroundImage = global::ObjectOrientedPractics.Properties.Resources.YesIcon;
+            this.ConfirmButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ConfirmButton.Location = new System.Drawing.Point(7, 360);
+            this.ConfirmButton.Name = "ConfirmButton";
+            this.ConfirmButton.Size = new System.Drawing.Size(40, 40);
+            this.ConfirmButton.TabIndex = 8;
+            this.ConfirmButton.UseVisualStyleBackColor = true;
+            this.ConfirmButton.Visible = false;
+            this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
+            // 
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(6, 236);
+            this.DescriptionLabel.Location = new System.Drawing.Point(6, 211);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(88, 20);
             this.DescriptionLabel.TabIndex = 7;
@@ -197,8 +229,9 @@
             this.DescriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionRichTextBox.Location = new System.Drawing.Point(6, 259);
+            this.DescriptionRichTextBox.Location = new System.Drawing.Point(6, 234);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
+            this.DescriptionRichTextBox.ReadOnly = true;
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(449, 120);
             this.DescriptionRichTextBox.TabIndex = 3;
             this.DescriptionRichTextBox.Text = "";
@@ -209,7 +242,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameRichTextBox.Location = new System.Drawing.Point(6, 113);
             this.NameRichTextBox.Name = "NameRichTextBox";
-            this.NameRichTextBox.Size = new System.Drawing.Size(449, 120);
+            this.NameRichTextBox.ReadOnly = true;
+            this.NameRichTextBox.Size = new System.Drawing.Size(449, 95);
             this.NameRichTextBox.TabIndex = 2;
             this.NameRichTextBox.Text = "";
             // 
@@ -220,8 +254,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CostTextBox.Location = new System.Drawing.Point(67, 59);
             this.CostTextBox.Name = "CostTextBox";
+            this.CostTextBox.ReadOnly = true;
             this.CostTextBox.Size = new System.Drawing.Size(125, 27);
             this.CostTextBox.TabIndex = 1;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
             // IDTextBox
             // 
@@ -268,5 +304,7 @@
         private Button RemoveButton;
         private Button EditButton;
         private Button AddButton;
+        private Button CancelButton;
+        private Button ConfirmButton;
     }
 }
