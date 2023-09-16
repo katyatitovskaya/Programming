@@ -38,12 +38,54 @@ namespace ObjectOrientedPractics.View.Tabs
                 _copiedItem = _currentItem;
                 UpdateInfo();
                 EditButton.Enabled = true;
+                RemoveButton.Enabled = true;
                 
-
             }
             else
             {
                 ClearInfo();
+                EditButton.Enabled = false;
+                RemoveButton.Enabled = false;
+            }
+        }
+
+        private void DescriptionRichTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            DescriptionRichTextBox.BackColor = Color.White;
+            int value = ItemsListBox.SelectedIndex;
+            if (value != -1)
+            {
+                try
+                {
+                    string newInfo = DescriptionRichTextBox.Text;
+                    _copiedItem.Info = newInfo;
+                    ConfirmButton.Enabled = true;
+                }
+                catch
+                {
+                    DescriptionRichTextBox.BackColor = Color.LightPink;
+                    ConfirmButton.Enabled = false;
+                }
+            }
+        }
+
+        private void NameRichTextBox_TextChanged(object? sender, EventArgs e)
+        {
+            NameRichTextBox.BackColor= Color.White;
+            int value = ItemsListBox.SelectedIndex;
+            if(value != -1)
+            {
+                try
+                {
+                    string newName = NameRichTextBox.Text;
+                    _copiedItem.Name = newName;
+                    ConfirmButton.Enabled = true;
+                }
+                catch 
+                {
+                    NameRichTextBox.BackColor = Color.LightPink;
+                    ConfirmButton.Enabled = false;
+                }
             }
         }
 
@@ -99,14 +141,29 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             ConfirmButton.Visible = false;
             CancelButton.Visible = false;
-            EditButton.Enabled = false;
+            EditButton.Enabled = true;
+            AddButton.Enabled = true;
+            RemoveButton.Enabled = true;
+            ItemsListBox.Enabled = true;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
+            int value = ItemsListBox.SelectedIndex;
+            _items[value] = _copiedItem;
+            ItemsListBox.Items.Clear(); 
+            for(int i = 0; i < _items.Count; i++)
+            {
+                ItemsListBox.Items.Add(_items[i].Name);
+            }
             ConfirmButton.Visible = false;
             CancelButton.Visible = false;
-            EditButton.Enabled = false;
+            EditButton.Enabled = true;
+            ItemsListBox.Enabled = true;
+            AddButton.Enabled = true;
+            RemoveButton.Enabled = true;
+            //ItemsListBox.SelectedIndex = value;
+            
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -117,6 +174,11 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.ReadOnly = false;
             NameRichTextBox.ReadOnly = false;
             DescriptionRichTextBox.ReadOnly = false;
+            AddButton.Enabled = false;
+            RemoveButton.Enabled = false;
+            EditButton.Enabled = false;
+            ItemsListBox.Enabled = false;
+           
         }
     }
 }

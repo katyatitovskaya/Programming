@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает индивидуальный идентификатор товара. 
         /// </summary>
-        public int Id { get; }
+        public int Id { get; private set; }
 
         /// <summary>
         /// Возвращает и задает индивидуальный идентификатор товара. 
@@ -80,7 +80,9 @@ namespace ObjectOrientedPractics.Model
 
         public static Item CloneItem(Item item)
         {
-            return new Item(item.Name, item.Info, item.Price);
+            Item newItem = new Item(item.Name, item.Info, item.Price);
+            newItem.Id = item.Id;
+            return newItem;
         }
 
         /// <summary>

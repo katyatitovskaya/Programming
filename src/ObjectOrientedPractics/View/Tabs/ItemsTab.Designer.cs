@@ -100,6 +100,7 @@
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RemoveButton.Enabled = false;
             this.RemoveButton.Location = new System.Drawing.Point(201, 3);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(96, 58);
@@ -235,6 +236,7 @@
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(449, 120);
             this.DescriptionRichTextBox.TabIndex = 3;
             this.DescriptionRichTextBox.Text = "";
+            this.DescriptionRichTextBox.TextChanged += new System.EventHandler(this.DescriptionRichTextBox_TextChanged);
             // 
             // NameRichTextBox
             // 
@@ -246,6 +248,7 @@
             this.NameRichTextBox.Size = new System.Drawing.Size(449, 95);
             this.NameRichTextBox.TabIndex = 2;
             this.NameRichTextBox.Text = "";
+            this.NameRichTextBox.TextChanged += new System.EventHandler(this.NameRichTextBox_TextChanged);
             // 
             // CostTextBox
             // 
@@ -257,7 +260,7 @@
             this.CostTextBox.ReadOnly = true;
             this.CostTextBox.Size = new System.Drawing.Size(125, 27);
             this.CostTextBox.TabIndex = 1;
-            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // IDTextBox
             // 
