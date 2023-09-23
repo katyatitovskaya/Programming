@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsTab));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveButton = new System.Windows.Forms.Button();
-            this.EditButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.ConfirmButton = new System.Windows.Forms.Button();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.CostLabel = new System.Windows.Forms.Label();
@@ -82,12 +78,10 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.RemoveButton, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.EditButton, 1, 0);
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.RemoveButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.AddButton, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 353);
@@ -101,32 +95,20 @@
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RemoveButton.Enabled = false;
-            this.RemoveButton.Location = new System.Drawing.Point(201, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(153, 3);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(96, 58);
+            this.RemoveButton.Size = new System.Drawing.Size(144, 58);
             this.RemoveButton.TabIndex = 8;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
-            // 
-            // EditButton
-            // 
-            this.EditButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(102, 3);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(93, 58);
-            this.EditButton.TabIndex = 8;
-            this.EditButton.Text = "Edit";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // AddButton
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddButton.Location = new System.Drawing.Point(3, 3);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(93, 58);
+            this.AddButton.Size = new System.Drawing.Size(144, 58);
             this.AddButton.TabIndex = 8;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -147,8 +129,6 @@
             // 
             // SelectedItemGroupBox
             // 
-            this.SelectedItemGroupBox.Controls.Add(this.CancelButton);
-            this.SelectedItemGroupBox.Controls.Add(this.ConfirmButton);
             this.SelectedItemGroupBox.Controls.Add(this.DescriptionLabel);
             this.SelectedItemGroupBox.Controls.Add(this.NameLabel);
             this.SelectedItemGroupBox.Controls.Add(this.CostLabel);
@@ -164,30 +144,6 @@
             this.SelectedItemGroupBox.TabIndex = 0;
             this.SelectedItemGroupBox.TabStop = false;
             this.SelectedItemGroupBox.Text = "Selected Item";
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CancelButton.BackgroundImage")));
-            this.CancelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CancelButton.Location = new System.Drawing.Point(54, 360);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(40, 40);
-            this.CancelButton.TabIndex = 9;
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Visible = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // ConfirmButton
-            // 
-            this.ConfirmButton.BackgroundImage = global::ObjectOrientedPractics.Properties.Resources.YesIcon;
-            this.ConfirmButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ConfirmButton.Location = new System.Drawing.Point(7, 360);
-            this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Size = new System.Drawing.Size(40, 40);
-            this.ConfirmButton.TabIndex = 8;
-            this.ConfirmButton.UseVisualStyleBackColor = true;
-            this.ConfirmButton.Visible = false;
-            this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
             // DescriptionLabel
             // 
@@ -232,7 +188,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionRichTextBox.Location = new System.Drawing.Point(6, 234);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            this.DescriptionRichTextBox.ReadOnly = true;
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(449, 120);
             this.DescriptionRichTextBox.TabIndex = 3;
             this.DescriptionRichTextBox.Text = "";
@@ -244,7 +199,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameRichTextBox.Location = new System.Drawing.Point(6, 113);
             this.NameRichTextBox.Name = "NameRichTextBox";
-            this.NameRichTextBox.ReadOnly = true;
             this.NameRichTextBox.Size = new System.Drawing.Size(449, 95);
             this.NameRichTextBox.TabIndex = 2;
             this.NameRichTextBox.Text = "";
@@ -257,7 +211,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CostTextBox.Location = new System.Drawing.Point(67, 59);
             this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.ReadOnly = true;
             this.CostTextBox.Size = new System.Drawing.Size(125, 27);
             this.CostTextBox.TabIndex = 1;
             this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
@@ -305,9 +258,6 @@
         private TextBox IDTextBox;
         private TableLayoutPanel tableLayoutPanel2;
         private Button RemoveButton;
-        private Button EditButton;
         private Button AddButton;
-        private Button CancelButton;
-        private Button ConfirmButton;
     }
 }

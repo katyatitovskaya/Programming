@@ -31,8 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SelectedCustomerGroupBox = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.CustomerAddressRichTextBox = new System.Windows.Forms.RichTextBox();
             this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
@@ -43,9 +41,8 @@
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.AddCustomerButton = new System.Windows.Forms.Button();
             this.RemoveCustomerButton = new System.Windows.Forms.Button();
-            this.EditCustomerButton = new System.Windows.Forms.Button();
+            this.AddCustomerButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SelectedCustomerGroupBox.SuspendLayout();
@@ -85,8 +82,6 @@
             // 
             // SelectedCustomerGroupBox
             // 
-            this.SelectedCustomerGroupBox.Controls.Add(this.button2);
-            this.SelectedCustomerGroupBox.Controls.Add(this.button1);
             this.SelectedCustomerGroupBox.Controls.Add(this.CustomerAddressRichTextBox);
             this.SelectedCustomerGroupBox.Controls.Add(this.CustomerNameTextBox);
             this.SelectedCustomerGroupBox.Controls.Add(this.CustomerIDTextBox);
@@ -101,26 +96,6 @@
             this.SelectedCustomerGroupBox.TabStop = false;
             this.SelectedCustomerGroupBox.Text = "Selected Customer";
             // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(421, 123);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(40, 40);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(375, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 40);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // CustomerAddressRichTextBox
             // 
             this.CustomerAddressRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -128,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerAddressRichTextBox.Location = new System.Drawing.Point(104, 92);
             this.CustomerAddressRichTextBox.Name = "CustomerAddressRichTextBox";
-            this.CustomerAddressRichTextBox.Size = new System.Drawing.Size(357, 25);
+            this.CustomerAddressRichTextBox.Size = new System.Drawing.Size(357, 65);
             this.CustomerAddressRichTextBox.TabIndex = 5;
             this.CustomerAddressRichTextBox.Text = "";
             // 
@@ -213,13 +188,11 @@
             // 
             this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.Controls.Add(this.RemoveCustomerButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.AddCustomerButton, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.RemoveCustomerButton, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.EditCustomerButton, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 335);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -227,35 +200,24 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(282, 64);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
+            // RemoveCustomerButton
+            // 
+            this.RemoveCustomerButton.Location = new System.Drawing.Point(144, 3);
+            this.RemoveCustomerButton.Name = "RemoveCustomerButton";
+            this.RemoveCustomerButton.Size = new System.Drawing.Size(106, 36);
+            this.RemoveCustomerButton.TabIndex = 0;
+            this.RemoveCustomerButton.Text = "Remove";
+            this.RemoveCustomerButton.UseVisualStyleBackColor = true;
+            // 
             // AddCustomerButton
             // 
             this.AddCustomerButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddCustomerButton.Location = new System.Drawing.Point(3, 3);
             this.AddCustomerButton.Name = "AddCustomerButton";
-            this.AddCustomerButton.Size = new System.Drawing.Size(88, 58);
+            this.AddCustomerButton.Size = new System.Drawing.Size(135, 58);
             this.AddCustomerButton.TabIndex = 1;
             this.AddCustomerButton.Text = "Add";
             this.AddCustomerButton.UseVisualStyleBackColor = true;
-            // 
-            // RemoveCustomerButton
-            // 
-            this.RemoveCustomerButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveCustomerButton.Location = new System.Drawing.Point(191, 3);
-            this.RemoveCustomerButton.Name = "RemoveCustomerButton";
-            this.RemoveCustomerButton.Size = new System.Drawing.Size(88, 58);
-            this.RemoveCustomerButton.TabIndex = 1;
-            this.RemoveCustomerButton.Text = "Remove";
-            this.RemoveCustomerButton.UseVisualStyleBackColor = true;
-            // 
-            // EditCustomerButton
-            // 
-            this.EditCustomerButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditCustomerButton.Location = new System.Drawing.Point(97, 3);
-            this.EditCustomerButton.Name = "EditCustomerButton";
-            this.EditCustomerButton.Size = new System.Drawing.Size(88, 58);
-            this.EditCustomerButton.TabIndex = 1;
-            this.EditCustomerButton.Text = "Edit";
-            this.EditCustomerButton.UseVisualStyleBackColor = true;
             // 
             // CustomersTab
             // 
@@ -281,8 +243,6 @@
         private GroupBox SelectedCustomerGroupBox;
         private GroupBox CustomersGroupBox;
         private ListBox CustomersListBox;
-        private Button button2;
-        private Button button1;
         private RichTextBox CustomerAddressRichTextBox;
         private TextBox CustomerNameTextBox;
         private TextBox CustomerIDTextBox;
@@ -293,6 +253,5 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Button AddCustomerButton;
         private Button RemoveCustomerButton;
-        private Button EditCustomerButton;
     }
 }

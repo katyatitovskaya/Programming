@@ -31,21 +31,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EditButton.Enabled = false;
             if (ItemsListBox.SelectedIndex != -1)
             {
                 _currentItem = _items[ItemsListBox.SelectedIndex];
                 _copiedItem = _currentItem;
                 UpdateInfo();
-                EditButton.Enabled = true;
                 RemoveButton.Enabled = true;
-                
             }
             else
             {
                 ClearInfo();
-                EditButton.Enabled = false;
-                RemoveButton.Enabled = false;
             }
         }
 
@@ -58,13 +53,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 try
                 {
                     string newInfo = DescriptionRichTextBox.Text;
-                    _copiedItem.Info = newInfo;
-                    ConfirmButton.Enabled = true;
+                    _currentItem.Info = newInfo;
                 }
                 catch
                 {
                     DescriptionRichTextBox.BackColor = Color.LightPink;
-                    ConfirmButton.Enabled = false;
                 }
             }
         }
@@ -78,13 +71,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 try
                 {
                     string newName = NameRichTextBox.Text;
-                    _copiedItem.Name = newName;
-                    ConfirmButton.Enabled = true;
+                    _currentItem.Name = newName;
                 }
                 catch 
                 {
                     NameRichTextBox.BackColor = Color.LightPink;
-                    ConfirmButton.Enabled = false;
                 }
             }
         }
@@ -98,13 +89,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 try
                 {
                     double newCost = Convert.ToDouble(CostTextBox.Text);
-                    _copiedItem.Price = newCost;
-                    ConfirmButton.Enabled = true;
+                    _currentItem.Price = newCost;
+                    
                 }
                 catch 
                 {
                     CostTextBox.BackColor= Color.LightPink;
-                    ConfirmButton.Enabled = false;
                 }
             }
         }
@@ -137,15 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         
 
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            ConfirmButton.Visible = false;
-            CancelButton.Visible = false;
-            EditButton.Enabled = true;
-            AddButton.Enabled = true;
-            RemoveButton.Enabled = true;
-            ItemsListBox.Enabled = true;
-        }
+       
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -156,9 +138,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ItemsListBox.Items.Add(_items[i].Name);
             }
-            ConfirmButton.Visible = false;
-            CancelButton.Visible = false;
-            EditButton.Enabled = true;
             ItemsListBox.Enabled = true;
             AddButton.Enabled = true;
             RemoveButton.Enabled = true;
@@ -166,19 +145,6 @@ namespace ObjectOrientedPractics.View.Tabs
             
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            _copiedItem = Model.Item.CloneItem(_currentItem);
-            ConfirmButton.Visible = true;
-            CancelButton.Visible = true;
-            CostTextBox.ReadOnly = false;
-            NameRichTextBox.ReadOnly = false;
-            DescriptionRichTextBox.ReadOnly = false;
-            AddButton.Enabled = false;
-            RemoveButton.Enabled = false;
-            EditButton.Enabled = false;
-            ItemsListBox.Enabled = false;
-           
-        }
+       
     }
 }
