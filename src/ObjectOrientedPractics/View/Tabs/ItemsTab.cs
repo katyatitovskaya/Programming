@@ -15,7 +15,6 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private List<Model.Item> _items = new List<Model.Item>();
         private Model.Item _currentItem;
-        private Model.Item _copiedItem;
         public ItemsTab()
         {
             InitializeComponent();
@@ -34,9 +33,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (ItemsListBox.SelectedIndex != -1)
             {
                 _currentItem = _items[ItemsListBox.SelectedIndex];
-                _copiedItem = _currentItem;
                 UpdateInfo();
-                RemoveButton.Enabled = true;
             }
             else
             {
@@ -90,7 +87,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     double newCost = Convert.ToDouble(CostTextBox.Text);
                     _currentItem.Price = newCost;
-                    
                 }
                 catch 
                 {
@@ -107,7 +103,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items.RemoveAt(value);
                 ItemsListBox.Items.RemoveAt(value);
                 ItemsListBox.SelectedIndex = value-1;
-
             }
         }
         private void ClearInfo()
@@ -124,11 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameRichTextBox.Text = _currentItem.Name;
             DescriptionRichTextBox.Text = _currentItem.Info;
         }
-
-        
-
-       
-
+        /*
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             int value = ItemsListBox.SelectedIndex;
@@ -141,9 +132,8 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Enabled = true;
             AddButton.Enabled = true;
             RemoveButton.Enabled = true;
-            //ItemsListBox.SelectedIndex = value;
             
-        }
+        }*/
 
        
     }

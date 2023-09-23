@@ -202,9 +202,10 @@
             // 
             // RemoveCustomerButton
             // 
+            this.RemoveCustomerButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RemoveCustomerButton.Location = new System.Drawing.Point(144, 3);
             this.RemoveCustomerButton.Name = "RemoveCustomerButton";
-            this.RemoveCustomerButton.Size = new System.Drawing.Size(106, 36);
+            this.RemoveCustomerButton.Size = new System.Drawing.Size(135, 58);
             this.RemoveCustomerButton.TabIndex = 0;
             this.RemoveCustomerButton.Text = "Remove";
             this.RemoveCustomerButton.UseVisualStyleBackColor = true;

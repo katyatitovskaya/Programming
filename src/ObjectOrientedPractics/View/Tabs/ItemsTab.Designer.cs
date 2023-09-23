@@ -94,7 +94,6 @@
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveButton.Enabled = false;
             this.RemoveButton.Location = new System.Drawing.Point(153, 3);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(144, 58);
