@@ -31,10 +31,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id { get; }
 
-        /// <summary>
-        /// Возвращает и задает индивидуальный идентификатор товара. 
-        /// </summary>
-        public static int NewId { get; set; }   
 
         /// <summary>
         /// Возвращает и задает название товара. 
@@ -83,6 +79,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Item()
         {
+            Id = Services.IdGenerator.GetNextID();
         }
 
         /// <summary>
@@ -96,8 +93,7 @@ namespace ObjectOrientedPractics.Model
             Name = name;
             Info = info;
             Price = price;
-            Id = NewId;
-            NewId++;
+            Id = Services.IdGenerator.GetNextID();
         }
     }
 }

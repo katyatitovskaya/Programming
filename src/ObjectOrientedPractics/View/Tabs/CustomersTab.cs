@@ -11,15 +11,28 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет методы для добавления и удаления покупателей. 
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Customer"/>. 
+        /// </summary>
         private List<Model.Customer> _customers = new List<Model.Customer>();
+
+        /// <summary>
+        /// Объект типа <see cref="Model.Customer"/>.
+        /// </summary>
         private Model.Customer _currentCustomer;
         public CustomersTab()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обновляет данные в текстовых полях при смене выбранного элемента.
+        /// </summary>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(CustomersListBox.SelectedIndex != -1)
@@ -33,6 +46,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Добавляет покупателя при нажатии на кнопку. 
+        /// </summary>
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
             Model.Customer _currentCustomer =
@@ -41,6 +57,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add(_currentCustomer.FullName);
         }
 
+        /// <summary>
+        /// Удаляет выбранный объект из списка при нажатии на кнопку. 
+        /// </summary>
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int value = CustomersListBox.SelectedIndex;
@@ -52,6 +71,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в текстовом поле. 
+        /// </summary>
         private void CustomerNameTextBox_TextChanged(object sender, EventArgs e)
         {
             CustomerNameTextBox.BackColor= Color.White;
@@ -76,6 +98,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в текстовом поле. 
+        /// </summary>
         private void CustomerAddressRichTextBox_TextChanged(object sender, EventArgs e)
         {
             int value = CustomersListBox.SelectedIndex;
@@ -91,12 +116,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Очищает текстовые поля. 
+        /// </summary>
         private void ClearInfo()
         {
             CustomerIDTextBox.Clear();
             CustomerNameTextBox.Clear();
             CustomerAddressRichTextBox.Clear();
         }
+
+        /// <summary>
+        /// Обновляет текстовые поля.
+        /// </summary>
         private void UpdateInfo()
         {
             CustomerNameTextBox.Text = _currentCustomer.FullName;

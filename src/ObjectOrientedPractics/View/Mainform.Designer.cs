@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             this.ItemsTabPage = new System.Windows.Forms.TabPage();
             this.itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             this.tabPage2.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -48,6 +49,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // customersTab1
+            // 
+            this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customersTab1.Location = new System.Drawing.Point(3, 3);
+            this.customersTab1.Name = "customersTab1";
+            this.customersTab1.Size = new System.Drawing.Size(786, 411);
+            this.customersTab1.TabIndex = 0;
             // 
             // ItemsTabPage
             // 
@@ -79,22 +88,15 @@
             this.tabControl1.Size = new System.Drawing.Size(800, 450);
             this.tabControl1.TabIndex = 0;
             // 
-            // customersTab1
-            // 
-            this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customersTab1.Location = new System.Drawing.Point(3, 3);
-            this.customersTab1.Name = "customersTab1";
-            this.customersTab1.Size = new System.Drawing.Size(786, 411);
-            this.customersTab1.TabIndex = 0;
-            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mainform";
-            this.Text = "MainForm";
+            this.Text = "Object Oriented Practics";
             this.tabPage2.ResumeLayout(false);
             this.ItemsTabPage.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

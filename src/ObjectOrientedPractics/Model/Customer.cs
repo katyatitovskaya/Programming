@@ -55,16 +55,13 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id { get; }
 
-        /// <summary>
-        /// Возвращает и задает индивидуальный идентификатор товара. 
-        /// </summary>
-        public static int NewId { get; set; }
 
         /// <summary>
         /// Создает объект класса <see cref="Customer"/>.  
         /// </summary>
         public Customer()
         {
+            Id = Services.IdGenerator.GetNextID();
         }
 
         /// <summary>
@@ -76,8 +73,7 @@ namespace ObjectOrientedPractics.Model
         {
             FullName = fullname;
             Address = address;
-            Id = NewId;
-            NewId++;
+            Id = Services.IdGenerator.GetNextID();
         }
     }
 }

@@ -11,15 +11,28 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет метододы для добавления, удаления и изменения данных о товарах. 
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Item"/>.
+        /// </summary>
         private List<Model.Item> _items = new List<Model.Item>();
+
+        /// <summary>
+        /// Обеъект типа <see cref="Model.Item"/>.
+        /// </summary>
         private Model.Item _currentItem;
         public ItemsTab()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// При нажатии на кнопку добавляет товар в список. 
+        /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         { 
             Model.Item _currentItem = new Model.Item($"New Item {_items.Count}", "No info yet", 0);
@@ -27,6 +40,9 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add(_currentItem.Name);
         }
 
+        /// <summary>
+        /// Обновляет информацию в текстовых полях при смене выбранного элемента. 
+        /// </summary>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -40,6 +56,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void DescriptionRichTextBox_TextChanged(object? sender, EventArgs e)
         {
             DescriptionRichTextBox.BackColor = Color.White;
@@ -58,6 +77,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void NameRichTextBox_TextChanged(object? sender, EventArgs e)
         {
             NameRichTextBox.BackColor= Color.White;
@@ -83,6 +105,9 @@ namespace ObjectOrientedPractics.View.Tabs
            
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение текстового поля при его изменении. 
+        /// </summary>
         private void CostTextBox_TextChanged(object? sender, EventArgs e)
         {
             CostTextBox.BackColor = Color.White;
@@ -101,6 +126,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Удаляет выбранный элемент при нажатии на кнопку. 
+        /// </summary>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int value = ItemsListBox.SelectedIndex;
@@ -111,6 +139,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.SelectedIndex = value-1;
             }
         }
+
+        /// <summary>
+        /// Очищает текстовые поля. 
+        /// </summary>
         private void ClearInfo()
         {
             IDTextBox.Clear();
@@ -118,6 +150,10 @@ namespace ObjectOrientedPractics.View.Tabs
             NameRichTextBox.Clear();
             DescriptionRichTextBox.Clear();
         }
+
+        /// <summary>
+        /// Обновляет текстовые поля. 
+        /// </summary>
         private void UpdateInfo()
         {
             IDTextBox.Text = _currentItem.Id.ToString();
