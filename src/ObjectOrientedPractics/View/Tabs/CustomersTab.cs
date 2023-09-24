@@ -7,14 +7,101 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
+        private List<Model.Customer> _customers = new List<Model.Customer>();
+        private Model.Customer _currentCustomer;
         public CustomersTab()
         {
             InitializeComponent();
+        }
+
+        private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(CustomersListBox.SelectedIndex != -1)
+            {
+                _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+                UpdateInfo();
+            }
+            else
+            {
+                ClearInfo();
+            }
+        }
+
+        private void AddCustomerButton_Click(object sender, EventArgs e)
+        {
+            Model.Customer _currentCustomer =
+                new Model.Customer($"Customer's name {_customers.Count}", "No address info yet");
+            _customers.Add(_currentCustomer);
+            CustomersListBox.Items.Add(_currentCustomer.FullName);
+        }
+
+        private void RemoveCustomerButton_Click(object sender, EventArgs e)
+        {
+            int value = CustomersListBox.SelectedIndex;
+            if(value != -1) 
+            {
+                _customers.RemoveAt(value);
+                CustomersListBox.Items.RemoveAt(value);
+                CustomersListBox.SelectedIndex = value - 1;
+            }
+        }
+
+        private void CustomerNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CustomerNameTextBox.BackColor= Color.White;
+            int value = CustomersListBox.SelectedIndex;
+            if (CustomerNameTextBox.Focused)
+            {
+                if(value != -1)
+                {
+                    try
+                    {
+                        string newName = CustomerNameTextBox.Text;
+                        _currentCustomer.FullName = newName;
+                        int currentSelection = CustomerNameTextBox.SelectionStart;
+                        CustomersListBox.Items[value] = _currentCustomer.FullName;
+                        CustomerNameTextBox.SelectionStart = currentSelection;
+                    }
+                    catch 
+                    {
+                        CustomerNameTextBox.BackColor = Color.LightPink;
+                    }
+                }
+            }
+        }
+
+        private void CustomerAddressRichTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int value = CustomersListBox.SelectedIndex;
+            CustomerAddressRichTextBox.BackColor= Color.White;
+            try
+            {
+                string newAddress = CustomerAddressRichTextBox.Text;
+                _currentCustomer.Address = newAddress;
+            }
+            catch
+            {
+                CustomerAddressRichTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void ClearInfo()
+        {
+            CustomerIDTextBox.Clear();
+            CustomerNameTextBox.Clear();
+            CustomerAddressRichTextBox.Clear();
+        }
+        private void UpdateInfo()
+        {
+            CustomerNameTextBox.Text = _currentCustomer.FullName;
+            CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
+            CustomerAddressRichTextBox.Text = _currentCustomer.Address;
         }
     }
 }

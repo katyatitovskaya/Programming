@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Services
         /// <exception cref="ArgumentException"></exception>
         public static void AssertStringOnLength(string value, int maxLength, string propertyName)
         {
-            if (value.Length > maxLength  || value.Length <= 0)
+            if (value.Length > maxLength || value.Length <= 0)
             {
                 throw new ArgumentException($"Length of {propertyName} " +
                     $"is supposed to be less than {maxLength}");

@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает индивидуальный идентификатор товара. 
         /// </summary>
-        public int Id { get; private set; }
+        public int Id { get; }
 
         /// <summary>
         /// Возвращает и задает индивидуальный идентификатор товара. 

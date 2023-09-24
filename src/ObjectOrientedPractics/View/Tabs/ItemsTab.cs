@@ -21,11 +21,10 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         private void AddButton_Click(object sender, EventArgs e)
-        {
-            Model.Item _currentItem = new Model.Item("New Item", "No info yet", 0);
+        { 
+            Model.Item _currentItem = new Model.Item($"New Item {_items.Count}", "No info yet", 0);
             _items.Add(_currentItem);
             ItemsListBox.Items.Add(_currentItem.Name);
-
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,18 +62,25 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             NameRichTextBox.BackColor= Color.White;
             int value = ItemsListBox.SelectedIndex;
-            if(value != -1)
+            if (NameRichTextBox.Focused)
             {
-                try
+                if (value != -1)
                 {
-                    string newName = NameRichTextBox.Text;
-                    _currentItem.Name = newName;
-                }
-                catch 
-                {
-                    NameRichTextBox.BackColor = Color.LightPink;
+                    try
+                    {
+                        string newName = NameRichTextBox.Text;
+                        _currentItem.Name = newName;
+                        int currentSelection = NameRichTextBox.SelectionStart;
+                        ItemsListBox.Items[value] = _currentItem.Name;
+                        NameRichTextBox.SelectionStart = currentSelection;
+                    }
+                    catch
+                    {
+                        NameRichTextBox.BackColor = Color.LightPink;
+                    }
                 }
             }
+           
         }
 
         private void CostTextBox_TextChanged(object? sender, EventArgs e)
@@ -119,22 +125,6 @@ namespace ObjectOrientedPractics.View.Tabs
             NameRichTextBox.Text = _currentItem.Name;
             DescriptionRichTextBox.Text = _currentItem.Info;
         }
-        /*
-        private void ConfirmButton_Click(object sender, EventArgs e)
-        {
-            int value = ItemsListBox.SelectedIndex;
-            _items[value] = _copiedItem;
-            ItemsListBox.Items.Clear(); 
-            for(int i = 0; i < _items.Count; i++)
-            {
-                ItemsListBox.Items.Add(_items[i].Name);
-            }
-            ItemsListBox.Enabled = true;
-            AddButton.Enabled = true;
-            RemoveButton.Enabled = true;
-            
-        }*/
-
        
     }
 }

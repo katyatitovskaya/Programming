@@ -106,6 +106,7 @@
             this.CustomerAddressRichTextBox.Size = new System.Drawing.Size(357, 65);
             this.CustomerAddressRichTextBox.TabIndex = 5;
             this.CustomerAddressRichTextBox.Text = "";
+            this.CustomerAddressRichTextBox.TextChanged += new System.EventHandler(this.CustomerAddressRichTextBox_TextChanged);
             // 
             // CustomerNameTextBox
             // 
@@ -115,6 +116,7 @@
             this.CustomerNameTextBox.Name = "CustomerNameTextBox";
             this.CustomerNameTextBox.Size = new System.Drawing.Size(357, 27);
             this.CustomerNameTextBox.TabIndex = 4;
+            this.CustomerNameTextBox.TextChanged += new System.EventHandler(this.CustomerNameTextBox_TextChanged);
             // 
             // CustomerIDTextBox
             // 
@@ -122,6 +124,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerIDTextBox.Location = new System.Drawing.Point(104, 26);
             this.CustomerIDTextBox.Name = "CustomerIDTextBox";
+            this.CustomerIDTextBox.ReadOnly = true;
             this.CustomerIDTextBox.Size = new System.Drawing.Size(147, 27);
             this.CustomerIDTextBox.TabIndex = 3;
             // 
@@ -183,6 +186,7 @@
             this.CustomersListBox.Name = "CustomersListBox";
             this.CustomersListBox.Size = new System.Drawing.Size(282, 304);
             this.CustomersListBox.TabIndex = 1;
+            this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -209,6 +213,7 @@
             this.RemoveCustomerButton.TabIndex = 0;
             this.RemoveCustomerButton.Text = "Remove";
             this.RemoveCustomerButton.UseVisualStyleBackColor = true;
+            this.RemoveCustomerButton.Click += new System.EventHandler(this.RemoveCustomerButton_Click);
             // 
             // AddCustomerButton
             // 
@@ -219,6 +224,7 @@
             this.AddCustomerButton.TabIndex = 1;
             this.AddCustomerButton.Text = "Add";
             this.AddCustomerButton.UseVisualStyleBackColor = true;
+            this.AddCustomerButton.Click += new System.EventHandler(this.AddCustomerButton_Click);
             // 
             // CustomersTab
             // 
