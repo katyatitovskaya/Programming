@@ -45,7 +45,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 417);
+            this.tabPage2.Size = new System.Drawing.Size(1074, 520);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@
             this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customersTab1.Location = new System.Drawing.Point(3, 3);
             this.customersTab1.Name = "customersTab1";
-            this.customersTab1.Size = new System.Drawing.Size(786, 411);
+            this.customersTab1.Size = new System.Drawing.Size(1068, 514);
             this.customersTab1.TabIndex = 0;
             // 
             // ItemsTabPage
@@ -64,7 +64,7 @@
             this.ItemsTabPage.Location = new System.Drawing.Point(4, 29);
             this.ItemsTabPage.Name = "ItemsTabPage";
             this.ItemsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ItemsTabPage.Size = new System.Drawing.Size(792, 417);
+            this.ItemsTabPage.Size = new System.Drawing.Size(1124, 520);
             this.ItemsTabPage.TabIndex = 0;
             this.ItemsTabPage.Text = "Items";
             this.ItemsTabPage.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.itemsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemsTab1.Location = new System.Drawing.Point(3, 3);
             this.itemsTab1.Name = "itemsTab1";
-            this.itemsTab1.Size = new System.Drawing.Size(786, 411);
+            this.itemsTab1.Size = new System.Drawing.Size(1118, 514);
             this.itemsTab1.TabIndex = 0;
             // 
             // tabControl1
@@ -85,16 +85,17 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 450);
+            this.tabControl1.Size = new System.Drawing.Size(1132, 553);
             this.tabControl1.TabIndex = 0;
             // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1132, 553);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1100, 600);
             this.Name = "Mainform";
             this.Text = "Object Oriented Practics";
             this.tabPage2.ResumeLayout(false);
