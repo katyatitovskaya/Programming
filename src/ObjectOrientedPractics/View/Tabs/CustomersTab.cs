@@ -49,7 +49,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Добавляет покупателя при нажатии на кнопку. 
         /// </summary>
-        private void AddCustomerButton_Click(object sender, EventArgs e)
+        private void AddCustomerButton_Click(object sender, EventArgs e) 
         {
             Model.Customer _currentCustomer =
                 new Model.Customer($"Customer's name {_customers.Count}", "No address info yet");

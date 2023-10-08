@@ -15,7 +15,8 @@ namespace ObjectOrientedPractics.Model
         /// Название товара. 
         /// </summary>
         private string _name;
-
+       
+        
         /// <summary>
         /// Описание товара. 
         /// </summary>
@@ -74,6 +75,8 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public Category Category { get; set; }
+
         /// <summary>
         /// Создает объект класса <see cref="Item"/>. 
         /// </summary>
@@ -88,12 +91,14 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название. Должно быть короче 200 символов. </param>
         /// <param name="info">Описание. Должно быть короче 1000 символов. </param>
         /// <param name="price">Цена. Должна быть меньше 100 000.</param>
-        public Item(string name, string info, double price)
+        /// <param name="category">Категория. </param>
+        public Item(string name, string info, double price, Category category)
         {
             Name = name;
             Info = info;
             Price = price;
             Id = Services.IdGenerator.GetNextID();
+            Category = category;
         }
     }
 }

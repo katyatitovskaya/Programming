@@ -28,6 +28,11 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            var categories = Enum.GetValues(typeof(Category)); 
+            foreach (var category in categories)
+            {
+                CategoryComboBox.Items.Add(category);
+            }
         }
 
         /// <summary>
@@ -35,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         { 
-            Model.Item _currentItem = new Model.Item($"New Item {_items.Count}", "No info yet", 0);
+            Model.Item _currentItem = new Model.Item($"New Item {_items.Count}", "No info yet", 0, 0);
             _items.Add(_currentItem);
             ItemsListBox.Items.Add(_currentItem.Name);
         }
@@ -149,6 +154,8 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Clear();
             NameRichTextBox.Clear();
             DescriptionRichTextBox.Clear();
+            //CategoryComboBox.Items.Clear();
+            CategoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -160,7 +167,21 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Text = _currentItem.Price.ToString();
             NameRichTextBox.Text = _currentItem.Name;
             DescriptionRichTextBox.Text = _currentItem.Info;
+            CategoryComboBox.SelectedItem = _currentItem.Category;
         }
-       
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ItemsListBox.SelectedIndex!= -1)
+            {
+                Category newCategory = (Category)(CategoryComboBox.SelectedItem);
+                _currentItem.Category = newCategory;
+            }
+            else
+            {
+                CategoryComboBox.SelectedIndex = -1;
+                //CategoryComboBox.Items.Clear();
+            }
+        }
     }
 }
