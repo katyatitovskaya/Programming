@@ -35,7 +35,10 @@ namespace ObjectOrientedPractics.Model
                 _fullname = value;
             }
         }
-
+        public void hgg()
+        {
+          
+        }
         /// <summary>
         /// Возвращает и задает адрес покупателя. 
         /// Должен быть короче 500 символов. 
