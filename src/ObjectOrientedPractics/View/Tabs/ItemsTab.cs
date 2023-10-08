@@ -154,7 +154,6 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Clear();
             NameRichTextBox.Clear();
             DescriptionRichTextBox.Clear();
-            //CategoryComboBox.Items.Clear();
             CategoryComboBox.SelectedIndex = -1;
         }
 
@@ -180,7 +179,6 @@ namespace ObjectOrientedPractics.View.Tabs
             else
             {
                 CategoryComboBox.SelectedIndex = -1;
-                //CategoryComboBox.Items.Clear();
             }
         }
     }

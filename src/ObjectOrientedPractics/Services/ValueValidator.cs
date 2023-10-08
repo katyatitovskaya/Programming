@@ -34,9 +34,9 @@ namespace ObjectOrientedPractics.Services
         /// <param name="maxValue">Максимальное допустимое значение. </param>
         /// <param name="name">Имя свойства, в котором присваивается цена. </param>
         /// <exception cref="ArgumentException"></exception>
-        public static void CheckPriceInRange(double value, int maxValue, string name)
+        public static void CheckIntInRange(double value, int maxValue, int minValue, string name)
         {
-            if(value > maxValue || value < 0)
+            if(value > maxValue || value < minValue)
             {
                 throw new ArgumentException($"{name} is not supposed " +
                     $"to be less than 0 or more than {maxValue}");

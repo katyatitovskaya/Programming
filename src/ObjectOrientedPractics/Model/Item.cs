@@ -70,7 +70,7 @@ namespace ObjectOrientedPractics.Model
             get => _price;
             set
             {
-                Services.ValueValidator.CheckPriceInRange(value, 100000, nameof(Price));
+                Services.ValueValidator.CheckIntInRange(value, 100000, 0, nameof(Price));
                 _price = value;
             }
         }

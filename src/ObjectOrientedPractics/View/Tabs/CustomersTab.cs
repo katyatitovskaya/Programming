@@ -101,6 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Проверяет и сохраняет значение в текстовом поле. 
         /// </summary>
+        /*
         private void CustomerAddressRichTextBox_TextChanged(object sender, EventArgs e)
         {
             int value = CustomersListBox.SelectedIndex;
@@ -114,7 +115,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomerAddressRichTextBox.BackColor = Color.LightPink;
             }
-        }
+        }*/
 
         /// <summary>
         /// Очищает текстовые поля. 
@@ -123,7 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerIDTextBox.Clear();
             CustomerNameTextBox.Clear();
-            CustomerAddressRichTextBox.Clear();
+            //CustomerAddressRichTextBox.Clear();
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerNameTextBox.Text = _currentCustomer.FullName;
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
-            CustomerAddressRichTextBox.Text = _currentCustomer.Address;
+            //CustomerAddressRichTextBox.Text = _currentCustomer.Address;
         }
     }
 }
