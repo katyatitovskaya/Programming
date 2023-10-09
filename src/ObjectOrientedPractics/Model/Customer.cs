@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес покупателя. 
         /// </summary>
-        private string _address; 
+        private Address _address; 
 
 
         /// <summary>
@@ -35,20 +35,16 @@ namespace ObjectOrientedPractics.Model
                 _fullname = value;
             }
         }
-        public void hgg()
-        {
-          
-        }
+        
         /// <summary>
         /// Возвращает и задает адрес покупателя. 
         /// Должен быть короче 500 символов. 
         /// </summary>
-        public string Address
+        public Address Address
         {
             get => _address;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
                 _address = value;
             }
         }
@@ -71,8 +67,8 @@ namespace ObjectOrientedPractics.Model
         /// Создает объект класса <see cref="Customer"/>.  
         /// </summary>
         /// <param name="fullname">Полное имя покупателя. Должно быть короче 200 символов. </param>
-        /// <param name="address">Адрес покупателя. Должен быть короче 500 символов. </param>
-        public Customer(string fullname, string address)
+        /// <param name="address">Адрес покупателя. </param>
+        public Customer(string fullname, Address address)
         {
             FullName = fullname;
             Address = address;
