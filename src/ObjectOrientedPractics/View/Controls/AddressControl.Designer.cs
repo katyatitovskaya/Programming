@@ -49,6 +49,7 @@
             this.ApartmentTextBox.Name = "ApartmentTextBox";
             this.ApartmentTextBox.Size = new System.Drawing.Size(161, 27);
             this.ApartmentTextBox.TabIndex = 39;
+            this.ApartmentTextBox.TextChanged += new System.EventHandler(this.ApartmentTextBox_TextChanged);
             // 
             // CityTextBox
             // 
@@ -57,6 +58,7 @@
             this.CityTextBox.Name = "CityTextBox";
             this.CityTextBox.Size = new System.Drawing.Size(166, 27);
             this.CityTextBox.TabIndex = 40;
+            this.CityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
             // BuildingTextBox
             // 
@@ -64,6 +66,7 @@
             this.BuildingTextBox.Name = "BuildingTextBox";
             this.BuildingTextBox.Size = new System.Drawing.Size(159, 27);
             this.BuildingTextBox.TabIndex = 38;
+            this.BuildingTextBox.TextChanged += new System.EventHandler(this.BuildingTextBox_TextChanged);
             // 
             // label6
             // 
@@ -82,6 +85,7 @@
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(540, 27);
             this.StreetTextBox.TabIndex = 37;
+            this.StreetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
             // 
             // label5
             // 
@@ -118,6 +122,7 @@
             this.CountryTextBox.Name = "CountryTextBox";
             this.CountryTextBox.Size = new System.Drawing.Size(244, 27);
             this.CountryTextBox.TabIndex = 36;
+            this.CountryTextBox.TextChanged += new System.EventHandler(this.CountryTextBox_TextChanged);
             // 
             // label2
             // 
@@ -143,6 +148,7 @@
             this.PostIndexTextBox.Name = "PostIndexTextBox";
             this.PostIndexTextBox.Size = new System.Drawing.Size(159, 27);
             this.PostIndexTextBox.TabIndex = 41;
+            this.PostIndexTextBox.TextChanged += new System.EventHandler(this.PostIndexTextBox_TextChanged);
             // 
             // AddressControl
             // 

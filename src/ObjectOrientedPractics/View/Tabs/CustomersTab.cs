@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.View.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,8 +53,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void AddCustomerButton_Click(object sender, EventArgs e) 
         {
-            Model.Customer _currentCustomer =
-                new Model.Customer($"Customer's name {_customers.Count}", "No address info yet");
+            Address address = AddressControl.Address;
+            Customer _currentCustomer =
+                new Customer($"Customer's name {_customers.Count}", address);
             _customers.Add(_currentCustomer);
             CustomersListBox.Items.Add(_currentCustomer.FullName);
         }
@@ -98,25 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Проверяет и сохраняет значение в текстовом поле. 
-        /// </summary>
-        /*
-        private void CustomerAddressRichTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int value = CustomersListBox.SelectedIndex;
-            CustomerAddressRichTextBox.BackColor= Color.White;
-            try
-            {
-                string newAddress = CustomerAddressRichTextBox.Text;
-                _currentCustomer.Address = newAddress;
-            }
-            catch
-            {
-                CustomerAddressRichTextBox.BackColor = Color.LightPink;
-            }
-        }*/
-
+      
         /// <summary>
         /// Очищает текстовые поля. 
         /// </summary>
@@ -124,7 +109,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerIDTextBox.Clear();
             CustomerNameTextBox.Clear();
-            //CustomerAddressRichTextBox.Clear();
         }
 
         /// <summary>
@@ -134,7 +118,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerNameTextBox.Text = _currentCustomer.FullName;
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
-            //CustomerAddressRichTextBox.Text = _currentCustomer.Address;
+            AddressControl.Address = _currentCustomer.Address;
+            //AddressControl.PostIndexTextBox.Text = _currentCustomer.Address.Index.ToString();
         }
     }
 }

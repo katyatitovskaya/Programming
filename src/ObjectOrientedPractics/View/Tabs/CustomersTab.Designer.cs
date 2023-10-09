@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ObjectOrientedPractics.Model.Address address2 = new ObjectOrientedPractics.Model.Address();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -36,8 +37,8 @@
             this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.FullNameLabel = new System.Windows.Forms.Label();
             this.CustomerIDLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.AddressGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,7 +47,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SelectedCustomerGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.AddressGroupBox.SuspendLayout();
             this.CustomersGroupBox.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.SelectedCustomerGroupBox, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.AddressGroupBox, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(310, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -143,24 +144,25 @@
             this.CustomerIDLabel.TabIndex = 0;
             this.CustomerIDLabel.Text = "ID:";
             // 
-            // groupBox1
+            // AddressGroupBox
             // 
-            this.groupBox1.Controls.Add(this.addressControl1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 84);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(467, 156);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.AddressGroupBox.Controls.Add(this.AddressControl);
+            this.AddressGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddressGroupBox.Location = new System.Drawing.Point(3, 84);
+            this.AddressGroupBox.Name = "AddressGroupBox";
+            this.AddressGroupBox.Size = new System.Drawing.Size(467, 156);
+            this.AddressGroupBox.TabIndex = 3;
+            this.AddressGroupBox.TabStop = false;
+            this.AddressGroupBox.Text = "Delivery Address:";
             // 
-            // addressControl1
+            // AddressControl
             // 
-            this.addressControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl1.Location = new System.Drawing.Point(3, 23);
-            this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(461, 130);
-            this.addressControl1.TabIndex = 0;
+            this.AddressControl.Address = address2;
+            this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddressControl.Location = new System.Drawing.Point(3, 23);
+            this.AddressControl.Name = "AddressControl";
+            this.AddressControl.Size = new System.Drawing.Size(461, 130);
+            this.AddressControl.TabIndex = 0;
             // 
             // CustomersGroupBox
             // 
@@ -236,7 +238,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.SelectedCustomerGroupBox.ResumeLayout(false);
             this.SelectedCustomerGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.AddressGroupBox.ResumeLayout(false);
             this.CustomersGroupBox.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -258,7 +260,7 @@
         private Button AddCustomerButton;
         private Button RemoveCustomerButton;
         private Panel panel1;
-        private GroupBox groupBox1;
-        private Controls.AddressControl addressControl1;
+        private GroupBox AddressGroupBox;
+        private Controls.AddressControl AddressControl;
     }
 }
