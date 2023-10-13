@@ -27,7 +27,6 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _items = value;
-
             }
         }
         /// <summary>

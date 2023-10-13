@@ -37,15 +37,18 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
-            PostIndexTextBox.BackColor= Color.White;
-            try
+            PostIndexTextBox.BackColor = Color.White;
+            if (Address!= null)
             {
-                int newIndex = Convert.ToInt32(PostIndexTextBox.Text);
-                Address.Index = newIndex;
-            }
-            catch
-            {
-                PostIndexTextBox.BackColor = Color.LightPink;
+                try
+                {
+                    int newIndex = Convert.ToInt32(PostIndexTextBox.Text);
+                    Address.Index = newIndex;
+                }
+                catch
+                {
+                    PostIndexTextBox.BackColor = Color.LightPink;
+                }
             }
         }
 
