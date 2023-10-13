@@ -23,6 +23,15 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private List<Model.Customer> _customers = new List<Model.Customer>();
 
+        public List<Model.Customer> Customers
+        {
+            get=> _customers;
+            set
+            {
+                _customers = value;
+            }
+        }
+
         /// <summary>
         /// Объект типа <see cref="Model.Customer"/>.
         /// </summary>

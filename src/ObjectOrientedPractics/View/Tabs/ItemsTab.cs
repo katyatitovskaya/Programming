@@ -21,6 +21,15 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private List<Model.Item> _items = new List<Model.Item>();
 
+        public List<Model.Item> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value;
+
+            }
+        }
         /// <summary>
         /// Обеъект типа <see cref="Model.Item"/>.
         /// </summary>
