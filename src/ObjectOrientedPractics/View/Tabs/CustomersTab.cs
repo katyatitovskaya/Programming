@@ -53,9 +53,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void AddCustomerButton_Click(object sender, EventArgs e) 
         {
-            Address address = AddressControl.Address;
             Customer _currentCustomer =
-                new Customer($"Customer's name {_customers.Count}", address);
+                new Customer($"Customer's name {_customers.Count}");
             _customers.Add(_currentCustomer);
             CustomersListBox.Items.Add(_currentCustomer.FullName);
         }
@@ -109,6 +108,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomerIDTextBox.Clear();
             CustomerNameTextBox.Clear();
+            AddressControl.Address = null;
         }
 
         /// <summary>
@@ -119,7 +119,6 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerNameTextBox.Text = _currentCustomer.FullName;
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
             AddressControl.Address = _currentCustomer.Address;
-            //AddressControl.PostIndexTextBox.Text = _currentCustomer.Address.Index.ToString();
         }
     }
 }
