@@ -37,8 +37,7 @@ namespace ObjectOrientedPractics.Model
         }
         
         /// <summary>
-        /// Возвращает и задает адрес покупателя. 
-        /// Должен быть короче 500 символов. 
+        /// Возвращает и задает адрес покупателя.
         /// </summary>
         public Address Address
         {
@@ -68,10 +67,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя покупателя. Должно быть короче 200 символов. </param>
         /// <param name="address">Адрес покупателя. </param>
-        public Customer(string fullname, Address address)
+        public Customer(string fullname)
         {
             FullName = fullname;
-            Address = address;
+            Address = new Address(100000, "Country", "City", 
+                "Street", "Building", "Apartment");
             Id = Services.IdGenerator.GetNextID();
         }
     }

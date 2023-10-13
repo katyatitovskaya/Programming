@@ -75,12 +75,6 @@ namespace ObjectOrientedPractics.Model
 
         public Address()
         {
-            Index = 666666;
-            Country = "1";
-            City = "1";
-            Street = "1";
-            Building = "1";
-            Apartment = "1";
         }
 
         public Address(int index, string country, string city, string street, 

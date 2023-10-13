@@ -20,13 +20,9 @@ namespace ObjectOrientedPractics.View.Controls
             get => _address;
             set
             {
-                _address= value;
-                PostIndexTextBox.Text = _address.Index.ToString();
-                CountryTextBox.Text = _address.Country;
-                CityTextBox.Text = _address.City;
-                StreetTextBox.Text = _address.Street;
-                BuildingTextBox.Text = _address.Building;
-                ApartmentTextBox.Text = _address.Apartment;
+                _address = value;
+                FillTextBoxes();
+                
             }
         }
         public AddressControl()
@@ -56,75 +52,109 @@ namespace ObjectOrientedPractics.View.Controls
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             CountryTextBox.BackColor = Color.White;
-            try
+            if(Address != null)
             {
-                Address.Country = CountryTextBox.Text;
+                try
+                {
+                    Address.Country = CountryTextBox.Text;
+                }
+                catch
+                {
+                    CountryTextBox.BackColor = Color.LightPink;
+                }
             }
-            catch
-            {
-                CountryTextBox.BackColor = Color.LightPink;
-            }
+            
         }
 
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             CityTextBox.BackColor = Color.White;
-            try
+            if(Address != null)
             {
-                Address.City = CityTextBox.Text;
-            }
-            catch
-            {
-                CityTextBox.BackColor = Color.LightPink;
+                try
+                {
+                    Address.City = CityTextBox.Text;
+                }
+                catch
+                {
+                    CityTextBox.BackColor = Color.LightPink;
+                }
             }
         }
 
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             StreetTextBox.BackColor = Color.White;
-            try
+            if(Address != null)
             {
-                Address.Street = StreetTextBox.Text;
-            }
-            catch
-            {
-                StreetTextBox.BackColor = Color.LightPink;
+                try
+                {
+                    Address.Street = StreetTextBox.Text;
+                }
+                catch
+                {
+                    StreetTextBox.BackColor = Color.LightPink;
+                }
             }
         }
 
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             BuildingTextBox.BackColor = Color.White;
-            try
+            if(Address != null)
             {
-                Address.Building = BuildingTextBox.Text;
-            }
-            catch
-            {
-                BuildingTextBox.BackColor= Color.LightPink;
+                try
+                {
+                    Address.Building = BuildingTextBox.Text;
+                }
+                catch
+                {
+                    BuildingTextBox.BackColor = Color.LightPink;
+                }
             }
         }
 
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             ApartmentTextBox.BackColor= Color.White;
-            try
+            if(Address != null)
             {
-                Address.Apartment = ApartmentTextBox.Text;
-            }
-            catch
-            {
-                ApartmentTextBox.BackColor = Color.LightPink;
+                try
+                {
+                    Address.Apartment = ApartmentTextBox.Text;
+                }
+                catch
+                {
+                    ApartmentTextBox.BackColor = Color.LightPink;
+                }
             }
         }
-        public void UpdateAddressInfo(Model.Customer customer)
+        private void FillTextBoxes()
         {
-            PostIndexTextBox.Text=customer.Address.Index.ToString();
-            CountryTextBox.Text = customer.Address.Country;
-            CityTextBox.Text = customer.Address.City;
-            StreetTextBox.Text = customer.Address.Street;
-            BuildingTextBox.Text = customer.Address.Building;
-            ApartmentTextBox.Text = customer.Address.Apartment;
+            if (Address == null)
+            {
+                ClearTextBoxes();
+                return;
+            }
+            if (Address.Index != 0)
+            {
+                PostIndexTextBox.Text = Address.Index.ToString();
+            }
+            CountryTextBox.Text = Address.Country;
+            CityTextBox.Text = Address.City;
+            StreetTextBox.Text = Address.Street;
+            BuildingTextBox.Text = Address.Building;
+            ApartmentTextBox.Text = Address.Apartment;
         }
+        public void ClearTextBoxes()
+        {
+            PostIndexTextBox.Clear();
+            CountryTextBox.Clear();
+            CityTextBox.Clear();
+            StreetTextBox.Clear();
+            BuildingTextBox.Clear();
+            ApartmentTextBox.Clear();
+        }
+       
     }
 }
