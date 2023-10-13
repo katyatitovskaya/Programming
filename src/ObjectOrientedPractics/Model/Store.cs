@@ -33,6 +33,5 @@ namespace ObjectOrientedPractics.Model
             Items = new List<Item>();
             Customers = new List<Customer>();
         }
-
     }
 }
