@@ -7,11 +7,24 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит информацию о магазине. 
+    /// </summary>
     public class Store
     {
+        /// <summary>
+        /// Товары. 
+        /// </summary>
         private List<Item> _items;
+
+        /// <summary>
+        /// Покупатели. 
+        /// </summary>
         private List<Customer> _customers;
 
+        /// <summary>
+        /// Возвращает и задает список товаров. 
+        /// </summary>
         public List<Item> Items
         {
             get => _items;
@@ -20,6 +33,10 @@ namespace ObjectOrientedPractics.Model
                 _items = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает список покупателей. 
+        /// </summary>
         public List<Customer> Customers
         {
             get=>_customers;
@@ -28,6 +45,10 @@ namespace ObjectOrientedPractics.Model
                 _customers = value;
             }
         }
+
+        /// <summary>
+        /// Созадает объект класса <see cref="Store"/>. 
+        /// </summary>
         public Store()
         {
             Items = new List<Item>();

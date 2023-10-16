@@ -12,9 +12,19 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Controls
 {
+    /// <summary>
+    /// Предоставляет методы для валидации и заполнения текстовых полей адреса.  
+    /// </summary>
     public partial class AddressControl : UserControl
     {
+        /// <summary>
+        /// Объект типа <see cref="Model.Address"/>. 
+        /// </summary>
         private Model.Address _address;
+
+        /// <summary>
+        /// Возвращает и задает значение адреса. 
+        /// </summary>
         public Model.Address Address
         {
             get => _address;
@@ -35,6 +45,9 @@ namespace ObjectOrientedPractics.View.Controls
 
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             PostIndexTextBox.BackColor = Color.White;
@@ -52,6 +65,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             CountryTextBox.BackColor = Color.White;
@@ -69,6 +85,9 @@ namespace ObjectOrientedPractics.View.Controls
             
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             CityTextBox.BackColor = Color.White;
@@ -85,6 +104,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             StreetTextBox.BackColor = Color.White;
@@ -101,6 +123,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             BuildingTextBox.BackColor = Color.White;
@@ -117,6 +142,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Проверяет и сохраняет значение в тестовом поле при его изменении. 
+        /// </summary>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             ApartmentTextBox.BackColor= Color.White;
@@ -132,6 +160,10 @@ namespace ObjectOrientedPractics.View.Controls
                 }
             }
         }
+
+        /// <summary>
+        /// Заполняет текстовые поля. 
+        /// </summary>
         private void FillTextBoxes()
         {
             if (Address == null)
@@ -149,6 +181,10 @@ namespace ObjectOrientedPractics.View.Controls
             BuildingTextBox.Text = Address.Building;
             ApartmentTextBox.Text = Address.Apartment;
         }
+
+        /// <summary>
+        /// Очищает текстовые поля. 
+        /// </summary>
         public void ClearTextBoxes()
         {
             PostIndexTextBox.Clear();

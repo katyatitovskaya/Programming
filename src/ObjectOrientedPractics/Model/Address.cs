@@ -7,15 +7,45 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит информацию об адресе. 
+    /// </summary>
     public class Address
     {
+        /// <summary>
+        /// Почтовый индекс. 
+        /// </summary>
         private int _index;
+
+        /// <summary>
+        /// Страна. 
+        /// </summary>
         private string _country;
+
+        /// <summary>
+        /// Город. 
+        /// </summary>
         private string _city;
+
+        /// <summary>
+        /// Улица. 
+        /// </summary>
         private string _street;
+
+        /// <summary>
+        /// Здание. 
+        /// </summary>
         private string _building;
+
+        /// <summary>
+        /// Квартира. 
+        /// </summary>
         private string _apartment;
 
+        /// <summary>
+        /// Возвращает и задает почтовый индекс. 
+        /// Должен являться шестизначным числом. 
+        /// </summary>
         public int Index
         {
             get => _index;
@@ -25,6 +55,11 @@ namespace ObjectOrientedPractics.Model
                 _index = value; 
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает страну. 
+        /// Должна быть короче 50 символов. 
+        /// </summary>
         public string Country
         {
             get => _country;
@@ -34,6 +69,11 @@ namespace ObjectOrientedPractics.Model
                 _country = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает город. 
+        /// Должен быть короче 50 символов. 
+        /// </summary>
         public string City
         {
             get => _city;
@@ -43,6 +83,11 @@ namespace ObjectOrientedPractics.Model
                 _city = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает улицу. 
+        /// Должна быть короче 100 символов. 
+        /// </summary>
         public string Street
         {
             get => _street;
@@ -53,6 +98,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает номер здания. 
+        /// Должен быть короче 10 символов. 
+        /// </summary>
         public string Building
         {
             get => _building;
@@ -63,6 +112,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает номер квартиры.
+        /// Должен быть короче 10 символов. 
+        /// </summary>
         public string Apartment
         {
             get => _apartment;
@@ -73,10 +126,22 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Создает объект класса <see cref="Address"/>. 
+        /// </summary>
         public Address()
         {
         }
 
+        /// <summary>
+        /// Создает объект класса <see cref="Address"/>.
+        /// </summary>
+        /// <param name="index">Почтовый индекс. </param>
+        /// <param name="country">Страна. </param>
+        /// <param name="city">Город. </param>
+        /// <param name="street">Улица. </param>
+        /// <param name="building">Здание. </param>
+        /// <param name="apartment">Квартира. </param>
         public Address(int index, string country, string city, string street, 
             string building, string apartment)
         {
