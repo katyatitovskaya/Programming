@@ -19,8 +19,9 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес покупателя. 
         /// </summary>
-        private Address _address; 
+        private Address _address;
 
+        private List<Order> _orders; 
 
         /// <summary>
         /// Возвращает и задает полное имя покупателя. 
@@ -48,10 +49,13 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        
         /// <summary>
         /// Возвращает индивидуальный идентификатор товара. 
         /// </summary>
         public int Id { get; }
+
+        public List<Order> Orders { get; set; }
 
 
         /// <summary>
@@ -73,6 +77,7 @@ namespace ObjectOrientedPractics.Model
             Address = new Address(100000, "Country", "City", 
                 "Street", "Building", "Apartment");
             Id = Services.IdGenerator.GetNextID();
+            Orders = new List<Order>();
         }
     }
 }
