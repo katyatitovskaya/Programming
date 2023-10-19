@@ -8,7 +8,7 @@ namespace ObjectOrientedPractics.Model
 {
     public class Order
     {
-        private DateTime _date;
+        private string _date;
         private Address _address;
         private double _amount;
         private List<Item> _items;
@@ -52,15 +52,16 @@ namespace ObjectOrientedPractics.Model
         public OrderStatus OrderStatus { get; set; }
         public Order()
         {
+            OrderStatus = OrderStatus.New;
             Date = DateTime.Now.ToLongDateString();
             Id = Services.IdGenerator.GetNextID();
         }
 
-        public Order(Address address, List<Item> items, OrderStatus orderStatus)
+        public Order(Address address, List<Item> items)
         {
             Address = address;
             Items = items;
-            OrderStatus = orderStatus;
+            OrderStatus = OrderStatus.New;
             Date = DateTime.Now.ToLongDateString();
             Id = Services.IdGenerator.GetNextID();
         }
