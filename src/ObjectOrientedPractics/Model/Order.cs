@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +53,8 @@ namespace ObjectOrientedPractics.Model
         public OrderStatus OrderStatus { get; set; }
         public Order()
         {
+            Address = new Address();
+            Items = new List<Item>();
             OrderStatus = OrderStatus.New;
             Date = DateTime.Now.ToLongDateString();
             Id = Services.IdGenerator.GetNextID();

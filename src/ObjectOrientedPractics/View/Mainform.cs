@@ -15,6 +15,8 @@ namespace ObjectOrientedPractics
             
             itemsTab.Items = _store.Items;
             customersTab.Customers =_store.Customers;
+            cartsTab.Customers = _store.Customers;
+            cartsTab.Items = _store.Items;
         }
     }
 }
