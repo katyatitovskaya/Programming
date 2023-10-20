@@ -1,4 +1,5 @@
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.View.Tabs;
 using System.Drawing.Text;
 
 namespace ObjectOrientedPractics
@@ -12,11 +13,18 @@ namespace ObjectOrientedPractics
         public Mainform()
         {
             InitializeComponent();
-            
             itemsTab.Items = _store.Items;
             customersTab.Customers =_store.Customers;
             cartsTab.Customers = _store.Customers;
             cartsTab.Items = _store.Items;
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabControl.SelectedIndex == 2)
+            {
+                cartsTab.RefreshData();
+            }
         }
     }
 }

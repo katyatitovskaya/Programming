@@ -35,6 +35,7 @@ namespace ObjectOrientedPractics.Model
 
         public Cart()
         {
+            Items = new List<Item>();
         }
     }
 }

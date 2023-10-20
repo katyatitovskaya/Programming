@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список объектов типа <see cref="Model.Item"/>.
         /// </summary>
-        private List<Model.Item> _items = new List<Model.Item>();
+        private List<Model.Item> _items;
 
         public List<Model.Item> Items
         {

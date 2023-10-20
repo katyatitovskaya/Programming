@@ -72,6 +72,7 @@
             this.CreateOrderButton.TabIndex = 10;
             this.CreateOrderButton.Text = "Create Order";
             this.CreateOrderButton.UseVisualStyleBackColor = true;
+            this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
             // 
             // RemoveItemButton
             // 
@@ -82,6 +83,7 @@
             this.RemoveItemButton.TabIndex = 9;
             this.RemoveItemButton.Text = "Remove Item";
             this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
             // ClearCartButton
             // 
@@ -92,6 +94,7 @@
             this.ClearCartButton.TabIndex = 8;
             this.ClearCartButton.Text = "Clear Cart";
             this.ClearCartButton.UseVisualStyleBackColor = true;
+            this.ClearCartButton.Click += new System.EventHandler(this.ClearCartButton_Click);
             // 
             // AmountLabel
             // 
@@ -144,6 +147,7 @@
             this.CustomersComboBox.Name = "CustomersComboBox";
             this.CustomersComboBox.Size = new System.Drawing.Size(328, 28);
             this.CustomersComboBox.TabIndex = 3;
+            this.CustomersComboBox.SelectedIndexChanged += new System.EventHandler(this.CustomersComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -164,6 +168,7 @@
             this.AddToCartButton.TabIndex = 1;
             this.AddToCartButton.Text = "Add To Cart";
             this.AddToCartButton.UseVisualStyleBackColor = true;
+            this.AddToCartButton.Click += new System.EventHandler(this.AddToCartButton_Click);
             // 
             // CartItemsListBox
             // 

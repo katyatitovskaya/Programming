@@ -57,6 +57,8 @@ namespace ObjectOrientedPractics.Model
 
         public List<Order> Orders { get; set; }
 
+        public Cart Cart { get; set; }
+
 
         /// <summary>
         /// Создает объект класса <see cref="Customer"/>.  
@@ -77,6 +79,7 @@ namespace ObjectOrientedPractics.Model
             Address = new Address(100000, "Country", "City", 
                 "Street", "Building", "Apartment");
             Id = Services.IdGenerator.GetNextID();
+            Cart = new Cart();
             Orders = new List<Order>();
         }
     }
