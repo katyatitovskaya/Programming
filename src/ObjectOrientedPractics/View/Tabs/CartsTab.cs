@@ -74,7 +74,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-
+            if(CartListBox.Items.Count != 0)
+            {
+                CurrentCustomer.Orders.Add(
+                    new Model.Order(CurrentCustomer.Address, 
+                    CurrentCustomer.Cart.Items));
+                CartListBox.Items.Clear();
+                CurrentCustomer.Cart.Items.Clear();
+            }
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -92,7 +99,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
-
+            if (CustomersComboBox.SelectedIndex != -1)
+            {
+                CartListBox.Items.Clear();
+                CurrentCustomer.Cart.Items.Clear();
+            }
         }
 
         private void AddToCartButton_Click(object sender, EventArgs e)
