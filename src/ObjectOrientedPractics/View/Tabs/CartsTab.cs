@@ -47,13 +47,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CartListBox.Items.Clear();
             if (CustomersComboBox.SelectedIndex != -1)
             {
-                CurrentCustomer = Customers[CustomersComboBox.SelectedIndex];
-                List<Model.Item> currentCustomersItems = CurrentCustomer.Cart.Items;  
-                for(int i=0; i<currentCustomersItems.Count; i++)
-                {
-                    CartListBox.Items.Add(currentCustomersItems[i].Name);
-                }
-                AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
+                UpdateCartListBox();
             }
             else
             {
@@ -69,7 +63,40 @@ namespace ObjectOrientedPractics.View.Tabs
             ((CurrencyManager)CartItemsListBox.BindingContext[_items]).Refresh();
             CartItemsListBox.DisplayMember = "Name";
             CartItemsListBox.ValueMember = "Id";
+            CartListBox.Items.Clear();
+            UpdateCartListBox();
+        }
 
+        private void UpdateCartListBox()
+        {
+            CurrentCustomer = Customers[CustomersComboBox.SelectedIndex];
+            List<Model.Item> currentCustomersItems = CurrentCustomer.Cart.Items;
+            List<Model.Item> newCurrentCustomersItems = new List<Model.Item>();
+            //List<int> indexOfNonExistentElements = new List<int>();
+            //int indexOfNonExistentElements;
+            for (int i=0; i<currentCustomersItems.Count; i++)
+            {
+                if (CartItemsListBox.Items.Contains(currentCustomersItems[i]))
+                {
+                    CartListBox.Items.Add(currentCustomersItems[i].Name);
+                    newCurrentCustomersItems.Add(currentCustomersItems[i]);
+                }
+            }
+            for(int i=0; i<currentCustomersItems.Count; i++)
+            {
+                if (newCurrentCustomersItems.Contains(currentCustomersItems[i])==false)
+                {
+                    currentCustomersItems.RemoveAt(i);
+                }
+            }
+            //for(int i= 0; i < indexOfNonExistentElements.Count; i++)
+            //{
+            //    c
+               
+            //}
+            //indexOfNonExistentElements.Clear();
+            
+            AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
