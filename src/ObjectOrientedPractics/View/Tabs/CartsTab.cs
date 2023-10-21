@@ -69,34 +69,30 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void UpdateCartListBox()
         {
-            CurrentCustomer = Customers[CustomersComboBox.SelectedIndex];
-            List<Model.Item> currentCustomersItems = CurrentCustomer.Cart.Items;
-            List<Model.Item> newCurrentCustomersItems = new List<Model.Item>();
-            //List<int> indexOfNonExistentElements = new List<int>();
-            //int indexOfNonExistentElements;
-            for (int i=0; i<currentCustomersItems.Count; i++)
+            if(Customers.Count!=0)
             {
-                if (CartItemsListBox.Items.Contains(currentCustomersItems[i]))
+                CurrentCustomer = Customers[CustomersComboBox.SelectedIndex];
+                List<Model.Item> currentCustomersItems = CurrentCustomer.Cart.Items;
+                List<Model.Item> newCurrentCustomersItems = new List<Model.Item>();
+                for (int i = 0; i < currentCustomersItems.Count; i++)
                 {
-                    CartListBox.Items.Add(currentCustomersItems[i].Name);
-                    newCurrentCustomersItems.Add(currentCustomersItems[i]);
+                    if (CartItemsListBox.Items.Contains(currentCustomersItems[i]))
+                    {
+                        CartListBox.Items.Add(currentCustomersItems[i].Name);
+                        newCurrentCustomersItems.Add(currentCustomersItems[i]);
+                    }
                 }
-            }
-            for(int i=0; i<currentCustomersItems.Count; i++)
-            {
-                if (newCurrentCustomersItems.Contains(currentCustomersItems[i])==false)
+                for (int i = 0; i < currentCustomersItems.Count; i++)
                 {
-                    currentCustomersItems.RemoveAt(i);
+                    if (newCurrentCustomersItems.
+                        Contains(currentCustomersItems[i]) == false)
+                    {
+                        currentCustomersItems.RemoveAt(i);
+                    }
                 }
+                AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
             }
-            //for(int i= 0; i < indexOfNonExistentElements.Count; i++)
-            //{
-            //    c
-               
-            //}
-            //indexOfNonExistentElements.Clear();
             
-            AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
