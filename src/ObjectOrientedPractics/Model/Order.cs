@@ -49,6 +49,7 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+        public string CustomerName { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
         public Order()
@@ -60,8 +61,9 @@ namespace ObjectOrientedPractics.Model
             Id = Services.IdGenerator.GetNextID();
         }
 
-        public Order(Address address, List<Item> items)
+        public Order(string customerName, Address address, List<Item> items)
         {
+            CustomerName = customerName;
             Address = address;
             Items = items;
             OrderStatus = OrderStatus.New;

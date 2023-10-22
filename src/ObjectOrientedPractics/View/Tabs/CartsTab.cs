@@ -100,10 +100,12 @@ namespace ObjectOrientedPractics.View.Tabs
             if(CartListBox.Items.Count != 0)
             {
                 CurrentCustomer.Orders.Add(
-                    new Model.Order(CurrentCustomer.Address, 
+                    new Model.Order(CurrentCustomer.FullName, 
+                    CurrentCustomer.Address, 
                     CurrentCustomer.Cart.Items));
                 CartListBox.Items.Clear();
                 CurrentCustomer.Cart.Items.Clear();
+                AmountLabel.Text = "0";
             }
         }
 
@@ -117,6 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.RemoveAt(value);
                 CartListBox.SelectedIndex = value - 1;
                 AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
+
             }
         }
 

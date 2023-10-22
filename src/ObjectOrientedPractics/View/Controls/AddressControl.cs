@@ -32,7 +32,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 _address = value;
                 FillTextBoxes();
-                
             }
         }
         public AddressControl()
