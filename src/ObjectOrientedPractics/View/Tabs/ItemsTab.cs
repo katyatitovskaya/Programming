@@ -29,6 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items = value;
             }
         }
+
         /// <summary>
         /// Обеъект типа <see cref="Model.Item"/>.
         /// </summary>
@@ -177,6 +178,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.SelectedItem = _currentItem.Category;
         }
 
+        /// <summary>
+        /// Сохраняет выбранную категорию.
+        /// </summary>
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ItemsListBox.SelectedIndex!= -1)

@@ -10,10 +10,24 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет методы для редактирования и создания заказов. 
+    /// </summary>
     public partial class CartsTab : UserControl
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Item"/>.
+        /// </summary>
         private List<Model.Item> _items;
+
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Customer"/>.
+        /// </summary>
         private List<Model.Customer> _customers;
+
+        /// <summary>
+        /// Объект типа <see cref="Model.Customer"/>.
+        /// </summary>
         private Model.Customer CurrentCustomer = new Model.Customer();
         public List<Model.Item> Items
         {
@@ -42,6 +56,9 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Заполняет листбокс с списком товаров в заказе при выборе покупателя. 
+        /// </summary>
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CartListBox.Items.Clear();
@@ -55,6 +72,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет данные в листбоксе с товарами и в комбобоксе с покупателями. 
+        /// </summary>
         public void RefreshData()
         {
             ((CurrencyManager)CustomersComboBox.BindingContext[_customers]).Refresh();
@@ -67,6 +87,9 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateCartListBox();
         }
 
+        /// <summary>
+        /// Обновляет листбокс с списком товаров в заказе выбранного покупателя. 
+        /// </summary>
         private void UpdateCartListBox()
         {
             if(Customers.Count!=0)
@@ -94,7 +117,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             
         }
-
+        
+        /// <summary>
+        /// Создает заказ при нажатии на кнопку. 
+        /// </summary>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if(CartListBox.Items.Count != 0)
@@ -109,6 +135,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Удаляет выбранный товар из списка.
+        /// </summary>
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             if(CustomersComboBox.SelectedIndex != -1 && CartListBox.SelectedIndex != -1)
@@ -123,6 +152,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Очищает корзину. 
+        /// </summary>
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
             if (CustomersComboBox.SelectedIndex != -1)
@@ -132,6 +164,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Добавляет товар в корзину. 
+        /// </summary>
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
             if(CartItemsListBox.SelectedIndex != -1)

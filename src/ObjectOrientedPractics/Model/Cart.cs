@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит информацию о корзине. 
+    /// </summary>
     public class Cart
     {
-        private List<Item> _items;
-       
-
+        /// <summary>
+        /// Возвращает и задает список товаров. 
+        /// </summary>
         public List<Item> Items { get; set; } 
 
+        /// <summary>
+        /// Возваращает общую стоимость товаров в корзине. 
+        /// </summary>
         public double Amount
         {
             get
@@ -33,6 +39,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Создает объект типа <see cref="Cart"/>.
+        /// </summary>
         public Cart()
         {
             Items = new List<Item>();

@@ -7,18 +7,34 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит информацию о заказе.
+    /// </summary>
     public class Order
     {
-        private string _date;
+        /// <summary>
+        /// Адрес.
+        /// </summary>
         private Address _address;
-        private double _amount;
-        private List<Item> _items;
-
+       
+        /// <summary>
+        /// Возвращает дату создания заказа. 
+        /// </summary>
         public string Date { get; }
 
+        /// <summary>
+        /// Возвращает идентификатор заказа. 
+        /// </summary>
         public int Id { get; }
 
+        /// <summary>
+        /// Возваращает и задает список товаров.
+        /// </summary>
         public List<Item> Items { get; set; }
+
+        /// <summary>
+        /// Возвращает общую стоимость товаров. 
+        /// </summary>
         public double Amount
         {
             get
@@ -38,6 +54,10 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает адрес доставки. 
+        /// </summary>
         public Address Address
         {
             get => _address;
@@ -49,9 +69,20 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает имя покупателя. 
+        /// </summary>
         public string CustomerName { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает статус заказа. 
+        /// </summary>
         public OrderStatus OrderStatus { get; set; }
+
+        /// <summary>
+        /// Создает объект класса <see cref="Order"/>.
+        /// </summary>
         public Order()
         {
             Address = new Address();
@@ -61,6 +92,12 @@ namespace ObjectOrientedPractics.Model
             Id = Services.IdGenerator.GetNextID();
         }
 
+        /// <summary>
+        /// Создает объект класса <see cref="Order"/>.
+        /// </summary>
+        /// <param name="customerName">Имя покупателя. </param>
+        /// <param name="address">Адрес доставки. </param>
+        /// <param name="items">Список товаров. </param>
         public Order(string customerName, Address address, List<Item> items)
         {
             CustomerName = customerName;

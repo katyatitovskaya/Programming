@@ -11,9 +11,19 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет методы для отображения информации о заказах.
+    /// </summary>
     public partial class OrdersTab : UserControl
     {
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Customer"/>. 
+        /// </summary>
         private List<Model.Customer> _customers;
+
+        /// <summary>
+        /// Список объектов типа <see cref="Model.Order"/>.
+        /// </summary>
         private List<Model.Order> _orders = new List<Order>();
         public List<Model.Customer> Customers
         {
@@ -42,7 +52,9 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         
-
+        /// <summary>
+        /// Обновляет данные в таблице. 
+        /// </summary>
         public void UpdateOders()
         {
             _orders.Clear();
@@ -59,6 +71,9 @@ namespace ObjectOrientedPractics.View.Tabs
             orderBindingSource.DataSource = _orders;
         }
 
+        /// <summary>
+        /// Обновляет данные в текстовых полях при выборе заказа в таблице. 
+        /// </summary>
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             
@@ -75,6 +90,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Сохраняет измененный статус заказа. 
+        /// </summary>
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Order currentOrder = _orders[dataGridView1.CurrentCell.RowIndex];

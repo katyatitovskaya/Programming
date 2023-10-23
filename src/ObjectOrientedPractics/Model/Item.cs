@@ -75,6 +75,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает категорию товара. 
+        /// </summary>
         public Category Category { get; set; }
 
         /// <summary>

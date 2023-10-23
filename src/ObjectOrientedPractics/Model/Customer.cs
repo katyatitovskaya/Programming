@@ -21,8 +21,6 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private Address _address;
 
-        private List<Order> _orders; 
-
         /// <summary>
         /// Возвращает и задает полное имя покупателя. 
         /// Должно быть короче 200 символов. 
@@ -55,8 +53,15 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id { get; }
 
+        /// <summary>
+        /// Возвращает и задает список заказов. 
+        /// </summary>
         public List<Order> Orders { get; set; }
 
+
+        /// <summary>
+        /// Возвращает и задает корзину. 
+        /// </summary>
         public Cart Cart { get; set; }
 
 
