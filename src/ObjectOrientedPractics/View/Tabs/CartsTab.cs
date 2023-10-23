@@ -104,7 +104,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     CurrentCustomer.Address, 
                     CurrentCustomer.Cart.Items));
                 CartListBox.Items.Clear();
-                CurrentCustomer.Cart.Items.Clear();
+                CurrentCustomer.Cart.Items = new List<Model.Item>();
                 AmountLabel.Text = "0";
             }
         }

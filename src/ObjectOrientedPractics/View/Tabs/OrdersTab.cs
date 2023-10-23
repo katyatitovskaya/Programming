@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _orders.Add(order);
                 }
             }
-            //orderBindingSource.DataSource = null;
+            orderBindingSource.DataSource = null;
             orderBindingSource.DataSource = _orders;
         }
 
@@ -67,7 +67,10 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
             CreatedTextBox.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
             StatusComboBox.SelectedItem = dataGridView1.CurrentRow.Cells[5].Value;
-            
+            for (int i = 0; i < currentOrder.Items.Count; i++)
+            {
+                OrderItemsListBox.Items.Add(currentOrder.Items[i].Name);
+            }
             AmountLabel.Text = currentOrder.Amount.ToString();
 
         }
