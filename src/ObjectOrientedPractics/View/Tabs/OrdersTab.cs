@@ -77,11 +77,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             
-            Order currentOrder = _orders[dataGridView1.CurrentCell.RowIndex];
+            Order currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
             addressControl.Address = currentOrder.Address;
-            IDTextBox.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
-            CreatedTextBox.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            StatusComboBox.SelectedItem = dataGridView1.CurrentRow.Cells[5].Value;
+            IDTextBox.Text = Convert.ToString(DataGridView.CurrentRow.Cells[0].Value);
+            CreatedTextBox.Text = Convert.ToString(DataGridView.CurrentRow.Cells[1].Value);
+            StatusComboBox.SelectedItem = DataGridView.CurrentRow.Cells[5].Value;
             for (int i = 0; i < currentOrder.Items.Count; i++)
             {
                 OrderItemsListBox.Items.Add(currentOrder.Items[i].Name);
@@ -95,7 +95,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order currentOrder = _orders[dataGridView1.CurrentCell.RowIndex];
+            Order currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
             currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
         }
     }

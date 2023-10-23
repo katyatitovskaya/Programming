@@ -75,6 +75,15 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public string CustomerName { get; set; }
 
+        public string strAddress
+        {
+            get
+            {
+                return Address.Country + " " + Address.City + " " + Address.Street +
+                    " " + Address.Building + " " + Address.Apartment;
+            }
+        }
+
         /// <summary>
         /// Возвращает и задает статус заказа. 
         /// </summary>
