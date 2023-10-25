@@ -9,7 +9,7 @@ public enum OrderStatus
     New, 
 
     /// <summary>
-    /// Обрабатывается. 
+    /// Обрабатывается.  
     /// </summary>
     Processing, 
 
