@@ -42,9 +42,9 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создает объект типа <see cref="Cart"/>.
         /// </summary>
-        public Cart()
+        public Cart(List<Item> items)
         {
-            Items = new List<Item>();
+            Items = items;
         }
     }
 }

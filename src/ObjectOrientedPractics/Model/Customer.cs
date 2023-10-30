@@ -84,7 +84,7 @@ namespace ObjectOrientedPractics.Model
             Address = new Address(100000, "Country", "City", 
                 "Street", "Building", "Apartment");
             Id = Services.IdGenerator.GetNextID();
-            Cart = new Cart();
+            Cart = new Cart(new List<Item>());
             Orders = new List<Order>();
         }
     }
