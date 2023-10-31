@@ -16,5 +16,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
         }
+
+        private void CreateOrderButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
