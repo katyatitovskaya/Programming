@@ -8,9 +8,6 @@ namespace ObjectOrientedPractics.Model
 {
     public class PriorityOrder: Order
     {
-        private string deliveryTime;
-
-        public DateTime DeliveryDate { get; set; }
         public string DeliveryTime { get; set;}
 
         public PriorityOrder()
