@@ -64,6 +64,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Cart Cart { get; set; }
 
+        public bool IsPriority { get;set; }
 
         /// <summary>
         /// Создает объект класса <see cref="Customer"/>.  
@@ -86,6 +87,7 @@ namespace ObjectOrientedPractics.Model
             Id = Services.IdGenerator.GetNextID();
             Cart = new Cart(new List<Item>());
             Orders = new List<Order>();
+            IsPriority = false;
         }
     }
 }

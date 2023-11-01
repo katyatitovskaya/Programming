@@ -129,6 +129,18 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
             AddressControl.Address = _currentCustomer.Address;
         }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IsPriorityCheckBox.Checked)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
+        }
     }
 }
  
