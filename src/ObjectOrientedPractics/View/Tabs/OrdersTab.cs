@@ -34,6 +34,8 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        //Model.Order currentOrder = new Model.Order();
+        //Model.PriorityOrder currentPriorityOrder = new Model.PriorityOrder();
         
         public OrdersTab()
         {
@@ -88,6 +90,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderItemsListBox.Items.Add(currentOrder.Items[i].Name);
             }
             AmountLabel.Text = currentOrder.Amount.ToString();
+
+            
 
         }
 

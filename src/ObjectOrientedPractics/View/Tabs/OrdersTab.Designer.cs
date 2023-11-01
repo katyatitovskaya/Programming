@@ -32,13 +32,6 @@
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.SelectedOrderGroupBox = new System.Windows.Forms.GroupBox();
-            this.StatusLabel = new System.Windows.Forms.Label();
-            this.IDLabel = new System.Windows.Forms.Label();
-            this.StatusComboBox = new System.Windows.Forms.ComboBox();
-            this.CreatedTextBox = new System.Windows.Forms.TextBox();
-            this.CreatedLabel = new System.Windows.Forms.Label();
-            this.IDTextBox = new System.Windows.Forms.TextBox();
             this.DeliveryAddressGroupBox = new System.Windows.Forms.GroupBox();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.OrderItemsGroupBox = new System.Windows.Forms.GroupBox();
@@ -53,14 +46,28 @@
             this.strAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.StatusLabel = new System.Windows.Forms.Label();
+            this.IDLabel = new System.Windows.Forms.Label();
+            this.StatusComboBox = new System.Windows.Forms.ComboBox();
+            this.CreatedTextBox = new System.Windows.Forms.TextBox();
+            this.CreatedLabel = new System.Windows.Forms.Label();
+            this.IDTextBox = new System.Windows.Forms.TextBox();
+            this.PriorityOptionssPanel = new System.Windows.Forms.Panel();
+            this.PriorityOptionsLabel = new System.Windows.Forms.Label();
+            this.DeliveryTimeLabel = new System.Windows.Forms.Label();
+            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.SelectedOrderGroupBox.SuspendLayout();
             this.DeliveryAddressGroupBox.SuspendLayout();
             this.OrderItemsGroupBox.SuspendLayout();
             this.OrdersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.PriorityOptionssPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderBindingSource
@@ -86,9 +93,9 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.SelectedOrderGroupBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.DeliveryAddressGroupBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.OrderItemsGroupBox, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(458, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -98,75 +105,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.28788F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(559, 528);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // SelectedOrderGroupBox
-            // 
-            this.SelectedOrderGroupBox.Controls.Add(this.StatusLabel);
-            this.SelectedOrderGroupBox.Controls.Add(this.IDLabel);
-            this.SelectedOrderGroupBox.Controls.Add(this.StatusComboBox);
-            this.SelectedOrderGroupBox.Controls.Add(this.CreatedTextBox);
-            this.SelectedOrderGroupBox.Controls.Add(this.CreatedLabel);
-            this.SelectedOrderGroupBox.Controls.Add(this.IDTextBox);
-            this.SelectedOrderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedOrderGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectedOrderGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.SelectedOrderGroupBox.Name = "SelectedOrderGroupBox";
-            this.SelectedOrderGroupBox.Size = new System.Drawing.Size(553, 128);
-            this.SelectedOrderGroupBox.TabIndex = 0;
-            this.SelectedOrderGroupBox.TabStop = false;
-            this.SelectedOrderGroupBox.Text = "Selected Order";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Location = new System.Drawing.Point(6, 89);
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(57, 20);
-            this.StatusLabel.TabIndex = 26;
-            this.StatusLabel.Text = "Status:";
-            // 
-            // IDLabel
-            // 
-            this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(3, 23);
-            this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(29, 20);
-            this.IDLabel.TabIndex = 24;
-            this.IDLabel.Text = "ID:";
-            // 
-            // StatusComboBox
-            // 
-            this.StatusComboBox.FormattingEnabled = true;
-            this.StatusComboBox.Location = new System.Drawing.Point(83, 86);
-            this.StatusComboBox.Name = "StatusComboBox";
-            this.StatusComboBox.Size = new System.Drawing.Size(151, 28);
-            this.StatusComboBox.TabIndex = 21;
-            this.StatusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
-            // 
-            // CreatedTextBox
-            // 
-            this.CreatedTextBox.Location = new System.Drawing.Point(83, 53);
-            this.CreatedTextBox.Name = "CreatedTextBox";
-            this.CreatedTextBox.ReadOnly = true;
-            this.CreatedTextBox.Size = new System.Drawing.Size(151, 27);
-            this.CreatedTextBox.TabIndex = 23;
-            // 
-            // CreatedLabel
-            // 
-            this.CreatedLabel.AutoSize = true;
-            this.CreatedLabel.Location = new System.Drawing.Point(3, 56);
-            this.CreatedLabel.Name = "CreatedLabel";
-            this.CreatedLabel.Size = new System.Drawing.Size(67, 20);
-            this.CreatedLabel.TabIndex = 25;
-            this.CreatedLabel.Text = "Created:";
-            // 
-            // IDTextBox
-            // 
-            this.IDTextBox.Location = new System.Drawing.Point(83, 20);
-            this.IDTextBox.Name = "IDTextBox";
-            this.IDTextBox.ReadOnly = true;
-            this.IDTextBox.Size = new System.Drawing.Size(151, 27);
-            this.IDTextBox.TabIndex = 22;
             // 
             // DeliveryAddressGroupBox
             // 
@@ -327,6 +265,127 @@
             this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
             this.orderStatusDataGridViewTextBoxColumn.Width = 125;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.PriorityOptionssPanel, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(553, 128);
+            this.tableLayoutPanel3.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.StatusLabel);
+            this.groupBox1.Controls.Add(this.IDLabel);
+            this.groupBox1.Controls.Add(this.StatusComboBox);
+            this.groupBox1.Controls.Add(this.CreatedTextBox);
+            this.groupBox1.Controls.Add(this.CreatedLabel);
+            this.groupBox1.Controls.Add(this.IDTextBox);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 122);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selected Order";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Location = new System.Drawing.Point(6, 89);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(57, 20);
+            this.StatusLabel.TabIndex = 32;
+            this.StatusLabel.Text = "Status:";
+            // 
+            // IDLabel
+            // 
+            this.IDLabel.AutoSize = true;
+            this.IDLabel.Location = new System.Drawing.Point(3, 23);
+            this.IDLabel.Name = "IDLabel";
+            this.IDLabel.Size = new System.Drawing.Size(29, 20);
+            this.IDLabel.TabIndex = 30;
+            this.IDLabel.Text = "ID:";
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.FormattingEnabled = true;
+            this.StatusComboBox.Location = new System.Drawing.Point(83, 86);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(151, 28);
+            this.StatusComboBox.TabIndex = 27;
+            // 
+            // CreatedTextBox
+            // 
+            this.CreatedTextBox.Location = new System.Drawing.Point(83, 53);
+            this.CreatedTextBox.Name = "CreatedTextBox";
+            this.CreatedTextBox.ReadOnly = true;
+            this.CreatedTextBox.Size = new System.Drawing.Size(151, 27);
+            this.CreatedTextBox.TabIndex = 29;
+            // 
+            // CreatedLabel
+            // 
+            this.CreatedLabel.AutoSize = true;
+            this.CreatedLabel.Location = new System.Drawing.Point(3, 56);
+            this.CreatedLabel.Name = "CreatedLabel";
+            this.CreatedLabel.Size = new System.Drawing.Size(67, 20);
+            this.CreatedLabel.TabIndex = 31;
+            this.CreatedLabel.Text = "Created:";
+            // 
+            // IDTextBox
+            // 
+            this.IDTextBox.Location = new System.Drawing.Point(83, 20);
+            this.IDTextBox.Name = "IDTextBox";
+            this.IDTextBox.ReadOnly = true;
+            this.IDTextBox.Size = new System.Drawing.Size(151, 27);
+            this.IDTextBox.TabIndex = 28;
+            // 
+            // PriorityOptionssPanel
+            // 
+            this.PriorityOptionssPanel.Controls.Add(this.DeliveryTimeComboBox);
+            this.PriorityOptionssPanel.Controls.Add(this.DeliveryTimeLabel);
+            this.PriorityOptionssPanel.Controls.Add(this.PriorityOptionsLabel);
+            this.PriorityOptionssPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriorityOptionssPanel.Location = new System.Drawing.Point(279, 3);
+            this.PriorityOptionssPanel.Name = "PriorityOptionssPanel";
+            this.PriorityOptionssPanel.Size = new System.Drawing.Size(271, 122);
+            this.PriorityOptionssPanel.TabIndex = 1;
+            // 
+            // PriorityOptionsLabel
+            // 
+            this.PriorityOptionsLabel.AutoSize = true;
+            this.PriorityOptionsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PriorityOptionsLabel.Location = new System.Drawing.Point(3, 0);
+            this.PriorityOptionsLabel.Name = "PriorityOptionsLabel";
+            this.PriorityOptionsLabel.Size = new System.Drawing.Size(120, 20);
+            this.PriorityOptionsLabel.TabIndex = 0;
+            this.PriorityOptionsLabel.Text = "Priority Options";
+            // 
+            // DeliveryTimeLabel
+            // 
+            this.DeliveryTimeLabel.AutoSize = true;
+            this.DeliveryTimeLabel.Location = new System.Drawing.Point(3, 55);
+            this.DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            this.DeliveryTimeLabel.Size = new System.Drawing.Size(100, 20);
+            this.DeliveryTimeLabel.TabIndex = 1;
+            this.DeliveryTimeLabel.Text = "Delivery Time";
+            // 
+            // DeliveryTimeComboBox
+            // 
+            this.DeliveryTimeComboBox.FormattingEnabled = true;
+            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(109, 52);
+            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(151, 28);
+            this.DeliveryTimeComboBox.TabIndex = 2;
+            // 
             // OrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -338,13 +397,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.SelectedOrderGroupBox.ResumeLayout(false);
-            this.SelectedOrderGroupBox.PerformLayout();
             this.DeliveryAddressGroupBox.ResumeLayout(false);
             this.OrderItemsGroupBox.ResumeLayout(false);
             this.OrderItemsGroupBox.PerformLayout();
             this.OrdersGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.PriorityOptionssPanel.ResumeLayout(false);
+            this.PriorityOptionssPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -353,13 +415,6 @@
         private BindingSource orderBindingSource;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private GroupBox SelectedOrderGroupBox;
-        private Label StatusLabel;
-        private Label IDLabel;
-        private ComboBox StatusComboBox;
-        private TextBox CreatedTextBox;
-        private Label CreatedLabel;
-        private TextBox IDTextBox;
         private GroupBox DeliveryAddressGroupBox;
         private Controls.AddressControl addressControl;
         private GroupBox OrderItemsGroupBox;
@@ -374,5 +429,17 @@
         private DataGridViewTextBoxColumn strAddress;
         private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
+        private TableLayoutPanel tableLayoutPanel3;
+        private GroupBox groupBox1;
+        private Label StatusLabel;
+        private Label IDLabel;
+        private ComboBox StatusComboBox;
+        private TextBox CreatedTextBox;
+        private Label CreatedLabel;
+        private TextBox IDTextBox;
+        private Panel PriorityOptionssPanel;
+        private ComboBox DeliveryTimeComboBox;
+        private Label DeliveryTimeLabel;
+        private Label PriorityOptionsLabel;
     }
 }
