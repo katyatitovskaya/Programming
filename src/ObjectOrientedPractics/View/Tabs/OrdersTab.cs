@@ -82,6 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Text = Convert.ToString(DataGridView.CurrentRow.Cells[0].Value);
             CreatedTextBox.Text = Convert.ToString(DataGridView.CurrentRow.Cells[1].Value);
             StatusComboBox.SelectedItem = DataGridView.CurrentRow.Cells[5].Value;
+            OrderItemsListBox.Items.Clear();
             for (int i = 0; i < currentOrder.Items.Count; i++)
             {
                 OrderItemsListBox.Items.Add(currentOrder.Items[i].Name);
