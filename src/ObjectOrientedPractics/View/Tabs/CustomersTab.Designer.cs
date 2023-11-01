@@ -159,12 +159,6 @@
             // 
             // AddressControl
             // 
-            address2.Apartment = null;
-            address2.Building = null;
-            address2.City = null;
-            address2.Country = null;
-            address2.Index = 0;
-            address2.Street = null;
             this.AddressControl.Address = address2;
             this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddressControl.Location = new System.Drawing.Point(3, 23);
