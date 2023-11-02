@@ -33,8 +33,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customers = value;
             }
         }
-
+        /// <summary>
+        /// Объект типа <see cref="Order"/>
+        /// </summary>
         Model.Order currentOrder;
+
+        /// <summary>
+        /// Объект типа <see cref="PriorityOrder"/>
+        /// </summary>
         Model.PriorityOrder currentPriorityOrder;
         
         public OrdersTab()
@@ -68,7 +74,6 @@ namespace ObjectOrientedPractics.View.Tabs
         public void UpdateOders()
         {
             _orders.Clear();
-            DataGridView.ClearSelection();
             if (_customers == null) return;
             foreach(var customer in _customers)
             {
@@ -122,8 +127,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 AmountLabel.Text = currentOrder.Amount.ToString();
             }
-
-
         }
 
         /// <summary>
@@ -137,6 +140,9 @@ namespace ObjectOrientedPractics.View.Tabs
             currentPriorityOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
         }
 
+        /// <summary>
+        /// Сохраняет измененное время доставки заказа.
+        /// </summary>
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentPriorityOrder.DeliveryTime = DeliveryTimeComboBox.SelectedItem.ToString();

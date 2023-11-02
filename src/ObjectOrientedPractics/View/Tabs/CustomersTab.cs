@@ -131,6 +131,9 @@ namespace ObjectOrientedPractics.View.Tabs
             IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
         }
 
+        /// <summary>
+        /// Сохраняет, является ли покупатель приоритетным
+        /// </summary>
         private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if(CustomersListBox.SelectedIndex != -1)
