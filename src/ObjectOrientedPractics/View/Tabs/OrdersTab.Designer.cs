@@ -329,6 +329,7 @@
             this.DataGridView.Location = new System.Drawing.Point(3, 23);
             this.DataGridView.MultiSelect = false;
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.ReadOnly = true;
             this.DataGridView.RowHeadersWidth = 51;
             this.DataGridView.RowTemplate.Height = 29;
             this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -360,6 +361,7 @@
             this.CustomerName.HeaderText = "Customer FullName";
             this.CustomerName.MinimumWidth = 6;
             this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
             this.CustomerName.Width = 125;
             // 
             // strAddress
@@ -386,6 +388,7 @@
             this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
             this.orderStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            this.orderStatusDataGridViewTextBoxColumn.ReadOnly = true;
             this.orderStatusDataGridViewTextBoxColumn.Width = 125;
             // 
             // OrdersTab

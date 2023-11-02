@@ -133,14 +133,18 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (IsPriorityCheckBox.Checked)
+            if(CustomersListBox.SelectedIndex != -1)
             {
-                _currentCustomer.IsPriority = true;
+                if (IsPriorityCheckBox.Checked)
+                {
+                    _currentCustomer.IsPriority = true;
+                }
+                else
+                {
+                    _currentCustomer.IsPriority = false;
+                }
             }
-            else
-            {
-                _currentCustomer.IsPriority = false;
-            }
+            
         }
     }
 }

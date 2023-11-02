@@ -52,6 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 "19:00-21:00" };
             DeliveryTimeComboBox.Items.AddRange(deliveryTime);
             DeliveryTimeComboBox.SelectedIndex = -1;
+            PriorityOptionsPanel.Visible = false;
 
         }
         
@@ -67,7 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public void UpdateOders()
         {
             _orders.Clear();
-            
+            DataGridView.ClearSelection();
             if (_customers == null) return;
             foreach(var customer in _customers)
             {
@@ -102,8 +103,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     OrderItemsListBox.Items.Add(currentPriorityOrder.Items[i].Name);
                 }
                 AmountLabel.Text = currentPriorityOrder.Amount.ToString();
-                DeliveryTimeComboBox.SelectedItem = currentPriorityOrder.DeliveryTime.ToString();
-
+                DeliveryTimeComboBox.SelectedItem = 
+                    currentPriorityOrder.DeliveryTime.ToString();
             }
             else
             {
@@ -130,9 +131,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
+            currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
             currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
-            PriorityOrder currentPriorityOrder = (PriorityOrder)_orders[DataGridView.CurrentCell.RowIndex];
+            currentPriorityOrder = (PriorityOrder)_orders[DataGridView.CurrentCell.RowIndex];
             currentPriorityOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
         }
 

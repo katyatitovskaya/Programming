@@ -64,6 +64,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Cart Cart { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает являет ли покупатель приоритетным. 
+        /// </summary>
         public bool IsPriority { get;set; }
 
         /// <summary>
