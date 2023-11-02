@@ -85,6 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+
             Order checkedOrder = _orders[DataGridView.CurrentCell.RowIndex];
             if(checkedOrder.GetType() == typeof(PriorityOrder))
             {
@@ -129,8 +130,10 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataGridView.CurrentRow.Cells[5].Value = (OrderStatus)StatusComboBox.SelectedItem;
+            Order currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
             currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
+            PriorityOrder currentPriorityOrder = (PriorityOrder)_orders[DataGridView.CurrentCell.RowIndex];
+            currentPriorityOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
         }
 
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
