@@ -51,6 +51,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 "15:00-17:00","17:00-19:00",
                 "19:00-21:00" };
             DeliveryTimeComboBox.Items.AddRange(deliveryTime);
+            DeliveryTimeComboBox.SelectedIndex = -1;
 
         }
         
