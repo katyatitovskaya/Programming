@@ -135,9 +135,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentOrder = _orders[DataGridView.CurrentCell.RowIndex];
+            
             currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
-            currentPriorityOrder = (PriorityOrder)_orders[DataGridView.CurrentCell.RowIndex];
-            currentPriorityOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
+            
         }
 
         /// <summary>

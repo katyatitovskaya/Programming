@@ -233,6 +233,7 @@
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(151, 28);
             this.StatusComboBox.TabIndex = 27;
+            this.StatusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
             // CreatedTextBox
             // 
