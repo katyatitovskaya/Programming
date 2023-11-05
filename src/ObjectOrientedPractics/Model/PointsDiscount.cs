@@ -9,17 +9,20 @@ namespace ObjectOrientedPractics.Model
     public class PointsDiscount
     {
         private int _points;
+
         public int Points
         {
             get => _points;
             private set
             {
-                if(value > 0)
+                if (value >= 0)
                 {
                     _points = value;
                 }
             }
         }
+
+        public double Total { get; set; } 
 
         public string Info
         {
@@ -31,19 +34,7 @@ namespace ObjectOrientedPractics.Model
 
         public double Calculate(List<Item> items)
         {
-            double total = 0;
-            if (items == null || items.Count == 0)
-            {
-                total = 0.0;
-            }
-            else
-            {
-                for (int i = 0; i < items.Count; i++)
-                {
-                    total = total + items[i].Price;
-                }
-            }
-            int total30 = (int)total / 100 * 30;
+            int total30 = (int)Total / 100 * 30;
             if(total30 > Points)
             {
                 return Points;
@@ -56,39 +47,15 @@ namespace ObjectOrientedPractics.Model
 
         public double Apply(List<Item> items)
         {
-            double total = 0;
-            if (items == null || items.Count == 0)
-            {
-                total = 0.0;
-            }
-            else
-            {
-                for (int i = 0; i < items.Count; i++)
-                {
-                    total = total + items[i].Price;
-                }
-            }
-            total = total - Calculate(items);
+            Total = Total - Calculate(items);
             Points = Points - (int)Calculate(items);
             return Calculate(items);
         }
 
         public void Update(List<Item> items)
         {
-            double total = 0;
-            if (items == null || items.Count == 0)
-            {
-                total = 0.0;
-            }
-            else
-            {
-                for (int i = 0; i < items.Count; i++)
-                {
-                    total = total + items[i].Price;
-                }
-            }
-            Points = Points + (int)(total / 10);
-            if (total % 10 != 0)
+            Points = Points + (int)(Total / 10);
+            if (Total % 10 != 0)
                 Points = Points + 1;
         }
 

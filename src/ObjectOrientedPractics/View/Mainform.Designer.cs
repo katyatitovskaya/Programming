@@ -38,11 +38,14 @@
             this.cartsTab = new ObjectOrientedPractics.View.Tabs.CartsTab();
             this.OrdersTabPage = new System.Windows.Forms.TabPage();
             this.ordersTab = new ObjectOrientedPractics.View.Tabs.OrdersTab();
+            this.DiscountsTabPage = new System.Windows.Forms.TabPage();
+            this.discountsTab1 = new ObjectOrientedPractics.View.Tabs.DiscountsTab();
             this.tabPage2.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.CartsTabPage.SuspendLayout();
             this.OrdersTabPage.SuspendLayout();
+            this.DiscountsTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -91,6 +94,7 @@
             this.TabControl.Controls.Add(this.tabPage2);
             this.TabControl.Controls.Add(this.CartsTabPage);
             this.TabControl.Controls.Add(this.OrdersTabPage);
+            this.TabControl.Controls.Add(this.DiscountsTabPage);
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
@@ -140,6 +144,26 @@
             this.ordersTab.Size = new System.Drawing.Size(1218, 614);
             this.ordersTab.TabIndex = 0;
             // 
+            // DiscountsTabPage
+            // 
+            this.DiscountsTabPage.Controls.Add(this.discountsTab1);
+            this.DiscountsTabPage.Location = new System.Drawing.Point(4, 29);
+            this.DiscountsTabPage.Name = "DiscountsTabPage";
+            this.DiscountsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.DiscountsTabPage.Size = new System.Drawing.Size(1224, 620);
+            this.DiscountsTabPage.TabIndex = 4;
+            this.DiscountsTabPage.Text = "tabPage1";
+            this.DiscountsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // discountsTab1
+            // 
+            this.discountsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.discountsTab1.Items = null;
+            this.discountsTab1.Location = new System.Drawing.Point(3, 3);
+            this.discountsTab1.Name = "discountsTab1";
+            this.discountsTab1.Size = new System.Drawing.Size(1218, 614);
+            this.discountsTab1.TabIndex = 0;
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -155,6 +179,7 @@
             this.TabControl.ResumeLayout(false);
             this.CartsTabPage.ResumeLayout(false);
             this.OrdersTabPage.ResumeLayout(false);
+            this.DiscountsTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -170,5 +195,7 @@
         private View.Tabs.CartsTab cartsTab;
         private TabPage OrdersTabPage;
         private View.Tabs.OrdersTab ordersTab;
+        private TabPage DiscountsTabPage;
+        private View.Tabs.DiscountsTab discountsTab1;
     }
 }
