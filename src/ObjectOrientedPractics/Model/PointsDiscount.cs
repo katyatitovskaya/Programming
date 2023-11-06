@@ -34,6 +34,8 @@ namespace ObjectOrientedPractics.Model
 
         public double Calculate(List<Item> items)
         {
+            if(items==null || items.Count == 0) return 0;
+            
             int total30 = (int)Total / 100 * 30;
             if(total30 > Points)
             {
