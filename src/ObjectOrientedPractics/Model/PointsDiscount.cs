@@ -22,8 +22,6 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public double Total { get; set; } 
-
         public string Info
         {
             get
@@ -34,30 +32,35 @@ namespace ObjectOrientedPractics.Model
 
         public double Calculate(List<Item> items)
         {
-            if(items==null || items.Count == 0) return 0;
-            
-            int total30 = (int)Total / 100 * 30;
-            if(total30 > Points)
+            double total = 0;
+            foreach (Item item in items)
             {
-                return Points;
+                total += item.Price;
             }
-            else
+            double total30 = total * 0.3;
+            if (Points > total30)
             {
-                return total30;
+                return Math.Ceiling(total30);
             }
+            return Points;
         }
 
         public double Apply(List<Item> items)
         {
-            Total = Total - Calculate(items);
-            Points = Points - (int)Calculate(items);
-            return Calculate(items);
+            double discount = Calculate(items);
+            Points -= Convert.ToInt32(discount);
+            return discount;
         }
 
         public void Update(List<Item> items)
         {
-            Points = Points + (int)(Total / 10);
-            if (Total % 10 != 0)
+            double total = 0;
+            foreach(Item item in items)
+            {
+                total += item.Price;
+            }
+            Points = Points + (int)(total / 10);
+            if (total % 10 != 0)
                 Points = Points + 1;
         }
 

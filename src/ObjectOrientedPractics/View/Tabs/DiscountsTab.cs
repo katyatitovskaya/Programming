@@ -23,36 +23,33 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items = value;
             }
-                
         }
+
         PointsDiscount discount = new PointsDiscount();
         //PercentDiscount discount = new PercentDiscount();
         public DiscountsTab()
         {
             InitializeComponent();
             //discount.Category = Category.Clothes;
-            discount.Total = 0;
+            
+            DiscountAmountLabel.Text = discount.Points.ToString();
+            //DiscountAmountLabel.Text = discount.Percent.ToString();
+            InfoLabel.Text = discount.Info;
+            double total = 0; 
             if(Items!= null)
             {
                 foreach (Item item in Items)
                 {
-                    discount.Total += item.Price;
+                    total += item.Price;
                 }
+
             }
-            
 
-            ProductsAmountLabel.Text = discount.Total.ToString();
-            DiscountAmountLabel.Text = discount.Points.ToString();
-            //DiscountAmountLabel.Text = discount.Percent.ToString();
-            InfoLabel.Text = discount.Info;
-
-            
         }
         
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             discount.Calculate(Items);
-            ProductsAmountLabel.Text = discount.Total.ToString();
             DiscountAmountLabel.Text = discount.Points.ToString();
             //DiscountAmountLabel.Text = discount.Percent.ToString();
         }
@@ -60,7 +57,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             discount.Apply(Items);
-            ProductsAmountLabel.Text = discount.Total.ToString();
             DiscountAmountLabel.Text = discount.Points.ToString();
             //DiscountAmountLabel.Text = discount.Percent.ToString();
         }
@@ -68,7 +64,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             discount.Update(Items);
-            ProductsAmountLabel.Text = discount.Total.ToString();
             DiscountAmountLabel.Text = discount.Points.ToString();
             //DiscountAmountLabel.Text = discount.Percent.ToString();
             InfoLabel.Text = discount.Info;
