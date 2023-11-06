@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class DiscountsTab : UserControl
     {
-        private List<Item> _items = new List<Item>();
+        private List<Item> _items;
         
         public List<Item> Items 
         {
@@ -34,7 +35,8 @@ namespace ObjectOrientedPractics.View.Tabs
             //DiscountAmountLabel.Text = discount.Points.ToString();
             DiscountAmountLabel.Text = discount.Percent.ToString();
             InfoLabel.Text = discount.Info;
-            discount.Total = 3750;
+
+            
         }
         
         private void CalculateButton_Click(object sender, EventArgs e)

@@ -32,10 +32,6 @@ namespace ObjectOrientedPractics
             {
                 ordersTab.UpdateOders();
             }
-            if(TabControl.SelectedIndex == 4)
-            {
-                discountsTab1.RefreshItems(_store.Items);
-            }
         }
 
     }

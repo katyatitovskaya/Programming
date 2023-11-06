@@ -8,9 +8,9 @@ namespace ObjectOrientedPractics.Model
 {
     public class PercentDiscount
     {
-        private int _percent;
+        private int _percent=1;
 
-        public double Total { get; set; }
+        public double Total { get; private set; }
         public List<Item> Items { get; set; }
         public Category Category { get; set; }
         public int Percent
@@ -35,16 +35,18 @@ namespace ObjectOrientedPractics.Model
 
         public double Calculate(List<Item> items)
         {
-            if(items.Count == 0 || items==null) return 0;
+            Total= 0;
+            if(items.Count == 0 || items==null) return Percent;
             int counter = 0;
             for(int i =0; i<items.Count; i++)
             {    
                 if (items[i].Category== Category)
                 {
                     counter++;
+                    Total += items[i].Price;
                 }
             }
-            if (counter == 0) return 0;
+            if (counter == 0) return Percent;
             else
             {
                 return Percent;
@@ -54,17 +56,19 @@ namespace ObjectOrientedPractics.Model
 
         public double Apply(List<Item> items)
         {
-            if (items.Count == 0 || items == null) return 0;
+            Total = 0;
+            if (items.Count == 0 || items == null) return Percent;
             int counter = 0;
             for (int i = 0; i < items.Count; i++)
             {
                 if (items[i].Category == Category)
                 {
                     counter++;
-                    items[i].Price =- items[i].Price / 100 * Percent;
+                    items[i].Price -= (items[i].Price / 100 * Percent);
+                    Total += items[i].Price;
                 }
             }
-            if (counter == 0) return 0;
+            if (counter == 0) return Percent;
             return Percent;
             
         }
@@ -73,7 +77,7 @@ namespace ObjectOrientedPractics.Model
         {
             if (Total > 1000 && Percent < 10)
             {
-                Percent = +1;
+                Percent += 1;
             }
         }
     }
