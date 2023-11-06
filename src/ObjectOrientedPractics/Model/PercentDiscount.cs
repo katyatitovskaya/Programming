@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class PercentDiscount
+    public class PercentDiscount: IDiscount
     {
         private int _percent=1;
 

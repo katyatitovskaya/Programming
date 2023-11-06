@@ -35,15 +35,7 @@ namespace ObjectOrientedPractics.View.Tabs
             DiscountAmountLabel.Text = discount.Points.ToString();
             //DiscountAmountLabel.Text = discount.Percent.ToString();
             InfoLabel.Text = discount.Info;
-            double total = 0; 
-            if(Items!= null)
-            {
-                foreach (Item item in Items)
-                {
-                    total += item.Price;
-                }
-
-            }
+            
 
         }
         
