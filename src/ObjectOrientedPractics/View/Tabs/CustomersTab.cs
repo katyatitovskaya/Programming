@@ -129,6 +129,10 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
             AddressControl.Address = _currentCustomer.Address;
             IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            foreach(var discount in _currentCustomer.Discounts)
+            {
+                DiscountsListBox.Items.Add(discount.Info);
+            }
         }
 
         /// <summary>
@@ -148,6 +152,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
             
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            AddDiscount addDiscountForm = new AddDiscount();
+            addDiscountForm.StartPosition = FormStartPosition.Manual;
+            addDiscountForm.Show();
         }
     }
 }

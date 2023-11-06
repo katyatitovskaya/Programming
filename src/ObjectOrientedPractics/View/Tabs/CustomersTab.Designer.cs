@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Address address2 = new ObjectOrientedPractics.Model.Address();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RemoveDiscountButton = new System.Windows.Forms.Button();
+            this.AddDiscountButton = new System.Windows.Forms.Button();
+            this.DiscountsListBox = new System.Windows.Forms.ListBox();
+            this.DiscountsLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerGroupBox = new System.Windows.Forms.GroupBox();
+            this.IsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.FullNameLabel = new System.Windows.Forms.Label();
@@ -44,9 +48,9 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.RemoveCustomerButton = new System.Windows.Forms.Button();
             this.AddCustomerButton = new System.Windows.Forms.Button();
-            this.IsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SelectedCustomerGroupBox.SuspendLayout();
             this.AddressGroupBox.SuspendLayout();
             this.CustomersGroupBox.SuspendLayout();
@@ -80,18 +84,65 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.48815F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.60664F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(586, 633);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.RemoveDiscountButton);
+            this.panel1.Controls.Add(this.AddDiscountButton);
+            this.panel1.Controls.Add(this.DiscountsListBox);
+            this.panel1.Controls.Add(this.DiscountsLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 382);
+            this.panel1.Location = new System.Drawing.Point(3, 302);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(580, 248);
+            this.panel1.Size = new System.Drawing.Size(580, 328);
             this.panel1.TabIndex = 2;
+            // 
+            // RemoveDiscountButton
+            // 
+            this.RemoveDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(480, 61);
+            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(94, 29);
+            this.RemoveDiscountButton.TabIndex = 3;
+            this.RemoveDiscountButton.Text = "Remove";
+            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            // 
+            // AddDiscountButton
+            // 
+            this.AddDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddDiscountButton.Location = new System.Drawing.Point(480, 26);
+            this.AddDiscountButton.Name = "AddDiscountButton";
+            this.AddDiscountButton.Size = new System.Drawing.Size(94, 29);
+            this.AddDiscountButton.TabIndex = 2;
+            this.AddDiscountButton.Text = "Add";
+            this.AddDiscountButton.UseVisualStyleBackColor = true;
+            this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
+            // 
+            // DiscountsListBox
+            // 
+            this.DiscountsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountsListBox.FormattingEnabled = true;
+            this.DiscountsListBox.ItemHeight = 20;
+            this.DiscountsListBox.Location = new System.Drawing.Point(6, 26);
+            this.DiscountsListBox.Name = "DiscountsListBox";
+            this.DiscountsListBox.Size = new System.Drawing.Size(468, 104);
+            this.DiscountsListBox.TabIndex = 1;
+            // 
+            // DiscountsLabel
+            // 
+            this.DiscountsLabel.AutoSize = true;
+            this.DiscountsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DiscountsLabel.Location = new System.Drawing.Point(6, 3);
+            this.DiscountsLabel.Name = "DiscountsLabel";
+            this.DiscountsLabel.Size = new System.Drawing.Size(78, 20);
+            this.DiscountsLabel.TabIndex = 0;
+            this.DiscountsLabel.Text = "Discounts";
             // 
             // SelectedCustomerGroupBox
             // 
@@ -107,6 +158,17 @@
             this.SelectedCustomerGroupBox.TabIndex = 0;
             this.SelectedCustomerGroupBox.TabStop = false;
             this.SelectedCustomerGroupBox.Text = "Selected Customer";
+            // 
+            // IsPriorityCheckBox
+            // 
+            this.IsPriorityCheckBox.AutoSize = true;
+            this.IsPriorityCheckBox.Location = new System.Drawing.Point(6, 92);
+            this.IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            this.IsPriorityCheckBox.Size = new System.Drawing.Size(92, 24);
+            this.IsPriorityCheckBox.TabIndex = 5;
+            this.IsPriorityCheckBox.Text = "Is Priority";
+            this.IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            this.IsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.IsPriorityCheckBox_CheckedChanged);
             // 
             // CustomerNameTextBox
             // 
@@ -152,18 +214,18 @@
             this.AddressGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddressGroupBox.Location = new System.Drawing.Point(3, 129);
             this.AddressGroupBox.Name = "AddressGroupBox";
-            this.AddressGroupBox.Size = new System.Drawing.Size(580, 247);
+            this.AddressGroupBox.Size = new System.Drawing.Size(580, 167);
             this.AddressGroupBox.TabIndex = 3;
             this.AddressGroupBox.TabStop = false;
             this.AddressGroupBox.Text = "Delivery Address:";
             // 
             // AddressControl
             // 
-            this.AddressControl.Address = address2;
+            this.AddressControl.Address = null;
             this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddressControl.Location = new System.Drawing.Point(3, 23);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(574, 221);
+            this.AddressControl.Size = new System.Drawing.Size(574, 141);
             this.AddressControl.TabIndex = 0;
             // 
             // CustomersGroupBox
@@ -229,17 +291,6 @@
             this.AddCustomerButton.UseVisualStyleBackColor = true;
             this.AddCustomerButton.Click += new System.EventHandler(this.AddCustomerButton_Click);
             // 
-            // IsPriorityCheckBox
-            // 
-            this.IsPriorityCheckBox.AutoSize = true;
-            this.IsPriorityCheckBox.Location = new System.Drawing.Point(6, 92);
-            this.IsPriorityCheckBox.Name = "IsPriorityCheckBox";
-            this.IsPriorityCheckBox.Size = new System.Drawing.Size(92, 24);
-            this.IsPriorityCheckBox.TabIndex = 5;
-            this.IsPriorityCheckBox.Text = "Is Priority";
-            this.IsPriorityCheckBox.UseVisualStyleBackColor = true;
-            this.IsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.IsPriorityCheckBox_CheckedChanged);
-            // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -249,6 +300,8 @@
             this.Size = new System.Drawing.Size(970, 639);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.SelectedCustomerGroupBox.ResumeLayout(false);
             this.SelectedCustomerGroupBox.PerformLayout();
             this.AddressGroupBox.ResumeLayout(false);
@@ -276,5 +329,9 @@
         private GroupBox AddressGroupBox;
         private Controls.AddressControl AddressControl;
         private CheckBox IsPriorityCheckBox;
+        private Button RemoveDiscountButton;
+        private Button AddDiscountButton;
+        private ListBox DiscountsListBox;
+        private Label DiscountsLabel;
     }
 }
