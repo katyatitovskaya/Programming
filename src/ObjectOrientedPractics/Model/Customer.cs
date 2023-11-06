@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -68,7 +70,8 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает являет ли покупатель приоритетным. 
         /// </summary>
         public bool IsPriority { get;set; }
-
+        
+        public List<IDiscount> Discounts { get; set; }
         /// <summary>
         /// Создает объект класса <see cref="Customer"/>.  
         /// </summary>
@@ -91,6 +94,7 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart(new List<Item>());
             Orders = new List<Order>();
             IsPriority = false;
+            Discounts = new List<IDiscount>() { new PointsDiscount() };
         }
     }
 }

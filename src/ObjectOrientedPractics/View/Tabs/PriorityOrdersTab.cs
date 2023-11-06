@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class PriorityOrdersTab : UserControl
     {
-        private Model.PriorityOrder priorityOrder = new Model.PriorityOrder();
+        private PriorityOrder priorityOrder = new PriorityOrder();
         
 
         private List<Model.Item> _items;
@@ -99,7 +100,7 @@ namespace ObjectOrientedPractics.View.Tabs
             priorityOrder.Address = null;
             priorityOrder = null;
             OrderItemsListBox.Items.Clear();
-            Model.PriorityOrder newPriorityOrder = new Model.PriorityOrder();
+            PriorityOrder newPriorityOrder = new PriorityOrder();
             priorityOrder = newPriorityOrder;
             AmountLabel.Text = priorityOrder.Amount.ToString();
             IDTextBox.Text = priorityOrder.Id.ToString();

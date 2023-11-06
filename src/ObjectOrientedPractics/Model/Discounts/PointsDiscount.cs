@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PointsDiscount: IDiscount
+    public class PointsDiscount : IDiscount
     {
         private int _points;
 
@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         public void Update(List<Item> items)
         {
             double total = 0;
-            foreach(Item item in items)
+            foreach (Item item in items)
             {
                 total += item.Price;
             }

@@ -1,4 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,9 +22,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Model.Customer> _customers;
 
         /// <summary>
-        /// Список объектов типа <see cref="Model.Order"/>.
+        /// Список объектов типа <see cref="Model.Orders.Order"/>.
         /// </summary>
-        private List<Model.Order> _orders = new List<Order>();
+        private List<Order> _orders = new List<Order>();
         public List<Model.Customer> Customers
         {
             get => _customers;
@@ -36,12 +36,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Объект типа <see cref="Order"/>
         /// </summary>
-        Model.Order currentOrder;
+        Order currentOrder;
 
         /// <summary>
         /// Объект типа <see cref="PriorityOrder"/>
         /// </summary>
-        Model.PriorityOrder currentPriorityOrder;
+        PriorityOrder currentPriorityOrder;
         
         public OrdersTab()
         {

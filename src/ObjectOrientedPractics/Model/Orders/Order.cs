@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Хранит информацию о заказе.
@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.Model
         /// Адрес.
         /// </summary>
         private Address _address;
-       
+
         /// <summary>
         /// Возвращает дату создания заказа. 
         /// </summary>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -128,14 +129,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (CurrentCustomer.IsPriority == true)
                 {
                     CurrentCustomer.Orders.Add(
-                        new Model.PriorityOrder(CurrentCustomer.FullName,
+                        new PriorityOrder(CurrentCustomer.FullName,
                         CurrentCustomer.Address, 
                         CurrentCustomer.Cart.Items, ""));
                 }
                 else
                 {
                     CurrentCustomer.Orders.Add(
-                        new Model.Order(CurrentCustomer.FullName,
+                        new Order(CurrentCustomer.FullName,
                         CurrentCustomer.Address,
                         CurrentCustomer.Cart.Items));
                 }

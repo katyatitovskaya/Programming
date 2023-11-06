@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount: IDiscount
+    public class PercentDiscount : IDiscount
     {
-        private int _percent=1;
+        private int _percent = 1;
 
         public double Total { get; private set; }
         public List<Item> Items { get; set; }
@@ -27,7 +27,7 @@ namespace ObjectOrientedPractics.Model
 
         public string Info
         {
-            get 
+            get
             {
                 return $"Процентная {Category} - {Percent}% ";
             }
@@ -35,12 +35,12 @@ namespace ObjectOrientedPractics.Model
 
         public double Calculate(List<Item> items)
         {
-            Total= 0;
-            if(items.Count == 0 || items==null) return Percent;
+            Total = 0;
+            if (items.Count == 0 || items == null) return Percent;
             int counter = 0;
-            for(int i =0; i<items.Count; i++)
-            {    
-                if (items[i].Category== Category)
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Category == Category)
                 {
                     counter++;
                     Total += items[i].Price;
@@ -64,13 +64,13 @@ namespace ObjectOrientedPractics.Model
                 if (items[i].Category == Category)
                 {
                     counter++;
-                    items[i].Price -= (items[i].Price / 100 * Percent);
+                    items[i].Price -= items[i].Price / 100 * Percent;
                     Total += items[i].Price;
                 }
             }
             if (counter == 0) return Percent;
             return Percent;
-            
+
         }
 
         public void Update(List<Item> items)
