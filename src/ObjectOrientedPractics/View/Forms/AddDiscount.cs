@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.View.Tabs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +15,16 @@ namespace ObjectOrientedPractics.View
 {
     public partial class AddDiscount : Form
     {
+        private Customer _currentCustomer;
+
+        public Customer CurrentCustomer
+        {
+            get { return _currentCustomer; }
+            set
+            {
+                _currentCustomer = value;
+            }
+        }
         public AddDiscount()
         {
             InitializeComponent();
@@ -20,6 +33,21 @@ namespace ObjectOrientedPractics.View
             {
                 CategoryComboBox.Items.Add(category);
             }
+            CategoryComboBox.SelectedIndex = 0;
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            PercentDiscount discount = new PercentDiscount();
+            discount.Category = (Category)CategoryComboBox.SelectedItem;
+            _currentCustomer.Discounts.Add(discount);
+            this.Close();
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

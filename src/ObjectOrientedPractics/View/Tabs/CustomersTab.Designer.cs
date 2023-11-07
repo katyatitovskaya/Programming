@@ -110,6 +110,7 @@
             this.RemoveDiscountButton.TabIndex = 3;
             this.RemoveDiscountButton.Text = "Remove";
             this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
             // 
             // AddDiscountButton
             // 

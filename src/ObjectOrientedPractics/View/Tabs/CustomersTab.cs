@@ -35,10 +35,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Объект типа <see cref="Model.Customer"/>.
         /// </summary>
-        private Model.Customer _currentCustomer;
+        private Customer _currentCustomer;
+
+        
         public CustomersTab()
         {
             InitializeComponent();
+            UpdateInfo();
         }
 
         /// <summary>
@@ -49,6 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if(CustomersListBox.SelectedIndex != -1)
             {
                 _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+              
                 UpdateInfo();
             }
             else
@@ -118,6 +122,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerIDTextBox.Clear();
             CustomerNameTextBox.Clear();
             AddressControl.Address = null;
+            DiscountsListBox.Items.Clear();
         }
 
         /// <summary>
@@ -129,6 +134,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerIDTextBox.Text = _currentCustomer.Id.ToString();
             AddressControl.Address = _currentCustomer.Address;
             IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            DiscountsListBox.Items.Clear();
             foreach(var discount in _currentCustomer.Discounts)
             {
                 DiscountsListBox.Items.Add(discount.Info);
@@ -156,9 +162,23 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
-            AddDiscount addDiscountForm = new AddDiscount();
-            addDiscountForm.StartPosition = FormStartPosition.Manual;
-            addDiscountForm.Show();
+            if(CustomersListBox.SelectedIndex != -1)
+            {
+                AddDiscount addDiscountForm = new AddDiscount();
+                addDiscountForm.CurrentCustomer = _currentCustomer;
+                addDiscountForm.Show();
+            }
+            
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            int value = DiscountsListBox.SelectedIndex;
+            if(value!= -1 && value != 0)
+            {
+                _currentCustomer.Discounts.RemoveAt(value);
+                UpdateInfo();
+            }
         }
     }
 }
