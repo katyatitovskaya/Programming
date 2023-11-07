@@ -65,6 +65,15 @@ namespace ObjectOrientedPractics.View.Tabs
             CartListBox.Items.Clear();
             if (CustomersComboBox.SelectedIndex != -1)
             {
+                Model.Customer currentCustomer = Customers[CustomersComboBox.SelectedIndex];
+                DiscountsCheckedListBox.Items.Clear();
+                int i = 0;
+                foreach(var discount in currentCustomer.Discounts)
+                {
+                    DiscountsCheckedListBox.Items.Add(discount.Info);
+                    DiscountsCheckedListBox.SetItemChecked(i, true);
+                    i++;
+                }
                 UpdateCartListBox();
             }
             else
@@ -143,6 +152,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.Clear();
                 CurrentCustomer.Cart.Items = new List<Model.Item>();
                 AmountLabel.Text = "0";
+                UpdateDiscount();
                 
             }
         }
@@ -160,6 +170,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.RemoveAt(value);
                 CartListBox.SelectedIndex = value - 1;
                 AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
+                UpdateDiscount();
 
             }
         }
@@ -173,6 +184,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CartListBox.Items.Clear();
                 CurrentCustomer.Cart.Items.Clear();
+                UpdateDiscount();
             }
         }
 
@@ -186,8 +198,32 @@ namespace ObjectOrientedPractics.View.Tabs
                 CurrentCustomer.Cart.Items.Add(_items[CartItemsListBox.SelectedIndex]);
                 CartListBox.Items.Add(_items[CartItemsListBox.SelectedIndex].Name);
                 AmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
+                UpdateDiscount();
             }
         }
 
+        private void CartItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiscount();
+        }
+
+        private void UpdateDiscount()
+        {
+            double discountAmount = 0;
+            foreach (var discount in CurrentCustomer.Discounts)
+            {
+                if(DiscountsCheckedListBox.CheckedItems.Contains(discount))
+                {
+                    discountAmount += discount.Calculate(CurrentCustomer.Cart.Items);
+                }
+                
+            }
+            DiscountAmountLabel.Text = discountAmount.ToString();
+        }
     }
 }

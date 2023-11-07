@@ -36,7 +36,8 @@ namespace ObjectOrientedPractics.Model.Discounts
         public double Calculate(List<Item> items)
         {
             Total = 0;
-            if (items.Count == 0 || items == null) return Percent;
+            double discountAmount = 0;
+            if (items.Count == 0 || items == null) return 0;
             int counter = 0;
             for (int i = 0; i < items.Count; i++)
             {
@@ -44,12 +45,13 @@ namespace ObjectOrientedPractics.Model.Discounts
                 {
                     counter++;
                     Total += items[i].Price;
+                    discountAmount += items[i].Price * Percent / 100;
                 }
             }
-            if (counter == 0) return Percent;
+            if (counter == 0) return 0;
             else
             {
-                return Percent;
+                return discountAmount;
             }
         }
 

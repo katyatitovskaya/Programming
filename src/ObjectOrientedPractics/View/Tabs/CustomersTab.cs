@@ -41,7 +41,6 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            UpdateInfo();
         }
 
         /// <summary>
@@ -52,7 +51,6 @@ namespace ObjectOrientedPractics.View.Tabs
             if(CustomersListBox.SelectedIndex != -1)
             {
                 _currentCustomer = _customers[CustomersListBox.SelectedIndex];
-              
                 UpdateInfo();
             }
             else
