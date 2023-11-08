@@ -60,6 +60,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.strAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -74,7 +75,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // orderBindingSource
             // 
-            this.orderBindingSource.DataSource = typeof(Order);
+            this.orderBindingSource.DataSource = typeof(ObjectOrientedPractics.Model.Orders.Order);
             // 
             // tableLayoutPanel1
             // 
@@ -326,7 +327,8 @@ namespace ObjectOrientedPractics.View.Tabs
             this.CustomerName,
             this.strAddress,
             this.amountDataGridViewTextBoxColumn,
-            this.orderStatusDataGridViewTextBoxColumn});
+            this.orderStatusDataGridViewTextBoxColumn,
+            this.Total});
             this.DataGridView.DataSource = this.orderBindingSource;
             this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView.Location = new System.Drawing.Point(3, 23);
@@ -394,6 +396,15 @@ namespace ObjectOrientedPractics.View.Tabs
             this.orderStatusDataGridViewTextBoxColumn.ReadOnly = true;
             this.orderStatusDataGridViewTextBoxColumn.Width = 125;
             // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 125;
+            // 
             // OrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -449,5 +460,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private ComboBox DeliveryTimeComboBox;
         private Label DeliveryTimeLabel;
         private Label PriorityOptionsLabel;
+        private DataGridViewTextBoxColumn Total;
     }
 }

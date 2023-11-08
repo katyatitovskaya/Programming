@@ -17,8 +17,6 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         private Address _address;
 
-        private double _total;
-
         /// <summary>
         /// Возвращает дату создания заказа. 
         /// </summary>
@@ -95,11 +93,7 @@ namespace ObjectOrientedPractics.Model.Orders
 
         public double Total
         {
-            get => _total; 
-            set
-            {
-                _total = Amount - DiscountAmount;
-            }
+            get { return Amount - DiscountAmount; }
         }
 
         /// <summary>
