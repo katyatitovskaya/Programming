@@ -141,6 +141,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         new PriorityOrder(CurrentCustomer.FullName,
                         CurrentCustomer.Address, 
                         CurrentCustomer.Cart.Items, ""));
+                    
                 }
                 else
                 {
@@ -212,18 +213,21 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateDiscount();
         }
 
-        private void UpdateDiscount()
+        public void UpdateDiscount()
         {
             double discountAmount = 0;
-            foreach (var discount in CurrentCustomer.Discounts)
+            for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
             {
-                if(DiscountsCheckedListBox.CheckedItems.Contains(discount))
+                if (DiscountsCheckedListBox.GetItemChecked(i))
                 {
-                    discountAmount += discount.Calculate(CurrentCustomer.Cart.Items);
+                    discountAmount += CurrentCustomer.Discounts[i].Calculate(CurrentCustomer.Cart.Items);
                 }
-                
             }
             DiscountAmountLabel.Text = discountAmount.ToString();
+            TotalLabel.Text = Convert.ToString(CurrentCustomer.Cart.Amount - discountAmount);
+            (CurrentCustomer.Orders.Last()).DiscountAmount = Convert.ToDouble(DiscountAmountLabel.Text);
+
+            
         }
     }
 }

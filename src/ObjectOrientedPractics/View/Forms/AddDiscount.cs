@@ -42,7 +42,6 @@ namespace ObjectOrientedPractics.View
             discount.Category = (Category)CategoryComboBox.SelectedItem;
             _currentCustomer.Discounts.Add(discount);
             this.Close();
-
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

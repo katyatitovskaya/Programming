@@ -17,6 +17,8 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         private Address _address;
 
+        private double _total;
+
         /// <summary>
         /// Возвращает дату создания заказа. 
         /// </summary>
@@ -88,6 +90,17 @@ namespace ObjectOrientedPractics.Model.Orders
         /// Возвращает и задает статус заказа. 
         /// </summary>
         public OrderStatus OrderStatus { get; set; }
+
+        public double DiscountAmount { get; set; }  
+
+        public double Total
+        {
+            get => _total; 
+            set
+            {
+                _total = Amount - DiscountAmount;
+            }
+        }
 
         /// <summary>
         /// Создает объект класса <see cref="Order"/>.
