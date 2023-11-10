@@ -6,13 +6,34 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
+    /// <summary>
+    /// Хранит информацию о процентной скидке. 
+    /// </summary>
     public class PercentDiscount : IDiscount
     {
+        /// <summary>
+        /// Процент. 
+        /// </summary>
         private int _percent = 1;
 
+        /// <summary>
+        /// Возвращает и задает сумму скидки. 
+        /// </summary>
         public double Total { get; private set; }
+
+        /// <summary>
+        /// Возвращает и задает список товаров. 
+        /// </summary>
         public List<Item> Items { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает категорию товара. 
+        /// </summary>
         public Category Category { get; set; }
+        
+        /// <summary>
+        /// Возвращает и задает процент скидки. Должен быть больше 0. 
+        /// </summary>
         public int Percent
         {
             get => _percent;
@@ -25,6 +46,9 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Возвращает информацию о скидке. 
+        /// </summary>
         public string Info
         {
             get
@@ -33,6 +57,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Считает размер скидки. 
+        /// </summary>
+        /// <param name="items">Список товаров, к которым применяется скидка. </param>
+        /// <returns>Размер скидки. </returns>
         public double Calculate(List<Item> items)
         {
             Total = 0;
@@ -55,7 +84,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
-
+        /// <summary>
+        /// Применяет скидку. 
+        /// </summary>
+        /// <param name="items">Список товаров, к которым применяется скидка. </param>
+        /// <returns>Размер скидки. </returns>
         public double Apply(List<Item> items)
         {
             Total = 0;
@@ -75,6 +108,10 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         }
 
+        /// <summary>
+        /// Обновляет скидку. 
+        /// </summary>
+        /// <param name="items"></param>
         public void Update(List<Item> items)
         {
             if (Total > 1000 && Percent < 10)

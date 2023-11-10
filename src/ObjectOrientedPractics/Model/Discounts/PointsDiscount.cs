@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
+    /// <summary>
+    /// Хранит информацию о скидках в формате баллов. 
+    /// </summary>
     public class PointsDiscount : IDiscount
     {
+        /// <summary>
+        /// Баллы.
+        /// </summary>
         private int _points;
 
+        /// <summary>
+        /// Возвращает и задает баллы. Должно быть неотрицательным. 
+        /// </summary>
         public int Points
         {
             get => _points;
@@ -22,6 +31,9 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Возвращает информацию о скидке. 
+        /// </summary>
         public string Info
         {
             get
@@ -30,6 +42,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Считает размер скидки. 
+        /// </summary>
+        /// <param name="items">Список товаров. </param>
+        /// <returns>Размер скидки. </returns>
         public double Calculate(List<Item> items)
         {
             double total = 0;
@@ -45,6 +62,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             return Points;
         }
 
+        /// <summary>
+        /// Применяет скидку. 
+        /// </summary>
+        /// <param name="items">Список товаров. </param>
+        /// <returns>Размер скидки. </returns>
         public double Apply(List<Item> items)
         {
             double discount = Calculate(items);
@@ -52,6 +74,10 @@ namespace ObjectOrientedPractics.Model.Discounts
             return discount;
         }
 
+        /// <summary>
+        /// Обновляет размер скидки. 
+        /// </summary>
+        /// <param name="items">Список товаров. </param>
         public void Update(List<Item> items)
         {
             double total = 0;

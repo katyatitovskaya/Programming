@@ -37,10 +37,10 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Customer _currentCustomer;
 
-        
         public CustomersTab()
         {
             InitializeComponent();
+
         }
 
         /// <summary>
@@ -158,6 +158,9 @@ namespace ObjectOrientedPractics.View.Tabs
             
         }
 
+        /// <summary>
+        /// Вызывает всплывающее окно для добавления скидки.
+        /// </summary>
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
             if(CustomersListBox.SelectedIndex != -1)
@@ -166,9 +169,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 addDiscountForm.CurrentCustomer = _currentCustomer;
                 addDiscountForm.Show();
             }
-            
         }
 
+        /// <summary>
+        /// Удаляет выбранную скидку. 
+        /// </summary>
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
         {
             int value = DiscountsListBox.SelectedIndex;

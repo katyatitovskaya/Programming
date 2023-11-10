@@ -71,7 +71,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public bool IsPriority { get;set; }
         
+
+        /// <summary>
+        /// Возвращает и задает список скидок. 
+        /// </summary>
         public List<IDiscount> Discounts { get; set; }
+
         /// <summary>
         /// Создает объект класса <see cref="Customer"/>.  
         /// </summary>

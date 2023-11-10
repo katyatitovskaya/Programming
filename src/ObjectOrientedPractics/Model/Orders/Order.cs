@@ -75,6 +75,9 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         public string CustomerName { get; set; }
 
+        /// <summary>
+        /// Возвращает адрес в виде строки. 
+        /// </summary>
         public string strAddress
         {
             get
@@ -89,8 +92,14 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         public OrderStatus OrderStatus { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает размер скидки. 
+        /// </summary>
         public double DiscountAmount { get; set; }  
 
+        /// <summary>
+        /// Возвращает общую стоимость заказа с учетом скидки. 
+        /// </summary>
         public double Total
         {
             get { return Amount - DiscountAmount; }

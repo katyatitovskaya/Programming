@@ -248,6 +248,9 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateDiscount();
         }
 
+        /// <summary>
+        /// Обновляет список скидок покупателя. 
+        /// </summary>
         public void UpdateDiscount()
         {
             double discountAmount = 0;

@@ -22,6 +22,9 @@ namespace ObjectOrientedPractics
             //discountsTab1.Items= _store.Items;
         }
 
+        /// <summary>
+        /// Обновляет данные при смене страницы
+        /// </summary>
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TabControl.SelectedIndex == 2)

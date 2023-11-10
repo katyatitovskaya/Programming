@@ -15,6 +15,9 @@ namespace ObjectOrientedPractics.View
 {
     public partial class AddDiscount : Form
     {
+        /// <summary>
+        /// Объект типа <see cref="Customer"/>. 
+        /// </summary>
         private Customer _currentCustomer;
 
         public Customer CurrentCustomer
@@ -25,6 +28,7 @@ namespace ObjectOrientedPractics.View
                 _currentCustomer = value;
             }
         }
+
         public AddDiscount()
         {
             InitializeComponent();
@@ -34,20 +38,29 @@ namespace ObjectOrientedPractics.View
                 CategoryComboBox.Items.Add(category);
             }
             CategoryComboBox.SelectedIndex = 0;
+            
         }
 
+        /// <summary>
+        /// Добавляет скидку выбранной категории.
+        /// </summary>
         private void OkButton_Click(object sender, EventArgs e)
         {
             PercentDiscount discount = new PercentDiscount();
             discount.Category = (Category)CategoryComboBox.SelectedItem;
             _currentCustomer.Discounts.Add(discount);
+
             this.Close();
             
         }
 
+        /// <summary>
+        /// Закрывает форму. 
+        /// </summary>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
     }
 }
