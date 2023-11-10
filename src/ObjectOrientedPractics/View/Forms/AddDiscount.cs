@@ -29,6 +29,8 @@ namespace ObjectOrientedPractics.View
             }
         }
 
+        public Category Category { get; private set; }
+
         public AddDiscount()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace ObjectOrientedPractics.View
             PercentDiscount discount = new PercentDiscount();
             discount.Category = (Category)CategoryComboBox.SelectedItem;
             _currentCustomer.Discounts.Add(discount);
-
+            DialogResult= DialogResult.OK;
             this.Close();
             
         }

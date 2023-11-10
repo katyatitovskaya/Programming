@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -167,7 +168,16 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 AddDiscount addDiscountForm = new AddDiscount();
                 addDiscountForm.CurrentCustomer = _currentCustomer;
-                addDiscountForm.Show();
+                var dialogResult = addDiscountForm.ShowDialog();
+                if(dialogResult == DialogResult.OK)
+                {
+                    DiscountsListBox.Items.Clear();
+                    foreach (var discount in _currentCustomer.Discounts)
+                    {
+                        DiscountsListBox.Items.Add(discount.Info);
+                    }
+                }
+                
             }
         }
 

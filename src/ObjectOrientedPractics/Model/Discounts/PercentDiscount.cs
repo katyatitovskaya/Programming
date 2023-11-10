@@ -119,6 +119,7 @@ namespace ObjectOrientedPractics.Model.Discounts
                 Percent += 1;
             }
         }
+
     }
 
 }

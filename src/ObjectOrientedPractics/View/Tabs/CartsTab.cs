@@ -243,6 +243,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обновляет сумму скидки и общую стоимость при изменении выбранной скидки. 
+        /// </summary>
         private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDiscount();
