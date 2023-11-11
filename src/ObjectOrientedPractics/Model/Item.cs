@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о товаре. 
     /// </summary>
-    public class Item
+    public class Item: ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Название товара. 
@@ -70,8 +70,14 @@ namespace ObjectOrientedPractics.Model
             get => _price;
             set
             {
-                Services.ValueValidator.CheckIntInRange(value, 100000, 0, nameof(Price));
-                _price = value;
+                if (value.CompareTo(10000) == -1 && value.CompareTo(0)>=0)
+                {
+                    _price = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
 
@@ -79,6 +85,27 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает категорию товара. 
         /// </summary>
         public Category Category { get; set; }
+
+        /// <summary>
+        /// Копирует объект типа <see cref="Item"/>. 
+        /// </summary>
+        /// <returns>Новый объект с теми же значениями. </returns>
+        public object Clone()
+        {
+            return new Item(Name, Info, Price, Category);
+        }
+
+        public bool Equals(Item? other)
+        {
+            if(ReferenceEquals(null, other)) throw new ArgumentException();
+            return Equals(other);
+        }
+
+        public int CompareTo(Item? other)
+        {
+            if(other== null) throw new ArgumentException();
+            return CompareTo(other);
+        }
 
         /// <summary>
         /// Создает объект класса <see cref="Item"/>. 

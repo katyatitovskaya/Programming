@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию об адресе. 
     /// </summary>
-    public class Address
+    public class Address: ICloneable
     {
         /// <summary>
         /// Почтовый индекс. 
@@ -52,7 +52,8 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.CheckIntInRange(value, 1000000, 99999, nameof(Index));
-                _index = value; 
+                _index = value;
+                
             }
         }
 
@@ -124,6 +125,11 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
                 _apartment = value;
             }
+        }
+
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
         }
 
         /// <summary>
