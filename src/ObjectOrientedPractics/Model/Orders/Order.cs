@@ -105,6 +105,7 @@ namespace ObjectOrientedPractics.Model.Orders
             get { return Amount - DiscountAmount; }
         }
 
+        /// <inheritdoc cref="IEquatable{T}.Equals(T?)"/>
         public bool Equals(Order other)
         {
             if (other == null)

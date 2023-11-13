@@ -57,6 +57,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <inheritdoc cref="IComparable{T}.CompareTo(T?)"/>
         public int CompareTo(PercentDiscount other)
         {
             if(other == null)

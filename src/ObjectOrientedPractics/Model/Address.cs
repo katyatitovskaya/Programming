@@ -127,11 +127,14 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <inheritdoc cref="ICloneable"/>
         public object Clone()
         {
             return new Address(Index, Country, City, Street, Building, Apartment);
         }
 
+
+        /// <inheritdoc cref="IEquatable{T}.Equals(T?)"/>
         public bool Equals(Address other)
         {
             if(other == null)

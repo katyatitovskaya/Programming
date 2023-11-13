@@ -86,12 +86,13 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Category Category { get; set; }
 
-        
+        /// <inheritdoc cref="ICloneable"/>
         public object Clone()
         {
             return new Item(Name, Info, Price, Category);
         }
-
+        
+        /// <inheritdoc cref="IEquatable{T}.Equals(T?)"/>
         public bool Equals(Item other)
         {
             if(other == null)
@@ -101,6 +102,7 @@ namespace ObjectOrientedPractics.Model
             return this.Id == other.Id;
         }
 
+        /// <inheritdoc cref="IComparable{T}.CompareTo(T?)"/>
         public int CompareTo(Item other)
         {
             if(other == null)
