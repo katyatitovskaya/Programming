@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model.Orders
     /// <summary>
     /// Хранит информацию о заказе.
     /// </summary>
-    public class Order
+    public class Order: IEquatable<Order>
     {
         /// <summary>
         /// Адрес.
@@ -103,6 +103,15 @@ namespace ObjectOrientedPractics.Model.Orders
         public double Total
         {
             get { return Amount - DiscountAmount; }
+        }
+
+        public bool Equals(Order other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return other.Id == Id && other.Date == Date;
         }
 
         /// <summary>

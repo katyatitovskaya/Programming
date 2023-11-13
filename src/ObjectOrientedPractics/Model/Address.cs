@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию об адресе. 
     /// </summary>
-    public class Address: ICloneable
+    public class Address: ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Почтовый индекс. 
@@ -131,6 +131,19 @@ namespace ObjectOrientedPractics.Model
         {
             return new Address(Index, Country, City, Street, Building, Apartment);
         }
+
+        public bool Equals(Address other)
+        {
+            if(other == null)
+            {
+                return false;
+            }
+            return other.Index == Index && other.Country == Country && other.City == City 
+                && other.Street == Street && other.Building == Building 
+                && other.Apartment == Apartment;
+        }
+
+
 
         /// <summary>
         /// Создает объект класса <see cref="Address"/>. 

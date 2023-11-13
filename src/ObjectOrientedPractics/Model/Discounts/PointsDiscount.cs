@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит информацию о скидках в формате баллов. 
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Баллы.
@@ -40,6 +40,15 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 return $"Накопительная - {Points} баллов";
             }
+        }
+
+        public int CompareTo(PointsDiscount other)
+        {
+            if(other == null)
+            {
+                return 1;
+            }
+            return this.Points.CompareTo(other.Points);
         }
 
         /// <summary>

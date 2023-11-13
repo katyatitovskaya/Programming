@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит информацию о процентной скидке. 
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Процент. 
@@ -57,6 +57,15 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        public int CompareTo(PercentDiscount other)
+        {
+            if(other == null)
+            {
+                return 1;
+            }
+            return this.Percent.CompareTo(other.Percent);
+        }
+
         /// <summary>
         /// Считает размер скидки. 
         /// </summary>
@@ -99,8 +108,7 @@ namespace ObjectOrientedPractics.Model.Discounts
                 if (items[i].Category == Category)
                 {
                     counter++;
-                    items[i].Price -= items[i].Price / 100 * Percent;
-                    Total += items[i].Price;
+                    Total += (items[i].Price - items[i].Price / 100 * Percent);
                 }
             }
             if (counter == 0) return Percent;

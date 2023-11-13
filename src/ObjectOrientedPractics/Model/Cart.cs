@@ -39,6 +39,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <inheritdoc cref="ICloneable"/>
         public object Clone()
         {
             return new Cart(Items);

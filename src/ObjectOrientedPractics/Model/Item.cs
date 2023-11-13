@@ -86,25 +86,28 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Category Category { get; set; }
 
-        /// <summary>
-        /// Копирует объект типа <see cref="Item"/>. 
-        /// </summary>
-        /// <returns>Новый объект с теми же значениями. </returns>
+        
         public object Clone()
         {
             return new Item(Name, Info, Price, Category);
         }
 
-        public bool Equals(Item? other)
+        public bool Equals(Item other)
         {
-            if(ReferenceEquals(null, other)) throw new ArgumentException();
-            return Equals(other);
+            if(other == null)
+            {
+                return false;
+            }
+            return this.Id == other.Id;
         }
 
-        public int CompareTo(Item? other)
+        public int CompareTo(Item other)
         {
-            if(other== null) throw new ArgumentException();
-            return CompareTo(other);
+            if(other == null)
+            {
+                return 1;
+            }
+            return this.Price.CompareTo(other.Price);
         }
 
         /// <summary>
