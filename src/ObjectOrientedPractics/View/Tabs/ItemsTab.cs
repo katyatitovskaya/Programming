@@ -66,8 +66,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
-                _currentItem = _items[ItemsListBox.SelectedIndex];
-                UpdateInfo();
+                //_currentItem = _items[ItemsListBox.SelectedIndex];
+                UpdateInfo(Items);
             }
             else
             {
@@ -182,8 +182,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обновляет текстовые поля. 
         /// </summary>
-        private void UpdateInfo()
+        private void UpdateInfo(List<Model.Item> items)
         {
+            _currentItem = items[ItemsListBox.SelectedIndex];
             IDTextBox.Text = _currentItem.Id.ToString();
             CostTextBox.Text = _currentItem.Price.ToString();
             NameRichTextBox.Text = _currentItem.Name;
@@ -220,29 +221,38 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if(FindTextBox.Text!=null && Items!=null)
             {
-                Model.Item selectedItem = new Model.Item();
-                foreach(Model.Item item in Items)
+                Model.Item selectedItem = _currentItem;
+                foreach (Model.Item item in Items)
                 {
-                    if(item.Name== (string)ItemsListBox.SelectedItem)
+                    if (item.Name == (string)ItemsListBox.SelectedItem)
                     {
                         selectedItem = item;
                     }
                 }
                 List<Model.Item> filteredItems = 
-                    Services.DataTools.Filter(Items, AssertString, FindTextBox.Text);
+                    DataTools.Filter(Items, AssertString, FindTextBox.Text);
                 ItemsListBox.Items.Clear();
                 foreach(Model.Item item in filteredItems)
                 {
                     ItemsListBox.Items.Add(item.Name);
                 }
-                ItemsListBox.SelectedIndex = filteredItems.IndexOf(selectedItem);
+                if(filteredItems.Contains(selectedItem))
+                {
+                    ItemsListBox.SelectedIndex = filteredItems.IndexOf(selectedItem);
+                    UpdateInfo(filteredItems);
+                }
+                else
+                {
+                    ClearInfo();
+                }
+               
             }
         }
 
         public void SortItemsInListBox()
         {
             if (Items == null) return;
-            Model.Item selectedItem;
+            Model.Item selectedItem = _currentItem;
             foreach (Model.Item item in Items)
             {
                 if (item.Name == (string)ItemsListBox.SelectedItem)
