@@ -45,6 +45,8 @@
             this.NameRichTextBox = new System.Windows.Forms.RichTextBox();
             this.CostTextBox = new System.Windows.Forms.TextBox();
             this.IDTextBox = new System.Windows.Forms.TextBox();
+            this.FindTextBox = new System.Windows.Forms.TextBox();
+            this.FindLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.ItemsGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -68,6 +70,8 @@
             // 
             // ItemsGroupBox
             // 
+            this.ItemsGroupBox.Controls.Add(this.FindLabel);
+            this.ItemsGroupBox.Controls.Add(this.FindTextBox);
             this.ItemsGroupBox.Controls.Add(this.tableLayoutPanel2);
             this.ItemsGroupBox.Controls.Add(this.ItemsListBox);
             this.ItemsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,9 +126,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.ItemHeight = 20;
-            this.ItemsListBox.Location = new System.Drawing.Point(6, 26);
+            this.ItemsListBox.Location = new System.Drawing.Point(6, 66);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(294, 324);
+            this.ItemsListBox.Size = new System.Drawing.Size(294, 284);
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -247,6 +251,23 @@
             this.IDTextBox.Size = new System.Drawing.Size(151, 27);
             this.IDTextBox.TabIndex = 0;
             // 
+            // FindTextBox
+            // 
+            this.FindTextBox.Location = new System.Drawing.Point(52, 26);
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(248, 27);
+            this.FindTextBox.TabIndex = 10;
+            this.FindTextBox.TextChanged += new System.EventHandler(this.FindTextBox_TextChanged);
+            // 
+            // FindLabel
+            // 
+            this.FindLabel.AutoSize = true;
+            this.FindLabel.Location = new System.Drawing.Point(6, 29);
+            this.FindLabel.Name = "FindLabel";
+            this.FindLabel.Size = new System.Drawing.Size(40, 20);
+            this.FindLabel.TabIndex = 10;
+            this.FindLabel.Text = "Find:";
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -256,6 +277,7 @@
             this.Size = new System.Drawing.Size(810, 426);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ItemsGroupBox.ResumeLayout(false);
+            this.ItemsGroupBox.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.SelectedItemGroupBox.ResumeLayout(false);
             this.SelectedItemGroupBox.PerformLayout();
@@ -282,5 +304,7 @@
         private Button AddButton;
         private Label CategoryLabel;
         private ComboBox CategoryComboBox;
+        private Label FindLabel;
+        private TextBox FindTextBox;
     }
 }

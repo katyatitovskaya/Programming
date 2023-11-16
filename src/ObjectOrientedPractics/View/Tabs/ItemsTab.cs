@@ -193,5 +193,29 @@ namespace ObjectOrientedPractics.View.Tabs
                 CategoryComboBox.SelectedIndex = -1;
             }
         }
+
+        public bool AssertString(Model.Item item, object str)
+        {
+            if (item.Name.Contains((string)str))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(FindTextBox.Text!=null && Items!=null)
+            {
+                List<Model.Item> filteredItems = 
+                    Services.DataTools.Filter(Items, AssertString, FindTextBox.Text);
+                ItemsListBox.Items.Clear();
+                foreach(Model.Item item in filteredItems)
+                {
+                    ItemsListBox.Items.Add(item);
+                }
+
+            }
+        }
     }
 }
