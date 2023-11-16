@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -37,11 +38,15 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
-            var categories = Enum.GetValues(typeof(Category)); 
+            var categories = Enum.GetValues(typeof(Category));
             foreach (var category in categories)
             {
                 CategoryComboBox.Items.Add(category);
             }
+            string[] sortTypes = new string[3]
+            {"Cost (Ascending)", "Cost (Descending)", "Name"};
+            SortingComboBox.Items.AddRange(sortTypes);
+            SortingComboBox.SelectedIndex = 2;
         }
 
         /// <summary>
@@ -108,6 +113,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         _currentItem.Name = newName;
                         int currentSelection = NameRichTextBox.SelectionStart;
                         ItemsListBox.Items[value] = _currentItem.Name;
+                        SortItemsInListBox();
                         NameRichTextBox.SelectionStart = currentSelection;
                     }
                     catch
@@ -128,15 +134,22 @@ namespace ObjectOrientedPractics.View.Tabs
             int value = ItemsListBox.SelectedIndex;
             if(value != -1)
             {
-                try
+                if(CostTextBox.Focused)
                 {
-                    double newCost = Convert.ToDouble(CostTextBox.Text);
-                    _currentItem.Price = newCost;
+                    try
+                    {
+                        double newCost = Convert.ToDouble(CostTextBox.Text);
+                        _currentItem.Price = newCost;
+                        int currentSelection = CostTextBox.SelectionStart; 
+                        SortItemsInListBox();
+                        CostTextBox.SelectionStart = currentSelection;
+                    }
+                    catch
+                    {
+                        CostTextBox.BackColor = Color.LightPink;
+                    }
                 }
-                catch 
-                {
-                    CostTextBox.BackColor= Color.LightPink;
-                }
+                
             }
         }
 
@@ -207,14 +220,61 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if(FindTextBox.Text!=null && Items!=null)
             {
+                Model.Item selectedItem = new Model.Item();
+                foreach(Model.Item item in Items)
+                {
+                    if(item.Name== (string)ItemsListBox.SelectedItem)
+                    {
+                        selectedItem = item;
+                    }
+                }
                 List<Model.Item> filteredItems = 
                     Services.DataTools.Filter(Items, AssertString, FindTextBox.Text);
                 ItemsListBox.Items.Clear();
                 foreach(Model.Item item in filteredItems)
                 {
-                    ItemsListBox.Items.Add(item);
+                    ItemsListBox.Items.Add(item.Name);
                 }
+                ItemsListBox.SelectedIndex = filteredItems.IndexOf(selectedItem);
+            }
+        }
 
+        public void SortItemsInListBox()
+        {
+            if (Items == null) return;
+            Model.Item selectedItem;
+            foreach (Model.Item item in Items)
+            {
+                if (item.Name == (string)ItemsListBox.SelectedItem)
+                {
+                    selectedItem = item;
+                }
+            }
+            List<Model.Item> sortedItems = new List<Model.Item>();
+            if (SortingComboBox.SelectedIndex == 0)
+            {
+                sortedItems = DataTools.Sort(Items, DataTools.SortCostAscending);
+            }
+            if (SortingComboBox.SelectedIndex == 1)
+            {
+                sortedItems = DataTools.Sort(Items, DataTools.SortCostDescending);
+            }
+            if (SortingComboBox.SelectedIndex == 2)
+            {
+                sortedItems = DataTools.Sort(Items, DataTools.SortName);
+            }
+            ItemsListBox.Items.Clear();
+            foreach (Model.Item item in sortedItems)
+            {
+                ItemsListBox.Items.Add(item.Name);
+            }
+            ItemsListBox.SelectedIndex = sortedItems.IndexOf(selectedItem);
+        }
+        private void SortingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(SortingComboBox.SelectedIndex != -1 && Items!=null)
+            {
+                SortItemsInListBox();
             }
         }
     }
