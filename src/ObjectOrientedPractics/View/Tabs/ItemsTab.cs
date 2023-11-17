@@ -208,6 +208,12 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Проверяет содердит ли имя товара подстроку. 
+        /// </summary>
+        /// <param name="item">Товар. </param>
+        /// <param name="str">Подстрока. </param>
+        /// <returns>Булевое значение. </returns>
         public bool AssertString(Model.Item item, object str)
         {
             if (item.Name.Contains((string)str))
@@ -217,6 +223,9 @@ namespace ObjectOrientedPractics.View.Tabs
             return false;
         }
 
+        /// <summary>
+        /// Фильтрует товары относительно того, есть ли введенная строка в названии товара. 
+        /// </summary>
         private void FindTextBox_TextChanged(object sender, EventArgs e)
         {
             if(FindTextBox.Text!=null && Items!=null)
@@ -249,6 +258,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Сортирует листбокс с товарами в зависимости от выбранного значения в 
+        /// комбобоксе. 
+        /// </summary>
         public void SortItemsInListBox()
         {
             if (Items == null) return;
@@ -280,6 +293,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             ItemsListBox.SelectedIndex = sortedItems.IndexOf(selectedItem);
         }
+
+        /// <summary>
+        /// Сортирует листбокс после изменения вида сортировки. 
+        /// </summary>
         private void SortingComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(SortingComboBox.SelectedIndex != -1 && Items!=null)

@@ -29,8 +29,6 @@ namespace ObjectOrientedPractics.View
             }
         }
 
-        public Category Category { get; private set; }
-
         public AddDiscount()
         {
             InitializeComponent();
