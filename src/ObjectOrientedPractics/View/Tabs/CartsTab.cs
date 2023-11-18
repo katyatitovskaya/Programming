@@ -256,6 +256,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void UpdateDiscount()
         {
+            if (CustomersComboBox.SelectedIndex == -1) return;
             double discountAmount = 0;
             for (int i = 0; i < CurrentCustomer.Discounts.Count; i++)
             {

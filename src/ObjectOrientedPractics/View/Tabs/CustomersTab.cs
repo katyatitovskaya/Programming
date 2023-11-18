@@ -33,6 +33,8 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        public event EventHandler<EventArgs> CustomersChanged;
+
         /// <summary>
         /// Объект типа <see cref="Model.Customer"/>.
         /// </summary>
@@ -69,6 +71,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 new Customer($"Customer's name {_customers.Count}");
             _customers.Add(_currentCustomer);
             CustomersListBox.Items.Add(_currentCustomer.FullName);
+            _currentCustomer.Address.AddressChanged += Address_AddressChanged;
+            CustomersChanged?.Invoke(sender, EventArgs.Empty);
+        }
+
+        private void Address_AddressChanged(object sender, EventArgs e)
+        {
+            string message = "Адрес был изменен.";
+            MessageBox.Show(message);
         }
 
         /// <summary>
@@ -82,6 +92,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customers.RemoveAt(value);
                 CustomersListBox.Items.RemoveAt(value);
                 CustomersListBox.SelectedIndex = value - 1;
+                CustomersChanged?.Invoke(sender, EventArgs.Empty);
             }
         }
 
@@ -177,7 +188,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         DiscountsListBox.Items.Add(discount.Info);
                     }
                 }
-                
+                CustomersChanged?.Invoke(sender, e);
             }
         }
 
@@ -191,7 +202,9 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer.Discounts.RemoveAt(value);
                 UpdateInfo();
+                CustomersChanged?.Invoke(sender, e);
             }
+
         }
     }
 }

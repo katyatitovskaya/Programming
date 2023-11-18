@@ -18,8 +18,21 @@ namespace ObjectOrientedPractics
             cartsTab.Customers = _store.Customers;
             cartsTab.Items = _store.Items;
             ordersTab.Customers = _store.Customers;
+            itemsTab.ItemsChanged += ItemsTab_ItemsChanged;
+            customersTab.CustomersChanged += CustomersTab_CustomersChanged;
             //priorityOrdersTab1.Items = _store.Items;
             //discountsTab1.Items= _store.Items;
+        }
+
+        private void CustomersTab_CustomersChanged(object? sender, EventArgs e)
+        {
+            cartsTab.RefreshData();
+            ordersTab.UpdateOders();
+        }
+
+        private void ItemsTab_ItemsChanged(object? sender, EventArgs e)
+        {
+            cartsTab.RefreshData();
         }
 
         /// <summary>
@@ -27,14 +40,14 @@ namespace ObjectOrientedPractics
         /// </summary>
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TabControl.SelectedIndex == 2)
-            {
-                cartsTab.RefreshData();
-            }
-            if(TabControl.SelectedIndex == 3)
-            {
-                ordersTab.UpdateOders();
-            }
+            //if (TabControl.SelectedIndex == 2)
+            //{
+            //    cartsTab.RefreshData();
+            //}
+            //if(TabControl.SelectedIndex == 3)
+            //{
+            //    ordersTab.UpdateOders();
+            //}
         }
 
     }

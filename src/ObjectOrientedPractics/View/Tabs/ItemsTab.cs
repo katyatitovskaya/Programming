@@ -31,6 +31,26 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        public event EventHandler<EventArgs> ItemsChanged;
+
+        private void Item_CostChanged(object sender, EventArgs e)
+        {
+            string message = "Цена изменилась.";
+            MessageBox.Show(message);
+        }
+        
+        private void Item_NameChanged(object sender, EventArgs e)
+        {
+            string message = "Имя изменилось.";
+            MessageBox.Show(message);
+        }
+
+        private void Item_InfoChanged(object sender, EventArgs e)
+        {
+            string message = "Информация о товаре изменилась.";
+            MessageBox.Show(message);
+        }
+
         /// <summary>
         /// Обеъект типа <see cref="Model.Item"/>.
         /// </summary>
@@ -47,6 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {"Cost (Ascending)", "Cost (Descending)", "Name"};
             SortingComboBox.Items.AddRange(sortTypes);
             SortingComboBox.SelectedIndex = 2;
+            
         }
 
         /// <summary>
@@ -57,6 +78,10 @@ namespace ObjectOrientedPractics.View.Tabs
             Model.Item _currentItem = new Model.Item($"New Item {_items.Count}", "No info yet", 0, 0);
             _items.Add(_currentItem);
             ItemsListBox.Items.Add(_currentItem.Name);
+            _currentItem.CostChanged+= Item_CostChanged;
+            _currentItem.NameChanged += Item_NameChanged;
+            _currentItem.InfoChanged+= Item_InfoChanged;
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -66,7 +91,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
-                //_currentItem = _items[ItemsListBox.SelectedIndex];
                 UpdateInfo(Items);
             }
             else
@@ -84,14 +108,17 @@ namespace ObjectOrientedPractics.View.Tabs
             int value = ItemsListBox.SelectedIndex;
             if (value != -1)
             {
-                try
+                if(DescriptionRichTextBox.Focused)
                 {
-                    string newInfo = DescriptionRichTextBox.Text;
-                    _currentItem.Info = newInfo;
-                }
-                catch
-                {
-                    DescriptionRichTextBox.BackColor = Color.LightPink;
+                    try
+                    {
+                        string newInfo = DescriptionRichTextBox.Text;
+                        _currentItem.Info = newInfo;
+                    }
+                    catch
+                    {
+                        DescriptionRichTextBox.BackColor = Color.LightPink;
+                    }
                 }
             }
         }
@@ -164,6 +191,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items.RemoveAt(value);
                 ItemsListBox.Items.RemoveAt(value);
                 ItemsListBox.SelectedIndex = value-1;
+                ItemsChanged?.Invoke(sender, EventArgs.Empty);
             }
         }
 

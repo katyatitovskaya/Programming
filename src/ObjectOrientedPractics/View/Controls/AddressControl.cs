@@ -34,6 +34,9 @@ namespace ObjectOrientedPractics.View.Controls
                 FillTextBoxes();
             }
         }
+
+        
+
         public AddressControl()
         {
             InitializeComponent();
@@ -52,14 +55,17 @@ namespace ObjectOrientedPractics.View.Controls
             PostIndexTextBox.BackColor = Color.White;
             if (Address!= null)
             {
-                try
+                if(PostIndexTextBox.Focused)
                 {
-                    int newIndex = Convert.ToInt32(PostIndexTextBox.Text);
-                    Address.Index = newIndex;
-                }
-                catch
-                {
-                    PostIndexTextBox.BackColor = Color.LightPink;
+                    try
+                    {
+                        int newIndex = Convert.ToInt32(PostIndexTextBox.Text);
+                        Address.Index = newIndex;
+                    }
+                    catch
+                    {
+                        PostIndexTextBox.BackColor = Color.LightPink;
+                    }
                 }
             }
         }
@@ -70,7 +76,7 @@ namespace ObjectOrientedPractics.View.Controls
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             CountryTextBox.BackColor = Color.White;
-            if(Address != null)
+            if(Address != null && CountryTextBox.Focused)
             {
                 try
                 {
@@ -90,7 +96,7 @@ namespace ObjectOrientedPractics.View.Controls
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             CityTextBox.BackColor = Color.White;
-            if(Address != null)
+            if(Address != null && CityTextBox.Focused)
             {
                 try
                 {
@@ -109,7 +115,7 @@ namespace ObjectOrientedPractics.View.Controls
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             StreetTextBox.BackColor = Color.White;
-            if(Address != null)
+            if(Address != null && StreetTextBox.Focused)
             {
                 try
                 {
@@ -128,7 +134,7 @@ namespace ObjectOrientedPractics.View.Controls
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             BuildingTextBox.BackColor = Color.White;
-            if(Address != null)
+            if(Address != null && BuildingTextBox.Focused)
             {
                 try
                 {
@@ -147,7 +153,7 @@ namespace ObjectOrientedPractics.View.Controls
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             ApartmentTextBox.BackColor= Color.White;
-            if(Address != null)
+            if(Address != null && ApartmentTextBox.Focused)
             {
                 try
                 {
