@@ -31,20 +31,34 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Событие вызываемое при изменении списка товаров. 
+        /// </summary>
         public event EventHandler<EventArgs> ItemsChanged;
 
+        /// <summary>
+        /// Выводит сообщение о том, что цена изменилась.
+        /// </summary>
         private void Item_CostChanged(object sender, EventArgs e)
         {
             string message = "Цена изменилась.";
             MessageBox.Show(message);
         }
         
+        /// <summary>
+        /// Выводит сообщение о том, что имя товара изменилось. 
+        /// </summary>
         private void Item_NameChanged(object sender, EventArgs e)
         {
             string message = "Имя изменилось.";
             MessageBox.Show(message);
         }
 
+        /// <summary>
+        /// Выводит сообщение о том, что описание товара изменилось. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Item_InfoChanged(object sender, EventArgs e)
         {
             string message = "Информация о товаре изменилась.";

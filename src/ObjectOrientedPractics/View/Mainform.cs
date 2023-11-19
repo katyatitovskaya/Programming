@@ -33,6 +33,7 @@ namespace ObjectOrientedPractics
         private void ItemsTab_ItemsChanged(object? sender, EventArgs e)
         {
             cartsTab.RefreshData();
+            ordersTab.UpdateOders();
         }
 
         /// <summary>
