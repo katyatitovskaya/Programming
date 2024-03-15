@@ -23,6 +23,7 @@ namespace Contacts
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel.MainVM();
         }
     }
 }
