@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace Contacts.Model.Services
 {
+    /// <summary>
+    /// Хранит методы сериализации. 
+    /// </summary>
     public static class ContactSerializer
     {
         /// <summary>
@@ -20,7 +23,8 @@ namespace Contacts.Model.Services
         /// <summary>
         /// Путь до файла.
         /// </summary>
-        private static string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+        private static string _path = 
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "Сontacts.json");
 
         /// <summary>
@@ -46,7 +50,8 @@ namespace Contacts.Model.Services
             {
                 using (StreamReader reader = new StreamReader(_path))
                 {
-                    contacts = JsonConvert.DeserializeObject<Contact>(reader.ReadToEnd());
+                    contacts = 
+                        JsonConvert.DeserializeObject<Contact>(reader.ReadToEnd());
                 }
 
                 if (contacts == null) contacts = new Contact();
