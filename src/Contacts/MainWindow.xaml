@@ -8,7 +8,7 @@
         Title="Contacts" Height="450" Width="800">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
@@ -62,14 +62,14 @@
                VerticalAlignment="Top"></Image>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Label Content="Name:"/>
-                <TextBox Width="300" HorizontalAlignment="Left"/>
+                <TextBox  HorizontalAlignment="Stretch"/>
                 <Label Content="Phone Number:"/>
-                <TextBox Width="300" HorizontalAlignment="Left"/>
+                <TextBox  HorizontalAlignment="Stretch"/>
                 <Label Content="Email:"/>
-                <TextBox Width="300" HorizontalAlignment="Left"/>
-                <Button Content="Apply" Height="25px" Width="60" 
+                <TextBox  HorizontalAlignment="Stretch"/>
+                <Button Content="Apply" Height="25px" Width="75" 
                     Margin="0 45" HorizontalAlignment="Left"
-                    />
+                    Visibility="Hidden"/>
             </StackPanel>
             
             
