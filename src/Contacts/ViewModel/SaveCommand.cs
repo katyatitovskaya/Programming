@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace Contacts.ViewModel
 {
@@ -39,11 +40,12 @@ namespace Contacts.ViewModel
         /// </summary>
         public void Execute(object? parameter)
         {
-            var fullName = DataContext.FullName;
-            var phoneNumber = DataContext.PhoneNumber;
-            var email = DataContext.Email;
-            var contacts = new Contact(fullName, phoneNumber, email);
-            Model.Services.ContactSerializer.SaveToFile(contacts);
+            var fullName = DataContext.SelectedContact.FullName;
+            var phoneNumber = DataContext.SelectedContact.PhoneNumber;
+            var email = DataContext.SelectedContact.Email;
+            var contacts = new ObservableCollection<Contact>() 
+            { new Contact(fullName, phoneNumber, email) };
+            ContactSerializer.SaveToFile(contacts);
         }
 
         /// <summary>

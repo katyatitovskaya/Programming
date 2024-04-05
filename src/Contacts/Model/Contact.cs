@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,23 +13,55 @@ namespace Contacts.Model
     /// <summary>
     /// Содержит информацию о контакте
     /// </summary>
-    public class Contact
+    public class Contact:INotifyPropertyChanged
     {
-        /// <summary>
-        /// Возвращает и задает полное имя
-        /// </summary>
-        public string FullName { get; set; }
+        private string _fullName;
+        private string _email;
+        private string _phoneNumber;
 
-        
+        public string FullName
+        {
+            get => _fullName;
+            set
+            {
+                _fullName = value;
+                OnPropertyChanged(nameof(FullName));
+                
+            }
+        }
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                _phoneNumber = value;
+                OnPropertyChanged(nameof(PhoneNumber));
+            }
+        }
         /// <summary>
-        /// Возвращает и задает электронную почту
+        /// Событие, показывающее изменения 
+        /// в свойствах класса <see cref="MainVM"/>
         /// </summary>
-        public string Email { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Возвращает и задает номер телефона
+        /// Метод зажигающий событие при изменении свойств. 
         /// </summary>
-        public string PhoneNumber { get; set; }
+        /// <param name="prop">Имя свойства</param>
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
         /// <summary>
         /// Создает объект типа <see cref="Contact"/>
@@ -48,5 +82,6 @@ namespace Contacts.Model
         public Contact()
         {
         }
+
     }
 }

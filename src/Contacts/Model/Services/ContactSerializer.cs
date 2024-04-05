@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace Contacts.Model.Services
 {
@@ -31,7 +32,7 @@ namespace Contacts.Model.Services
         /// Осуществляет запись данных в файл.
         /// </summary>
         /// <param name="contacts">Коллекция контактов.</param>
-        public static void SaveToFile(Contact contacts)
+        public static void SaveToFile(ObservableCollection<Contact> contacts)
         {
             using (StreamWriter writer = new StreamWriter(_path))
             {
@@ -43,18 +44,18 @@ namespace Contacts.Model.Services
         /// Осуществляет выгрузку данных из файла.
         /// </summary>
         /// <returns>Возвращает коллецию контактов.</returns>
-        public static Contact LoadFromFile()
+        public static ObservableCollection<Contact> LoadFromFile()
         {
-            var contacts = new Contact();
+            var contacts = new ObservableCollection<Contact>();
             try
             {
                 using (StreamReader reader = new StreamReader(_path))
                 {
                     contacts = 
-                        JsonConvert.DeserializeObject<Contact>(reader.ReadToEnd());
+                        JsonConvert.DeserializeObject<ObservableCollection<Contact>>(reader.ReadToEnd());
                 }
 
-                if (contacts == null) contacts = new Contact();
+                if (contacts == null) contacts = new ObservableCollection<Contact>();
             }
             catch
             {

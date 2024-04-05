@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Contacts.Model.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,8 @@ namespace Contacts
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModel.MainVM();
+            
         }
     }
+
 }

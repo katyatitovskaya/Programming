@@ -38,9 +38,7 @@ namespace Contacts.ViewModel
         public void Execute(object? parameter)
         {
             var contact = ContactSerializer.LoadFromFile();
-            DataContext.FullName = contact.FullName;
-            DataContext.PhoneNumber = contact.PhoneNumber;
-            DataContext.Email = contact.Email;
+            
         }
 
         /// <summary>

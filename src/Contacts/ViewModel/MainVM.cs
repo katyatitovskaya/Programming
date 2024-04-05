@@ -1,12 +1,16 @@
 ﻿using Contacts.Model;
+using Contacts.Model.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+
 
 namespace Contacts.ViewModel
 {
@@ -16,9 +20,13 @@ namespace Contacts.ViewModel
     public class MainVM: INotifyPropertyChanged
     {
         /// <summary>
-        /// Контакт. 
+        /// Коллекция контактов. 
         /// </summary>
-        private Model.Contact _contact;
+        private ObservableCollection<Contact> _contacts;
+
+        private Contact _selectedContact;
+
+        private int _selectedContactIndex;
 
         /// <summary>
         /// Команда сохранения объекта. 
@@ -30,60 +38,56 @@ namespace Contacts.ViewModel
         /// </summary>
         private ICommand _loadCommand;
 
+        private RelayCommand _addCommand;
+
+        private RelayCommand _removeCommand;
+
+        private RelayCommand _editCommand;
+
+        private RelayCommand _applyCommand;
+
+        private bool _isEdited;
+
+        private bool _isAdded;
+
+        private Visibility _visibilityMode = Visibility.Hidden;
+
         /// <summary>
         /// Создает экземпляр типа <see cref="MainVM"/>
         /// </summary>
         public MainVM()
         {
-            _contact = new Contact();
+            Contacts = new ObservableCollection<Contact>();
+            SelectedContact= new Contact();
             _saveCommand = new SaveCommand(this);
             _loadCommand = new LoadCommand(this);
+            Contacts = ContactSerializer.LoadFromFile();
         }
 
-        /// <summary>
-        /// Возвращает и задает полное имя контакта. 
-        /// </summary>
-        public string FullName
+        public ObservableCollection<Contact> Contacts { get; set; }
+
+        public Contact SelectedContact
         {
-            get => _contact.FullName;
+            get => _selectedContact;
             set
             {
-                if(_contact.FullName != value)
+                if(_selectedContact !=value)
                 {
-                    _contact.FullName = value;
-                    OnPropertyChanged(nameof(FullName));
+                    _selectedContact = value;
+                    OnPropertyChanged(nameof(SelectedContact));
                 }
             }
         }
 
-        /// <summary>
-        /// Возвращает и задает номер телефона. 
-        /// </summary>
-        public string PhoneNumber
+        public int SelectedContactIndex
         {
-            get => _contact.PhoneNumber;
+            get => _selectedContactIndex;
             set
             {
-                if(_contact.PhoneNumber != value)
+                if(_selectedContactIndex != value)
                 {
-                    _contact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает электронную почту контакта. 
-        /// </summary>
-        public string Email
-        {
-            get => _contact.Email;
-            set
-            {
-                if(_contact.Email!=value)
-                {
-                    _contact.Email = value;
-                    OnPropertyChanged(nameof(Email));
+                    _selectedContactIndex = value;
+                    OnPropertyChanged(nameof(SelectedContactIndex));
                 }
             }
         }
@@ -102,6 +106,116 @@ namespace Contacts.ViewModel
         public ICommand LoadCommand
         {
             get { return _loadCommand; }
+        }
+
+        public bool IsEdited
+        {
+            get => _isEdited;
+            set
+            {
+                if(_isEdited!=value)
+                {
+                    _isEdited = value;
+                    OnPropertyChanged(nameof(IsEdited));
+                }
+            }
+        }
+
+        public bool IsAdded
+        {
+            get => _isAdded;
+            set
+            {
+                if(_isAdded!=value)
+                {
+                    _isAdded = value;
+                    OnPropertyChanged(nameof(IsAdded));
+                }
+            }
+        }
+        public Visibility VisibilityMode
+        {
+            get => _visibilityMode;
+            set
+            {
+                _visibilityMode = value; 
+                OnPropertyChanged(nameof(VisibilityMode));
+            }
+        }
+
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                return _addCommand ??
+                  (_addCommand = new RelayCommand(obj =>
+                  {
+                      IsAdded= true;
+                      IsEdited= true;
+                      VisibilityMode = Visibility.Visible;
+                      SelectedContact = new Contact();
+                  }));
+            }
+        }
+
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ??
+                  (_removeCommand = new RelayCommand(obj =>
+                  {
+                      if(SelectedContact!= null)
+                      {
+                          Contacts.Remove(SelectedContact);
+                      }
+                      else
+                      {
+                          SelectedContact = Contacts.Last();
+                      }
+                      ContactSerializer.SaveToFile(Contacts);
+
+                  }));
+            }
+        }
+
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                  (_editCommand = new RelayCommand(obj =>
+                  {
+                      IsEdited= true;
+                      VisibilityMode= Visibility.Visible;
+                  }));
+            }
+        }
+
+        public RelayCommand ApplyCommand
+        {
+            get
+            {
+                return _applyCommand ??
+                  (_applyCommand = new RelayCommand(obj =>
+                  {
+                      if (IsAdded)
+                      {
+                          Contacts.Add(SelectedContact);
+                          IsAdded= false;
+                          IsEdited = false;
+                          
+                      }
+                      else if (IsEdited == true && IsAdded == false)
+                      {
+                          IsEdited = false;
+                          SelectedContact = new Contact(SelectedContact.FullName,
+                              SelectedContact.PhoneNumber, SelectedContact.Email);
+                      }
+                      VisibilityMode = Visibility.Hidden;
+                      ContactSerializer.SaveToFile(Contacts);
+                  }));
+            }
         }
 
         /// <summary>
