@@ -19,14 +19,8 @@ namespace Contacts.ViewModel
     /// </summary>
     public class MainVM: INotifyPropertyChanged
     {
-        /// <summary>
-        /// Коллекция контактов. 
-        /// </summary>
-        private ObservableCollection<Contact> _contacts;
 
         private Contact _selectedContact;
-
-        private int _selectedContactIndex;
 
         /// <summary>
         /// Команда сохранения объекта. 
@@ -49,6 +43,7 @@ namespace Contacts.ViewModel
         private bool _isEdited;
 
         private bool _isAdded;
+        private bool _isReadOnly;
 
         private Visibility _visibilityMode = Visibility.Hidden;
 
@@ -75,23 +70,12 @@ namespace Contacts.ViewModel
                 {
                     _selectedContact = value;
                     OnPropertyChanged(nameof(SelectedContact));
+                    IsEdited = false;
                 }
             }
         }
 
-        public int SelectedContactIndex
-        {
-            get => _selectedContactIndex;
-            set
-            {
-                if(_selectedContactIndex != value)
-                {
-                    _selectedContactIndex = value;
-                    OnPropertyChanged(nameof(SelectedContactIndex));
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Возвращает команду сохранения объекта. 
         /// </summary>
@@ -133,6 +117,7 @@ namespace Contacts.ViewModel
                 }
             }
         }
+
         public Visibility VisibilityMode
         {
             get => _visibilityMode;
@@ -143,6 +128,16 @@ namespace Contacts.ViewModel
             }
         }
 
+        public bool IsReadOnly
+        {
+            get => _isReadOnly;
+            set
+            {
+                _isReadOnly = value; 
+                OnPropertyChanged(nameof(IsReadOnly));
+            }
+        }
+
         public RelayCommand AddCommand
         {
             get
@@ -150,11 +145,14 @@ namespace Contacts.ViewModel
                 return _addCommand ??
                   (_addCommand = new RelayCommand(obj =>
                   {
-                      IsAdded= true;
-                      IsEdited= true;
+                      IsAdded = true;
+                      IsEdited = true;
+                      IsReadOnly = false;
                       VisibilityMode = Visibility.Visible;
                       SelectedContact = new Contact();
-                  }));
+                  },
+                  (obj) => (IsEdited==false)
+                  ));
             }
         }
 
@@ -165,17 +163,21 @@ namespace Contacts.ViewModel
                 return _removeCommand ??
                   (_removeCommand = new RelayCommand(obj =>
                   {
-                      if(SelectedContact!= null)
+                      int index = Contacts.IndexOf(SelectedContact);
+                      Contacts.Remove(SelectedContact);
+                      if (Contacts.Count > 0 && index!=0)
                       {
-                          Contacts.Remove(SelectedContact);
+                          SelectedContact = Contacts[index - 1];
                       }
-                      else
+                      else if(Contacts.Count > 0)
                       {
                           SelectedContact = Contacts.Last();
                       }
                       ContactSerializer.SaveToFile(Contacts);
 
-                  }));
+                  },
+                  (obj) => (Contacts.Count > 0 && SelectedContact!=null
+                  && IsEdited==false && Contacts.IndexOf(SelectedContact)!=-1)));
             }
         }
 
@@ -186,9 +188,12 @@ namespace Contacts.ViewModel
                 return _editCommand ??
                   (_editCommand = new RelayCommand(obj =>
                   {
-                      IsEdited= true;
-                      VisibilityMode= Visibility.Visible;
-                  }));
+                      IsReadOnly = false;
+                      IsEdited = true;
+                      VisibilityMode = Visibility.Visible;
+                  },
+                  (obj) => (SelectedContact!=null && Contacts.Count>0
+                  && Contacts.IndexOf(SelectedContact)!=-1)));
             }
         }
 
@@ -203,18 +208,20 @@ namespace Contacts.ViewModel
                       {
                           Contacts.Add(SelectedContact);
                           IsAdded= false;
-                          IsEdited = false;
-                          
                       }
-                      else if (IsEdited == true && IsAdded == false)
+                      else
                       {
-                          IsEdited = false;
+                          int index = Contacts.IndexOf(SelectedContact);
                           SelectedContact = new Contact(SelectedContact.FullName,
                               SelectedContact.PhoneNumber, SelectedContact.Email);
+                          SelectedContact = Contacts[index];
                       }
+                      IsEdited = false;
+                      IsReadOnly = true;
                       VisibilityMode = Visibility.Hidden;
                       ContactSerializer.SaveToFile(Contacts);
-                  }));
+                  },
+                  (obj) => (SelectedContact!=null)));
             }
         }
 

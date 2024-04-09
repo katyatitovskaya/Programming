@@ -79,15 +79,15 @@
                 <Label Content="Name:"/>
                 <TextBox  HorizontalAlignment="Stretch"
                           Text="{Binding SelectedContact.FullName, UpdateSourceTrigger=PropertyChanged}"
-                          IsEnabled="{Binding IsEdited}"/>
+                          IsReadOnly="{Binding IsReadOnly}"/>
                 <Label Content="Phone Number:"/>
                 <TextBox  HorizontalAlignment="Stretch"
                           Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                          IsEnabled="{Binding IsEdited}"/>
+                          IsReadOnly="{Binding IsReadOnly}"/>
                 <Label Content="Email:"/>
                 <TextBox  HorizontalAlignment="Stretch"
                           Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged}"
-                          IsEnabled="{Binding IsEdited}"/>
+                          IsReadOnly="{Binding IsReadOnly}"/>
                 <Button Content="Apply" Height="25px" Width="75" 
                     Margin="0 50" HorizontalAlignment="Left"
                     Visibility="{Binding VisibilityMode}"
