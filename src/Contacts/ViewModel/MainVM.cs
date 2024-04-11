@@ -45,8 +45,6 @@ namespace Contacts.ViewModel
         private bool _isAdded;
         private bool _isReadOnly;
 
-        private Visibility _visibilityMode = Visibility.Hidden;
-
         /// <summary>
         /// Создает экземпляр типа <see cref="MainVM"/>
         /// </summary>
@@ -69,8 +67,8 @@ namespace Contacts.ViewModel
                 if(_selectedContact !=value)
                 {
                     _selectedContact = value;
-                    OnPropertyChanged(nameof(SelectedContact));
                     IsEdited = false;
+                    OnPropertyChanged(nameof(SelectedContact));
                 }
             }
         }
@@ -118,16 +116,6 @@ namespace Contacts.ViewModel
             }
         }
 
-        public Visibility VisibilityMode
-        {
-            get => _visibilityMode;
-            set
-            {
-                _visibilityMode = value; 
-                OnPropertyChanged(nameof(VisibilityMode));
-            }
-        }
-
         public bool IsReadOnly
         {
             get => _isReadOnly;
@@ -148,7 +136,6 @@ namespace Contacts.ViewModel
                       IsAdded = true;
                       IsEdited = true;
                       IsReadOnly = false;
-                      VisibilityMode = Visibility.Visible;
                       SelectedContact = new Contact();
                   },
                   (obj) => (IsEdited==false)
@@ -190,7 +177,6 @@ namespace Contacts.ViewModel
                   {
                       IsReadOnly = false;
                       IsEdited = true;
-                      VisibilityMode = Visibility.Visible;
                   },
                   (obj) => (SelectedContact!=null && Contacts.Count>0
                   && Contacts.IndexOf(SelectedContact)!=-1)));
@@ -218,7 +204,6 @@ namespace Contacts.ViewModel
                       }
                       IsEdited = false;
                       IsReadOnly = true;
-                      VisibilityMode = Visibility.Hidden;
                       ContactSerializer.SaveToFile(Contacts);
                   },
                   (obj) => (SelectedContact!=null)));

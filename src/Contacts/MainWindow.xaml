@@ -9,6 +9,9 @@
         DataContext="{StaticResource MainVM}"
         Title="Contacts" Height="450" Width="800">
     <Grid Margin="15">
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="Auto"/>
@@ -90,7 +93,7 @@
                           IsReadOnly="{Binding IsReadOnly}"/>
                 <Button Content="Apply" Height="25px" Width="75" 
                     Margin="0 50" HorizontalAlignment="Left"
-                    Visibility="{Binding VisibilityMode}"
+                        Visibility="{Binding IsEdited, Converter={StaticResource BooleanVisibilityConverter}}"
                         Command="{Binding ApplyCommand}"/>
             </StackPanel>
             
