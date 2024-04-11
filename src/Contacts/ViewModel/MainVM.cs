@@ -19,7 +19,9 @@ namespace Contacts.ViewModel
     /// </summary>
     public class MainVM: INotifyPropertyChanged
     {
-
+        /// <summary>
+        /// Выбранный контакт.
+        /// </summary>
         private Contact _selectedContact;
 
         /// <summary>
@@ -32,18 +34,45 @@ namespace Contacts.ViewModel
         /// </summary>
         private ICommand _loadCommand;
 
+        /// <summary>
+        /// Команда добавления контакта.
+        /// </summary>
         private RelayCommand _addCommand;
 
+        /// <summary>
+        /// Команда удаления контакта.
+        /// </summary>
         private RelayCommand _removeCommand;
-
+        
+        /// <summary>
+        /// Команда редактирования контакта.
+        /// </summary>
         private RelayCommand _editCommand;
 
+        /// <summary>
+        /// Команда утверждения изменений.
+        /// </summary>
         private RelayCommand _applyCommand;
 
+        /// <summary>
+        /// Флаг, показывающий, редактируется ли контакт.
+        /// </summary>
         private bool _isEdited;
 
+        /// <summary>
+        /// Флаг, показывающий, добавляется ли контакт.
+        /// </summary>
         private bool _isAdded;
+
+        /// <summary>
+        /// Флаг, показывающий, доступны поля только для чтения или нет.
+        /// </summary>
         private bool _isReadOnly;
+
+        /// <summary>
+        /// Индекс выбранного контакта. 
+        /// </summary>
+        private int _indexOfSelectedContact;
 
         /// <summary>
         /// Создает экземпляр типа <see cref="MainVM"/>
@@ -55,10 +84,17 @@ namespace Contacts.ViewModel
             _saveCommand = new SaveCommand(this);
             _loadCommand = new LoadCommand(this);
             Contacts = ContactSerializer.LoadFromFile();
+            IsReadOnly= true;
         }
 
+        /// <summary>
+        /// Возвращает и задает список контактов. 
+        /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает выбранный контакт. 
+        /// </summary>
         public Contact SelectedContact
         {
             get => _selectedContact;
@@ -67,12 +103,27 @@ namespace Contacts.ViewModel
                 if(_selectedContact !=value)
                 {
                     _selectedContact = value;
-                    IsEdited = false;
                     OnPropertyChanged(nameof(SelectedContact));
+                    if(Contacts.Contains(value))
+                    {
+                        IsEdited = false;
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает индект выбранного контакта. 
+        /// </summary>
+        public int IndexOfSelectedContact
+        {
+            get => _indexOfSelectedContact;
+            set
+            {
+                _indexOfSelectedContact = value;
+                OnPropertyChanged(nameof(IndexOfSelectedContact));
+            }
+        }
         
         /// <summary>
         /// Возвращает команду сохранения объекта. 
@@ -90,19 +141,22 @@ namespace Contacts.ViewModel
             get { return _loadCommand; }
         }
 
+        /// <summary>
+        /// Возвращает и задает флаг, редактируется ли контакт. 
+        /// </summary>
         public bool IsEdited
         {
             get => _isEdited;
             set
             {
-                if(_isEdited!=value)
-                {
-                    _isEdited = value;
-                    OnPropertyChanged(nameof(IsEdited));
-                }
+                _isEdited = value;
+                OnPropertyChanged(nameof(IsEdited));
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает флаг, добавляется ли контакт. 
+        /// </summary>
         public bool IsAdded
         {
             get => _isAdded;
@@ -116,6 +170,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает флаг, доступны поля только на чтение или нет. 
+        /// </summary>
         public bool IsReadOnly
         {
             get => _isReadOnly;
@@ -126,6 +183,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает команду добавления контакта.
+        /// </summary>
         public RelayCommand AddCommand
         {
             get
@@ -143,6 +203,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает команду удаления контакта. 
+        /// </summary>
         public RelayCommand RemoveCommand
         {
             get
@@ -168,6 +231,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает команду редактирования контакта. 
+        /// </summary>
         public RelayCommand EditCommand
         {
             get
@@ -177,12 +243,18 @@ namespace Contacts.ViewModel
                   {
                       IsReadOnly = false;
                       IsEdited = true;
+                      IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
+                      SelectedContact = new Contact(SelectedContact.FullName,
+                              SelectedContact.PhoneNumber, SelectedContact.Email);
                   },
                   (obj) => (SelectedContact!=null && Contacts.Count>0
                   && Contacts.IndexOf(SelectedContact)!=-1)));
             }
         }
 
+        /// <summary>
+        /// Возвращает команду применения изменений. 
+        /// </summary>
         public RelayCommand ApplyCommand
         {
             get
@@ -197,10 +269,8 @@ namespace Contacts.ViewModel
                       }
                       else
                       {
-                          int index = Contacts.IndexOf(SelectedContact);
-                          SelectedContact = new Contact(SelectedContact.FullName,
-                              SelectedContact.PhoneNumber, SelectedContact.Email);
-                          SelectedContact = Contacts[index];
+                          Contacts[IndexOfSelectedContact] = SelectedContact;
+                          SelectedContact = Contacts[IndexOfSelectedContact];
                       }
                       IsEdited = false;
                       IsReadOnly = true;

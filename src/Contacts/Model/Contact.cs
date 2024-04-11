@@ -15,10 +15,24 @@ namespace Contacts.Model
     /// </summary>
     public class Contact:INotifyPropertyChanged
     {
+        /// <summary>
+        /// Полное имя.
+        /// </summary>
         private string _fullName;
+
+        /// <summary>
+        /// Электронная почта. 
+        /// </summary>
         private string _email;
+        
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         private string _phoneNumber;
 
+        /// <summary>
+        /// Возвращает и задает полное имя.
+        /// </summary>
         public string FullName
         {
             get => _fullName;
@@ -29,6 +43,10 @@ namespace Contacts.Model
                 
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает электронную почту. 
+        /// </summary>
         public string Email
         {
             get => _email;
@@ -39,6 +57,9 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает Номер телефона. 
+        /// </summary>
         public string PhoneNumber
         {
             get => _phoneNumber;
@@ -48,6 +69,7 @@ namespace Contacts.Model
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
+
         /// <summary>
         /// Событие, показывающее изменения 
         /// в свойствах класса <see cref="MainVM"/>
