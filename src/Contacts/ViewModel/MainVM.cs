@@ -88,7 +88,7 @@ namespace Contacts.ViewModel
         }
 
         /// <summary>
-        /// Возвращает и задает список контактов. 
+        /// Возвращает и задает коллекцию контактов. 
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
 
@@ -107,6 +107,7 @@ namespace Contacts.ViewModel
                     if(Contacts.Contains(value))
                     {
                         IsEdited = false;
+                        IsReadOnly = true;
                     }
                 }
             }
@@ -162,11 +163,8 @@ namespace Contacts.ViewModel
             get => _isAdded;
             set
             {
-                if(_isAdded!=value)
-                {
-                    _isAdded = value;
-                    OnPropertyChanged(nameof(IsAdded));
-                }
+                _isAdded = value;
+                OnPropertyChanged(nameof(IsAdded));
             }
         }
 

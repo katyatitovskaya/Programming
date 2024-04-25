@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Find:" Grid.Column="0"/>
-            <TextBox Height="20" Grid.Column="1"></TextBox>
+            <TextBox Height="20" Grid.Column="1" Margin="3"></TextBox>
         </Grid>
         <ListBox Grid.Row="1" Grid.Column="0" Margin="3"
                  ItemsSource="{Binding Contacts}" 
