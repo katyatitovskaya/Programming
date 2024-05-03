@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 
@@ -274,10 +275,11 @@ namespace Contacts.ViewModel
                       IsReadOnly = true;
                       ContactSerializer.SaveToFile(Contacts);
                   },
-                  (obj) => (SelectedContact!=null)));
+                  (obj) => (SelectedContact!=null && !SelectedContact.IsError)));
             }
         }
 
+       
         /// <summary>
         /// Событие, показывающее изменения 
         /// в свойствах класса <see cref="MainVM"/>
