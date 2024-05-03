@@ -21,6 +21,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
+        
         <StackPanel>
         <Label Content="Name:"/>
             <TextBox x:Name="NameTextBox"
