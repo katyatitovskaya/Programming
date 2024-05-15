@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,77 +14,30 @@ namespace Contacts.Model
     /// <summary>
     /// Содержит информацию о контакте
     /// </summary>
-    public class Contact:INotifyPropertyChanged, IDataErrorInfo
+    public class Contact: ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Полное имя.
         /// </summary>
+        [ObservableProperty]
         private string _fullName;
 
         /// <summary>
         /// Электронная почта. 
         /// </summary>
+        [ObservableProperty]
         private string _email;
-        
+
         /// <summary>
         /// Номер телефона.
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         private string _error;
 
-        /// <summary>
-        /// Возвращает и задает полное имя.
-        /// </summary>
-        public string FullName
-        {
-            get => _fullName;
-            set
-            {
-                _fullName = value;
-                OnPropertyChanged(nameof(FullName));
-                
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает электронную почту. 
-        /// </summary>
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает Номер телефона. 
-        /// </summary>
-        public string PhoneNumber
-        {
-            get => _phoneNumber;
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
-            }
-        }
-
+        [ObservableProperty]
         private bool _isError;
-
-        public bool IsError
-        {
-            get => _isError;
-            set
-            {
-                _isError = value;
-                OnPropertyChanged(nameof(IsError));
-            }
-        }
-
         public string Error
         {
             get => _error;
@@ -94,7 +48,7 @@ namespace Contacts.Model
             get
             {
                 string _error = String.Empty;
-                _isError = false;
+                IsError = false;
                 switch (columnName)
                 {
                     case "FullName":
@@ -103,7 +57,7 @@ namespace Contacts.Model
                             if (FullName.Length > 100 || FullName.Length == 0)
                             {
                                 _error = "Name is supposed to be shorter than 100 symbols";
-                                _isError= true;
+                                IsError= true;
                             }
                         }
                         break;
@@ -115,7 +69,7 @@ namespace Contacts.Model
                             {
                                 _error = "Phone Number can contain only digits and '+-()' symbols. " +
                                     "Example: +7 (999) 111-22-33 ";
-                                _isError= true;
+                                IsError= true;
                             }
 
                         }
@@ -127,27 +81,13 @@ namespace Contacts.Model
                             {
                                 _error = "Email is supposed to be shorter than 100 symbols " +
                                     "and has to contain @ symbol";
-                                _isError= true;
+                                IsError= true;
                             }
                         }
                         break;
                 }
                 return _error;
             }
-        }
-        /// <summary>
-        /// Событие, показывающее изменения 
-        /// в свойствах класса <see cref="MainVM"/>
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Метод зажигающий событие при изменении свойств. 
-        /// </summary>
-        /// <param name="prop">Имя свойства</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         /// <summary>

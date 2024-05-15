@@ -11,68 +11,51 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Contacts.ViewModel
 {
     /// <summary>
     /// Хранит информацию о данных, связывающих Model и View между собой. 
     /// </summary>
-    public class MainVM: INotifyPropertyChanged
+    public partial class MainVM: ObservableObject
     {
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
+        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
         private Contact _selectedContact;
 
-        /// <summary>
-        /// Команда сохранения объекта. 
-        /// </summary>
-        private ICommand _saveCommand;
-
-        /// <summary>
-        /// Команда выгрузки объекта.
-        /// </summary>
-        private ICommand _loadCommand;
-
-        /// <summary>
-        /// Команда добавления контакта.
-        /// </summary>
-        private RelayCommand _addCommand;
-
-        /// <summary>
-        /// Команда удаления контакта.
-        /// </summary>
-        private RelayCommand _removeCommand;
         
-        /// <summary>
-        /// Команда редактирования контакта.
-        /// </summary>
-        private RelayCommand _editCommand;
-
-        /// <summary>
-        /// Команда утверждения изменений.
-        /// </summary>
-        private RelayCommand _applyCommand;
 
         /// <summary>
         /// Флаг, показывающий, редактируется ли контакт.
         /// </summary>
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
         private bool _isEdited;
 
         /// <summary>
         /// Флаг, показывающий, добавляется ли контакт.
         /// </summary>
+        [ObservableProperty]
         private bool _isAdded;
 
         /// <summary>
         /// Флаг, показывающий, доступны поля только для чтения или нет.
         /// </summary>
+        [ObservableProperty]
         private bool _isReadOnly;
 
         /// <summary>
         /// Индекс выбранного контакта. 
         /// </summary>
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
         private int _indexOfSelectedContact;
 
         /// <summary>
@@ -82,8 +65,6 @@ namespace Contacts.ViewModel
         {
             Contacts = new ObservableCollection<Contact>();
             SelectedContact= new Contact();
-            _saveCommand = new SaveCommand(this);
-            _loadCommand = new LoadCommand(this);
             Contacts = ContactSerializer.LoadFromFile();
             IsReadOnly= true;
         }
@@ -93,206 +74,96 @@ namespace Contacts.ViewModel
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
 
-        /// <summary>
-        /// Возвращает и задает выбранный контакт. 
-        /// </summary>
-        public Contact SelectedContact
+        [RelayCommand]
+        public void Load()
         {
-            get => _selectedContact;
-            set
+            var contact = ContactSerializer.LoadFromFile();
+        }
+
+        [RelayCommand]
+        public void Save()
+        {
+            var fullName = SelectedContact.FullName;
+            var phoneNumber = SelectedContact.PhoneNumber;
+            var email = SelectedContact.Email;
+            var contacts = new ObservableCollection<Contact>()
+                        { new Contact(fullName, phoneNumber, email) };
+            ContactSerializer.SaveToFile(contacts);
+        }
+
+        [RelayCommand(CanExecute =nameof(CanAdd))]
+        public void Add()
+        {
+            IsAdded = true;
+            IsEdited = true;
+            IsReadOnly = false;
+            SelectedContact = new Contact();
+        }
+
+        public bool CanAdd()
+        {
+            return IsEdited == false;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanRemoveExecute))]
+        public void Remove()
+        {
+            int index = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+            if (Contacts.Count > 0 && index != 0)
             {
-                if(_selectedContact !=value)
-                {
-                    _selectedContact = value;
-                    OnPropertyChanged(nameof(SelectedContact));
-                    if(Contacts.Contains(value))
-                    {
-                        IsEdited = false;
-                        IsReadOnly = true;
-                    }
-                }
+                SelectedContact = Contacts[index - 1];
             }
-        }
-
-        /// <summary>
-        /// Возвращает и задает индект выбранного контакта. 
-        /// </summary>
-        public int IndexOfSelectedContact
-        {
-            get => _indexOfSelectedContact;
-            set
+            else if (Contacts.Count > 0)
             {
-                _indexOfSelectedContact = value;
-                OnPropertyChanged(nameof(IndexOfSelectedContact));
+                SelectedContact = Contacts.Last();
             }
-        }
-        
-        /// <summary>
-        /// Возвращает команду сохранения объекта. 
-        /// </summary>
-        public ICommand SaveCommand
-        {
-            get { return _saveCommand; }
+            ContactSerializer.SaveToFile(Contacts);
         }
 
-        /// <summary>
-        /// Возвращает команду выгрузки объекта. 
-        /// </summary>
-        public ICommand LoadCommand
+        public bool CanRemoveExecute()
         {
-            get { return _loadCommand; }
+            return (Contacts.Count > 0 && SelectedContact != null
+                  && IsEdited == false && Contacts.IndexOf(SelectedContact) != -1);
         }
 
-        /// <summary>
-        /// Возвращает и задает флаг, редактируется ли контакт. 
-        /// </summary>
-        public bool IsEdited
+        [RelayCommand(CanExecute = nameof(CanEdit))]
+        public void Edit()
         {
-            get => _isEdited;
-            set
+            IsReadOnly = false;
+            IsEdited = true;
+            IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
+            SelectedContact = new Contact(SelectedContact.FullName,
+                    SelectedContact.PhoneNumber, SelectedContact.Email);
+        }
+
+        public bool CanEdit()
+        {
+            return SelectedContact != null && Contacts.Count > 0
+                  && Contacts.IndexOf(SelectedContact) != -1;
+        }
+
+        [RelayCommand(CanExecute =nameof(CanApply))]
+        public void Apply()
+        {
+            if (IsAdded)
             {
-                _isEdited = value;
-                OnPropertyChanged(nameof(IsEdited));
+                Contacts.Add(SelectedContact);
+                IsAdded = false;
             }
-        }
-
-        /// <summary>
-        /// Возвращает и задает флаг, добавляется ли контакт. 
-        /// </summary>
-        public bool IsAdded
-        {
-            get => _isAdded;
-            set
+            else
             {
-                _isAdded = value;
-                OnPropertyChanged(nameof(IsAdded));
+                Contacts[IndexOfSelectedContact] = SelectedContact;
+                SelectedContact = Contacts[IndexOfSelectedContact];
             }
+            IsEdited = false;
+            IsReadOnly = true;
+            ContactSerializer.SaveToFile(Contacts);
         }
 
-        /// <summary>
-        /// Возвращает и задает флаг, доступны поля только на чтение или нет. 
-        /// </summary>
-        public bool IsReadOnly
+        public bool CanApply()
         {
-            get => _isReadOnly;
-            set
-            {
-                _isReadOnly = value; 
-                OnPropertyChanged(nameof(IsReadOnly));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает команду добавления контакта.
-        /// </summary>
-        public RelayCommand AddCommand
-        {
-            get
-            {
-                return _addCommand ??
-                  (_addCommand = new RelayCommand(obj =>
-                  {
-                      IsAdded = true;
-                      IsEdited = true;
-                      IsReadOnly = false;
-                      SelectedContact = new Contact();
-                  },
-                  (obj) => (IsEdited==false)
-                  ));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает команду удаления контакта. 
-        /// </summary>
-        public RelayCommand RemoveCommand
-        {
-            get
-            {
-                return _removeCommand ??
-                  (_removeCommand = new RelayCommand(obj =>
-                  {
-                      int index = Contacts.IndexOf(SelectedContact);
-                      Contacts.Remove(SelectedContact);
-                      if (Contacts.Count > 0 && index!=0)
-                      {
-                          SelectedContact = Contacts[index - 1];
-                      }
-                      else if(Contacts.Count > 0)
-                      {
-                          SelectedContact = Contacts.Last();
-                      }
-                      ContactSerializer.SaveToFile(Contacts);
-
-                  },
-                  (obj) => (Contacts.Count > 0 && SelectedContact!=null
-                  && IsEdited==false && Contacts.IndexOf(SelectedContact)!=-1)));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает команду редактирования контакта. 
-        /// </summary>
-        public RelayCommand EditCommand
-        {
-            get
-            {
-                return _editCommand ??
-                  (_editCommand = new RelayCommand(obj =>
-                  {
-                      IsReadOnly = false;
-                      IsEdited = true;
-                      IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
-                      SelectedContact = new Contact(SelectedContact.FullName,
-                              SelectedContact.PhoneNumber, SelectedContact.Email);
-                  },
-                  (obj) => (SelectedContact!=null && Contacts.Count>0
-                  && Contacts.IndexOf(SelectedContact)!=-1)));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает команду применения изменений. 
-        /// </summary>
-        public RelayCommand ApplyCommand
-        {
-            get
-            {
-                return _applyCommand ??
-                  (_applyCommand = new RelayCommand(obj =>
-                  {
-                      if (IsAdded)
-                      {
-                          Contacts.Add(SelectedContact);
-                          IsAdded= false;
-                      }
-                      else
-                      {
-                          Contacts[IndexOfSelectedContact] = SelectedContact;
-                          SelectedContact = Contacts[IndexOfSelectedContact];
-                      }
-                      IsEdited = false;
-                      IsReadOnly = true;
-                      ContactSerializer.SaveToFile(Contacts);
-                  },
-                  (obj) => (SelectedContact!=null && !SelectedContact.IsError)));
-            }
-        }
-
-       
-        /// <summary>
-        /// Событие, показывающее изменения 
-        /// в свойствах класса <see cref="MainVM"/>
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Метод зажигающий событие при изменении свойств. 
-        /// </summary>
-        /// <param name="prop">Имя свойства</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            return SelectedContact != null && !SelectedContact.IsError;
         }
     }
 }
