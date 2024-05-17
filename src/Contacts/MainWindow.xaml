@@ -85,7 +85,8 @@
                 <Button Content="Apply" Height="25px" Width="75" 
                     Margin="0 50" HorizontalAlignment="Left"
                         Visibility="{Binding IsEdited, Converter={StaticResource BooleanVisibilityConverter}}"
-                        Command="{Binding ApplyCommand}">
+                        Command="{Binding ApplyCommand}"
+                        IsEnabled="{Binding SelectedContact.HasErrors}">
                 </Button>
             </StackPanel>
             

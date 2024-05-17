@@ -55,7 +55,6 @@ namespace Contacts.ViewModel
         /// Индекс выбранного контакта. 
         /// </summary>
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
         private int _indexOfSelectedContact;
 
         /// <summary>
@@ -163,7 +162,7 @@ namespace Contacts.ViewModel
 
         public bool CanApply()
         {
-            return SelectedContact != null && !SelectedContact.IsError;
+            return SelectedContact != null && SelectedContact.HasErrors == false;
         }
     }
 }

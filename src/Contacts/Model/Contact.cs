@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,79 +15,58 @@ namespace Contacts.Model
     /// <summary>
     /// Содержит информацию о контакте
     /// </summary>
-    public class Contact: ObservableObject, IDataErrorInfo
+    public partial class Contact: ObservableValidator
     {
         /// <summary>
         /// Полное имя.
         /// </summary>
-        [ObservableProperty]
+        
         private string _fullName;
 
         /// <summary>
         /// Электронная почта. 
         /// </summary>
-        [ObservableProperty]
         private string _email;
 
         /// <summary>
         /// Номер телефона.
         /// </summary>
-        [ObservableProperty]
         private string _phoneNumber;
 
-        private string _error;
-
-        [ObservableProperty]
-        private bool _isError;
-        public string Error
+        [Required]
+        [MinLength(1)]
+        [MaxLength(100, ErrorMessage = "Name is supposed to be shorter than 100 symbols")]
+        public string FullName
         {
-            get => _error;
+            get => _fullName;
+            set
+            {
+                SetProperty(ref _fullName, value, true);
+            }
         }
 
-        public string this[string columnName]
+        [Required]
+        [RegularExpression(@"^\+\d{1}\(\d{3}\)\d{3}\-\d{2}-\d{2}$",
+            ErrorMessage = "Phone Number can contain only digits and '+-()' symbols. " +
+                                    "Example: +7 (999) 111-22-33 ")]
+        public string PhoneNumber
         {
-            get
+            get=> _phoneNumber;
+            set
             {
-                string _error = String.Empty;
-                IsError = false;
-                switch (columnName)
-                {
-                    case "FullName":
-                        if (FullName != null)
-                        {
-                            if (FullName.Length > 100 || FullName.Length == 0)
-                            {
-                                _error = "Name is supposed to be shorter than 100 symbols";
-                                IsError= true;
-                            }
-                        }
-                        break;
-                    case "PhoneNumber":
-                        if (PhoneNumber != null)
-                        {
-                            if (Regex.IsMatch(PhoneNumber, @"^\+\d{1}\s\(\d{3}\)\s\d{3}\-\d{2}-\d{2}$") == false
-                                && Regex.IsMatch(PhoneNumber, @"^\+\d{1}\(\d{3}\)\d{3}\-\d{2}-\d{2}$") == false)
-                            {
-                                _error = "Phone Number can contain only digits and '+-()' symbols. " +
-                                    "Example: +7 (999) 111-22-33 ";
-                                IsError= true;
-                            }
+                SetProperty(ref _phoneNumber, value, true);
+            }
+        }
 
-                        }
-                        break;
-                    case "Email":
-                        if (Email != null)
-                        {
-                            if (Email.Contains('@') == false || Email.Length > 100)
-                            {
-                                _error = "Email is supposed to be shorter than 100 symbols " +
-                                    "and has to contain @ symbol";
-                                IsError= true;
-                            }
-                        }
-                        break;
-                }
-                return _error;
+        [Required]
+        [RegularExpression(@"^.*\@.*$", 
+            ErrorMessage = "Email is supposed to be shorter than 100 symbols and has to contain @ symbol")]
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                SetProperty (ref _email, value, true);
             }
         }
 

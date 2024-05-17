@@ -27,11 +27,7 @@
             <TextBox x:Name="NameTextBox"
                 HorizontalAlignment="Stretch" IsReadOnly="{Binding IsReadOnly}">
                 <TextBox.Text>
-                    <Binding Path="SelectedContact.FullName" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
+                    <Binding Path="SelectedContact.FullName" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
             <Label Content="Phone Number:"/>
@@ -39,22 +35,16 @@
                 HorizontalAlignment="Stretch" IsReadOnly="{Binding IsReadOnly}"
                       PreviewTextInput="PhoneNumberTextBox_PreviewTextInput">
                 <TextBox.Text>
-                    <Binding Path="SelectedContact.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
+                    <Binding Path="SelectedContact.PhoneNumber" UpdateSourceTrigger="PropertyChanged" 
+                             ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
             <Label Content="Email:"/>
             <TextBox x:Name="EmailTextBox" 
                 HorizontalAlignment="Stretch" IsReadOnly="{Binding IsReadOnly}">
                 <TextBox.Text>
-                    <Binding Path="SelectedContact.Email" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
+                    <Binding Path="SelectedContact.Email" UpdateSourceTrigger="PropertyChanged"
+                             ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
         </StackPanel>
