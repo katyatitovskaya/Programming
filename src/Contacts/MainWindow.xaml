@@ -45,7 +45,8 @@
         <ListBox Grid.Row="1" Grid.Column="0" Margin="3"
                  ItemsSource="{Binding Contacts}" 
                  SelectedItem="{Binding SelectedContact}"
-                 ItemTemplate="{StaticResource contactTemplate}">
+                 ItemTemplate="{StaticResource contactTemplate}"
+                 IsEnabled="{Binding IsReadOnly}">
         </ListBox>
         <Grid 
             Grid.Row="3" Grid.Column="0">
@@ -85,7 +86,8 @@
                 <Button Content="Apply" Height="25px" Width="75" 
                     Margin="0 50" HorizontalAlignment="Left"
                         Visibility="{Binding IsEdited, Converter={StaticResource BooleanVisibilityConverter}}"
-                        Command="{Binding ApplyCommand}">
+                        Command="{Binding ApplyCommand}"
+                        IsEnabled="{Binding HasNoErrors}">
                 </Button>
             </StackPanel>
             

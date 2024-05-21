@@ -57,7 +57,6 @@ namespace Contacts.ViewModel
         /// Индекс выбранного контакта. 
         /// </summary>
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private int _indexOfSelectedContact;
 
         /// <summary>
@@ -121,7 +120,6 @@ namespace Contacts.ViewModel
             {
                 SelectedContact = Contacts.Last();
             }
-            IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
             ContactSerializer.SaveToFile(Contacts);
         }
 

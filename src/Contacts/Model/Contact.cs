@@ -33,8 +33,6 @@ namespace Contacts.Model
         /// </summary>
         private string _phoneNumber;
 
-        [ObservableProperty]
-        private bool _isEdited;
 
         [Required]
         [MinLength(1)]
