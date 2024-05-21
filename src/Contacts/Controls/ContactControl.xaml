@@ -27,7 +27,8 @@
             <TextBox x:Name="NameTextBox"
                 HorizontalAlignment="Stretch" IsReadOnly="{Binding IsReadOnly}">
                 <TextBox.Text>
-                    <Binding Path="SelectedContact.FullName" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True"/>
+                    <Binding Path="SelectedContact.FullName" UpdateSourceTrigger="PropertyChanged" 
+                             ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
             <Label Content="Phone Number:"/>

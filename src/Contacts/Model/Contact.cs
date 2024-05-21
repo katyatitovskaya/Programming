@@ -33,6 +33,9 @@ namespace Contacts.Model
         /// </summary>
         private string _phoneNumber;
 
+        [ObservableProperty]
+        private bool _isEdited;
+
         [Required]
         [MinLength(1)]
         [MaxLength(100, ErrorMessage = "Name is supposed to be shorter than 100 symbols")]

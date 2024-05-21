@@ -37,6 +37,8 @@ namespace Contacts.ViewModel
         /// </summary>
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddCommand))]
+        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
         private bool _isEdited;
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace Contacts.ViewModel
         /// Индекс выбранного контакта. 
         /// </summary>
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private int _indexOfSelectedContact;
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace Contacts.ViewModel
             IsReadOnly= true;
         }
 
+        
         /// <summary>
         /// Возвращает и задает коллекцию контактов. 
         /// </summary>
@@ -117,6 +121,7 @@ namespace Contacts.ViewModel
             {
                 SelectedContact = Contacts.Last();
             }
+            IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
             ContactSerializer.SaveToFile(Contacts);
         }
 
@@ -139,7 +144,7 @@ namespace Contacts.ViewModel
         public bool CanEdit()
         {
             return SelectedContact != null && Contacts.Count > 0
-                  && Contacts.IndexOf(SelectedContact) != -1;
+                  && Contacts.IndexOf(SelectedContact) != -1 && IsEdited==false;
         }
 
         [RelayCommand(CanExecute =nameof(CanApply))]
@@ -164,5 +169,6 @@ namespace Contacts.ViewModel
         {
             return SelectedContact != null && SelectedContact.HasErrors == false;
         }
+
     }
 }
