@@ -25,12 +25,24 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
-        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
+        
         private Contact _selectedContact;
 
-        
+        public Contact SelectedContact
+        {
+            get => _selectedContact;
+            set
+            {
+                SetProperty(ref _selectedContact, value);
+                if (Contacts.Contains(value) && IsEdited==true)
+                {
+                    IsEdited = false;
+                    IsReadOnly = true;
+                }
+                IndexOfSelectedContact = Contacts.IndexOf(value);
+
+            }
+        }
 
         /// <summary>
         /// Флаг, показывающий, редактируется ли контакт.
@@ -57,6 +69,8 @@ namespace Contacts.ViewModel
         /// Индекс выбранного контакта. 
         /// </summary>
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EditCommand))]
+        [NotifyCanExecuteChangedFor(nameof(RemoveCommand))]
         private int _indexOfSelectedContact;
 
         /// <summary>
@@ -68,6 +82,7 @@ namespace Contacts.ViewModel
             SelectedContact= new Contact();
             Contacts = ContactSerializer.LoadFromFile();
             IsReadOnly= true;
+            IsEdited= false;
         }
 
         
@@ -100,6 +115,7 @@ namespace Contacts.ViewModel
             IsEdited = true;
             IsReadOnly = false;
             SelectedContact = new Contact();
+            IndexOfSelectedContact = Contacts.Count();
         }
 
         public bool CanAdd()
@@ -120,13 +136,14 @@ namespace Contacts.ViewModel
             {
                 SelectedContact = Contacts.Last();
             }
+            IndexOfSelectedContact=Contacts.IndexOf(SelectedContact);
             ContactSerializer.SaveToFile(Contacts);
         }
 
         public bool CanRemoveExecute()
         {
             return (Contacts.Count > 0 && SelectedContact != null
-                  && IsEdited == false && Contacts.IndexOf(SelectedContact) != -1);
+                  && IsEdited == false && IndexOfSelectedContact != -1);
         }
 
         [RelayCommand(CanExecute = nameof(CanEdit))]
@@ -134,15 +151,16 @@ namespace Contacts.ViewModel
         {
             IsReadOnly = false;
             IsEdited = true;
-            IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
+            int index = Contacts.IndexOf(SelectedContact);
             SelectedContact = new Contact(SelectedContact.FullName,
                     SelectedContact.PhoneNumber, SelectedContact.Email);
+            IndexOfSelectedContact = index;
         }
 
         public bool CanEdit()
         {
             return SelectedContact != null && Contacts.Count > 0
-                  && Contacts.IndexOf(SelectedContact) != -1 && IsEdited==false;
+                  && IndexOfSelectedContact != -1 && IsEdited==false;
         }
 
         [RelayCommand(CanExecute =nameof(CanApply))]
@@ -152,11 +170,11 @@ namespace Contacts.ViewModel
             {
                 Contacts.Add(SelectedContact);
                 IsAdded = false;
+                SelectedContact = Contacts[IndexOfSelectedContact];
             }
             else
             {
                 Contacts[IndexOfSelectedContact] = SelectedContact;
-                SelectedContact = Contacts[IndexOfSelectedContact];
             }
             IsEdited = false;
             IsReadOnly = true;
