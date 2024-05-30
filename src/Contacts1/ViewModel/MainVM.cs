@@ -85,12 +85,18 @@ namespace Contacts1.ViewModel
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
 
+        /// <summary>
+        /// Команда загрузки контактов из файла. 
+        /// </summary>
         [RelayCommand]
         public void Load()
         {
             var contact = ContactSerializer.LoadFromFile();
         }
 
+        /// <summary>
+        /// Команда сохранения контактов в файл. 
+        /// </summary>
         [RelayCommand]
         public void Save()
         {
@@ -102,6 +108,9 @@ namespace Contacts1.ViewModel
             ContactSerializer.SaveToFile(contacts);
         }
 
+        /// <summary>
+        /// Команда добавления контакта. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanAdd))]
         public void Add()
         {
@@ -112,11 +121,17 @@ namespace Contacts1.ViewModel
             IndexOfSelectedContact = Contacts.Count();
         }
 
+        /// <summary>
+        /// Возвращает может ли быть добавлен контакт.
+        /// </summary>
         public bool CanAdd()
         {
             return IsEdited == false;
         }
 
+        /// <summary>
+        /// Команда удаления контакта. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanRemoveExecute))]
         public void Remove()
         {
@@ -134,12 +149,18 @@ namespace Contacts1.ViewModel
             ContactSerializer.SaveToFile(Contacts);
         }
 
+        /// <summary>
+        /// Возвращает может ли быть удален контакт. 
+        /// </summary>
         public bool CanRemoveExecute()
         {
             return (Contacts.Count > 0 && SelectedContact != null
                   && IsEdited == false && IndexOfSelectedContact != -1);
         }
 
+        /// <summary>
+        /// Команда редактирования контакта. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanEdit))]
         public void Edit()
         {
@@ -151,12 +172,18 @@ namespace Contacts1.ViewModel
             IndexOfSelectedContact = index;
         }
 
+        /// <summary>
+        /// Возвращает может ли быть изменен контакт. 
+        /// </summary>
         public bool CanEdit()
         {
             return SelectedContact != null && Contacts.Count > 0
                   && IndexOfSelectedContact != -1 && IsEdited == false;
         }
 
+        /// <summary>
+        /// Команда применения изменений. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanApply))]
         public void Apply()
         {
@@ -175,6 +202,9 @@ namespace Contacts1.ViewModel
             ContactSerializer.SaveToFile(Contacts);
         }
 
+        /// <summary>
+        /// Возвращает могут ли быть применены изменения в контакте. 
+        /// </summary>
         public bool CanApply()
         {
             return SelectedContact != null && SelectedContact.HasErrors == false;

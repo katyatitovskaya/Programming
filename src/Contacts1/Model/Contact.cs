@@ -28,7 +28,10 @@ namespace Contacts1.Model
         /// </summary>
         private string _phoneNumber;
 
-
+        /// <summary>
+        /// Возвращает и задает имя контакта.
+        /// Должно быть короче 100 символов. 
+        /// </summary>
         [Required]
         [MinLength(1)]
         [MaxLength(100, ErrorMessage = "Name is supposed to be shorter than 100 symbols")]
@@ -41,6 +44,10 @@ namespace Contacts1.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает номер телефона контакта.
+        /// Должен быть формата +7(983)000-11-22
+        /// </summary>
         [Required]
         [RegularExpression(@"^\+\d{1}\(\d{3}\)\d{3}\-\d{2}-\d{2}$",
             ErrorMessage = "Phone Number can contain only digits and '+-()' symbols. " +
@@ -54,6 +61,10 @@ namespace Contacts1.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает электронную почту.
+        /// Должна содержать @. 
+        /// </summary>
         [Required]
         [RegularExpression(@"^.*\@.*$",
             ErrorMessage = "Email is supposed to be shorter than 100 symbols and has to contain @ symbol")]
