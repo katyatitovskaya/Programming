@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Contacts1.Controls
+{
+    /// <summary>
+    /// Логика взаимодействия для ContactsControl.xaml
+    /// </summary>
+    public partial class ContactsControl : UserControl
+    {
+        public ContactsControl()
+        {
+            InitializeComponent();
+            DataObject.AddPastingHandler(PhoneNumberTextBox, TextBoxPaste);
+        }
+
+        private void PhoneNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int value;
+            if (e.Text != "+" && e.Text != "-" && e.Text != "(" && e.Text != ")" && e.Text != " "
+                && !Int32.TryParse(e.Text, out value))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxPaste(object sender, DataObjectPastingEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            bool isCorrectText = false;
+
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string pasteText = e.DataObject.GetData(typeof(string)) as string;
+                Regex pattern1 = new Regex(@"^\+\d{1}\s\(\d{3}\)\s\d{3}\-\d{2}-\d{2}$");
+                Regex pattern2 = new Regex(@"^\+\d{1}\(\d{3}\)\d{3}\-\d{2}-\d{2}$");
+                if (pattern1.IsMatch(pasteText) || pattern2.IsMatch(pasteText))
+                {
+                    isCorrectText = true;
+                }
+            }
+            if (!isCorrectText)
+            {
+                e.CancelCommand();
+            }
+        }
+    
+    }
+}
