@@ -1,26 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace Contacts.Model
+namespace Contacts1.Model
 {
     /// <summary>
     /// Содержит информацию о контакте
     /// </summary>
-    public partial class Contact: ObservableValidator
+    public partial class Contact : ObservableValidator
     {
         /// <summary>
         /// Полное имя.
         /// </summary>
-        
         private string _fullName;
 
         /// <summary>
@@ -33,7 +29,10 @@ namespace Contacts.Model
         /// </summary>
         private string _phoneNumber;
 
-
+        /// <summary>
+        /// Возвращает и задает имя контакта.
+        /// Должно быть короче 100 символов. 
+        /// </summary>
         [Required]
         [MinLength(1)]
         [MaxLength(100, ErrorMessage = "Name is supposed to be shorter than 100 symbols")]
@@ -46,28 +45,36 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает номер телефона контакта.
+        /// Должен быть формата +7(983)000-11-22
+        /// </summary>
         [Required]
         [RegularExpression(@"^\+\d{1}\(\d{3}\)\d{3}\-\d{2}-\d{2}$",
             ErrorMessage = "Phone Number can contain only digits and '+-()' symbols. " +
                                     "Example: +7 (999) 111-22-33 ")]
         public string PhoneNumber
         {
-            get=> _phoneNumber;
+            get => _phoneNumber;
             set
             {
                 SetProperty(ref _phoneNumber, value, true);
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает электронную почту.
+        /// Должна содержать @. 
+        /// </summary>
         [Required]
-        [RegularExpression(@"^.*\@.*$", 
+        [RegularExpression(@"^.*\@.*$",
             ErrorMessage = "Email is supposed to be shorter than 100 symbols and has to contain @ symbol")]
         public string Email
         {
             get => _email;
             set
             {
-                SetProperty (ref _email, value, true);
+                SetProperty(ref _email, value, true);
             }
         }
 
@@ -79,7 +86,7 @@ namespace Contacts.Model
         /// <param name="phoneNumber">Номер телефона </param>
         public Contact(string fullName, string phoneNumber, string email)
         {
-            FullName= fullName;
+            FullName = fullName;
             PhoneNumber = phoneNumber;
             Email = email;
         }
@@ -90,6 +97,5 @@ namespace Contacts.Model
         public Contact()
         {
         }
-
     }
 }

@@ -1,31 +1,24 @@
-﻿using Contacts.Model;
-using Contacts.Model.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Contacts1.Model;
+using Contacts1.Model.Services;
 
-namespace Contacts.ViewModel
+namespace Contacts1.ViewModel
 {
     /// <summary>
     /// Хранит информацию о данных, связывающих Model и View между собой. 
     /// </summary>
-    public partial class MainVM: ObservableObject
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-        
         private Contact _selectedContact;
 
         public Contact SelectedContact
@@ -34,13 +27,12 @@ namespace Contacts.ViewModel
             set
             {
                 SetProperty(ref _selectedContact, value);
-                if (Contacts.Contains(value) && IsEdited==true)
+                if (Contacts.Contains(value) && IsEdited == true)
                 {
                     IsEdited = false;
                     IsReadOnly = true;
                 }
                 IndexOfSelectedContact = Contacts.IndexOf(value);
-
             }
         }
 
@@ -79,24 +71,30 @@ namespace Contacts.ViewModel
         public MainVM()
         {
             Contacts = new ObservableCollection<Contact>();
-            SelectedContact= new Contact();
+            SelectedContact = new Contact();
             Contacts = ContactSerializer.LoadFromFile();
-            IsReadOnly= true;
-            IsEdited= false;
+            IsReadOnly = true;
+            IsEdited = false;
         }
 
-        
+
         /// <summary>
         /// Возвращает и задает коллекцию контактов. 
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
 
+        /// <summary>
+        /// Команда загрузки контактов из файла. 
+        /// </summary>
         [RelayCommand]
         public void Load()
         {
             var contact = ContactSerializer.LoadFromFile();
         }
 
+        /// <summary>
+        /// Команда сохранения контактов в файл. 
+        /// </summary>
         [RelayCommand]
         public void Save()
         {
@@ -108,7 +106,10 @@ namespace Contacts.ViewModel
             ContactSerializer.SaveToFile(contacts);
         }
 
-        [RelayCommand(CanExecute =nameof(CanAdd))]
+        /// <summary>
+        /// Команда добавления контакта. 
+        /// </summary>
+        [RelayCommand(CanExecute = nameof(CanAdd))]
         public void Add()
         {
             IsAdded = true;
@@ -118,11 +119,17 @@ namespace Contacts.ViewModel
             IndexOfSelectedContact = Contacts.Count();
         }
 
+        /// <summary>
+        /// Возвращает может ли быть добавлен контакт.
+        /// </summary>
         public bool CanAdd()
         {
             return IsEdited == false;
         }
 
+        /// <summary>
+        /// Команда удаления контакта. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanRemoveExecute))]
         public void Remove()
         {
@@ -136,16 +143,22 @@ namespace Contacts.ViewModel
             {
                 SelectedContact = Contacts.Last();
             }
-            IndexOfSelectedContact=Contacts.IndexOf(SelectedContact);
+            IndexOfSelectedContact = Contacts.IndexOf(SelectedContact);
             ContactSerializer.SaveToFile(Contacts);
         }
 
+        /// <summary>
+        /// Возвращает может ли быть удален контакт. 
+        /// </summary>
         public bool CanRemoveExecute()
         {
             return (Contacts.Count > 0 && SelectedContact != null
                   && IsEdited == false && IndexOfSelectedContact != -1);
         }
 
+        /// <summary>
+        /// Команда редактирования контакта. 
+        /// </summary>
         [RelayCommand(CanExecute = nameof(CanEdit))]
         public void Edit()
         {
@@ -157,13 +170,19 @@ namespace Contacts.ViewModel
             IndexOfSelectedContact = index;
         }
 
+        /// <summary>
+        /// Возвращает может ли быть изменен контакт. 
+        /// </summary>
         public bool CanEdit()
         {
             return SelectedContact != null && Contacts.Count > 0
-                  && IndexOfSelectedContact != -1 && IsEdited==false;
+                  && IndexOfSelectedContact != -1 && IsEdited == false;
         }
 
-        [RelayCommand(CanExecute =nameof(CanApply))]
+        /// <summary>
+        /// Команда применения изменений. 
+        /// </summary>
+        [RelayCommand(CanExecute = nameof(CanApply))]
         public void Apply()
         {
             if (IsAdded)
@@ -181,10 +200,12 @@ namespace Contacts.ViewModel
             ContactSerializer.SaveToFile(Contacts);
         }
 
+        /// <summary>
+        /// Возвращает могут ли быть применены изменения в контакте. 
+        /// </summary>
         public bool CanApply()
         {
             return SelectedContact != null && SelectedContact.HasErrors == false;
         }
-
     }
 }
