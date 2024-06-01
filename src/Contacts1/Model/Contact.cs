@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -96,6 +97,5 @@ namespace Contacts1.Model
         public Contact()
         {
         }
-
     }
 }

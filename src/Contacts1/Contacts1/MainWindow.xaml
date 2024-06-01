@@ -11,7 +11,6 @@
     <Grid Margin="15">
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter"/>
-
             <DataTemplate x:Key="contactTemplate">
                 <StackPanel Margin="3">
                     <TextBlock Text="{Binding FullName}" FontSize="12" FontWeight="SemiBold"/>
@@ -43,7 +42,7 @@
         </Grid>
         <ListBox Grid.Row="1" Grid.Column="0" Margin="3"
                  ItemsSource="{Binding Contacts}" 
-                 SelectedItem="{Binding SelectedContact}"
+                 SelectedItem="{Binding SelectedContact, ValidatesOnNotifyDataErrors=False}"
                  ItemTemplate="{StaticResource contactTemplate}"
                  >
         </ListBox>
@@ -88,9 +87,6 @@
                         Command="{Binding ApplyCommand}">
                 </Button>
             </StackPanel>
-
-
         </Grid>
-
     </Grid>
 </Window>

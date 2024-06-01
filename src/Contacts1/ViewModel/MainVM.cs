@@ -19,7 +19,6 @@ namespace Contacts1.ViewModel
         /// <summary>
         /// Выбранный контакт.
         /// </summary>
-
         private Contact _selectedContact;
 
         public Contact SelectedContact
@@ -34,7 +33,6 @@ namespace Contacts1.ViewModel
                     IsReadOnly = true;
                 }
                 IndexOfSelectedContact = Contacts.IndexOf(value);
-
             }
         }
 
@@ -209,6 +207,5 @@ namespace Contacts1.ViewModel
         {
             return SelectedContact != null && SelectedContact.HasErrors == false;
         }
-
     }
 }
